@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  min-width: 230px;
+}
+
+h2 {
+  margin-top: 0px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+  font-size: inherit;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  outline: none;
+}
+
+.button-1 {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid grey;
+  cursor: pointer;
+  font-weight: bold;
+  background: #eeeeee;
+  transition: background 0.2s;
+  font-size: inherit;
+}
+
+.button-1:hover {
+  background: transparent;
+}
+
+svg {
+  display: block;
+  transition: fill 0.2s;
+}
+
+section {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+section + section {
+  border-top: 1px dotted lightgrey;
+}
+
+.section-hidden {
+  display: none;
+}
+
+.users {
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+}
+
+.users__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px dotted lightgrey;
+  padding: 10px;
+}
+
+.users__item:first-child {
+  border: 0;
+}
+
+.users__item div {
+  padding-left: 10px;
+}
+
+.users__item div:first-child {
+  padding-left: 0;
+}
+
+.users__item--add {
+  width: 100%;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  font-size: inherit;
+  background: #eeeeee;
+  border-top-style: solid;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.users__item--add:hover {
+  background: transparent;
+}
+
+.users__item__remove {
+  margin-left: auto;
+}
+
+.users__item__button {
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.users__item__button:hover svg {
+  fill: grey;
+}
+
+[data-button="connect"] svg {
+  fill: #ed1010;
+}
+
+[data-button="connect"]:hover svg {
+  fill: #ae0909;
+}
+
+.connected [data-button="connect"] svg {
+  fill: #6db907;
+}
+
+.connected [data-button="connect"]:hover svg {
+  fill: #467605;
+}

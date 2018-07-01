@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Stream Defense Controller",
+  "description": "A controller for the popular Twitch.tv stream defense game.",
+  "version": "1.0",
+  "author": "Mariusz Dabrowski",
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "run_at": "document_end",
+      "js": ["js/overlay.js"],
+      "css": ["css/overlay.css"]
+    }
+  ],  
+  "browser_action": {
+    "default_title": "Stream Defense Controller",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "images/128x128.png"
+    }
+  },
+  "permissions": ["tabs", "storage"],
+  "icons": {
+    "128": "images/app-icon-128x128.png"
+  }
+ }
+ 

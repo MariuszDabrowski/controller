@@ -1,0 +1,108 @@
+h4 {
+  padding: 16px;
+  margin: 0;
+}
+
+section {
+  border-left: 1px solid lightgrey;
+}
+
+button {
+  outline: none;
+}
+
+.overlay {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  border-radius: 2px;
+  border: 1px solid green;
+}
+
+.resize-handle {
+  width: 20px;
+  height: 20px;
+  background: green;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.users {
+
+}
+
+.users__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px dotted lightgrey;
+  padding: 10px;
+}
+
+.users__item div {
+  padding-left: 10px;
+}
+
+.users__item div:first-child {
+  padding-left: 0;
+}
+
+.users__item__button {
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.users__item__button:hover svg {
+  fill: grey;
+}
+
+[data-button="connect"] svg {
+  fill: #ed1010;
+}
+
+[data-button="connect"]:hover svg {
+  fill: #ae0909;
+}
+
+.connected [data-button="connect"] svg {
+  fill: #6db907;
+}
+
+.connected [data-button="connect"]:hover svg {
+  fill: #467605;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.controls__button {
+  width: 25%;
+  background: #eeeeee;
+  border: 0;
+  border-top: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  font-weight: bold;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.controls__button:nth-child(4n + 1) {
+  border-left: 0;
+}
+
+.controls__button:nth-child(-n + 4) {
+  border-top: 0;
+}
+
+.controls__button:hover {
+  background: transparent;
+}

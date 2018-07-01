@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      font-family: helvetica;
+    }
+
+    .overlay {
+      position: absolute;
+      min-width: 300px;
+      min-height: 140px;
+      left: 400px;
+      top: 200px;
+      font-size: 10px;
+      text-transform: uppercase;
+      display: flex;
+      width: 400px;
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+      border-right: 1px solid grey;
+    }
+    
+    .overlay__resize {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      background: grey;
+      border-radius: 100%;
+      z-index: -1;
+      border: 0;
+      cursor: nwse-resize;
+    }
+
+    .accounts {
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      width: 200px;
+      position: absolute;
+      top: -1px;
+      right: 100%;
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+      border-left: 1px solid grey;
+      height: calc(100% + 2px);
+      background: white;
+      transform: translateX(201px);
+      transition: transform 0.5s 0.2s;
+      z-index: 10;
+    }
+
+    .accounts-active .accounts {
+      transform: translateX(0);
+      transition: transform 0.5s;
+    }
+
+    .accounts__collapse {
+      position: absolute;
+      top: 50%;
+      left: -220px;
+      z-index: -1;
+      width: 20px;
+      height: 20px;
+      background: grey;
+      border-top-left-radius: 100%;
+      border-bottom-left-radius: 100%;
+      transform: translate(200px, -50%);
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.5s;
+      will-change: transform;
+    }
+
+    .accounts-active .accounts__collapse {
+      transform: translate(0, -50%);
+      transition: transform 0.5s 0.2s;
+    }
+
+    .accounts__collapse:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 50px;
+      height: 100%;
+      background: grey;
+    }
+
+    .accounts__collapse svg {
+      position: absolute;
+      top: 50%;
+      left: calc(50% + 2px);
+      transform: translate(-50%, -50%) rotate(180deg);
+      transition: transform 0.4s;
+    }
+
+    .accounts-active .accounts__collapse svg {
+      transform: translate(-50%, -50%);
+    }
+
+    .accounts__title {
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .accounts__item {
+      border-top: 1px solid lightgrey;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .towers {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      z-index: 20;
+      background: white;
+      border-left: 1px solid grey;
+    }
+
+    .towers__item {
+      width: 25%;
+      border-top: 1px solid lightgrey;
+      border-left: 1px solid lightgrey;
+      border-bottom: 0;
+      border-right: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .towers__item:nth-child(4n + 1) {
+      border-left: 0;
+    }
+
+    .towers__item:nth-child(-n + 4) {
+      border-top: 0;
+    }
+
+    .player-actions {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: stretch;
+      border-left: 1px solid grey;
+      width: 100%;
+      background: white;
+      z-index: 20;
+    }
+
+    .player-actions__item {
+      display: flex;
+      justify-content: stretch;
+      width: 100%;
+      border-top: 1px solid white;
+    }
+
+    .player-actions__item:first-child {
+      border-top: 0;
+    }
+
+    .player-actions__item__option {
+      border: 0;
+      font-weight: bold;
+      border-left: 1px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: lightgrey;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .player-actions__item__option:first-child {
+      border-left: 0;
+    }
+
+    .additional-options {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-left: 1px solid grey;
+    }
+
+    .additional-options__item {
+      border: 0;
+      border-top: 1px solid lightgrey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 6px;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .additional-options__item:first-child {
+      border-top: 0;
+    }
+
+    .popup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: white;
+      width: calc(100% - 37px);
+      height: 100%;
+      display: none;
+      z-index: 30;
+      border-left: 1px solid grey;
+    }
+
+    .popup--active {
+      display: block;
+    }
+
+    .classes {
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+    }
+
+    .classes__item {
+      width: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-top: 1px solid lightgrey;
+      border-left: 1px solid lightgrey;
+      cursor: pointer;
+    }
+
+    .classes__item:nth-child(-n + 4) {
+      border-top: 0;
+    }
+
+    .classes__item:nth-child(4n + 1) {
+      border-left: 0;
+    }
+
+    .gems {
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+    }
+
+    .gems__item {
+      border: 0;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid lightgrey;
+      border-left: 1px solid lightgrey;
+    }
+
+    .gems__item:nth-child(-n + 2) {
+      border-top: 0;
+    }
+
+    .gems__item:nth-child(2n + 1) {
+      border-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay accounts-active">
+    <button class="accounts__collapse" data-button="toggle-accounts">
+      <svg style="width:18px;height:18px" viewBox="0 0 24 24">
+        <path fill="#ffffff" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+      </svg>
+    </button>
+    <div class="accounts">
+      <div class="accounts__title">Send commands to</div>
+      <div class="accounts__item">dongerlistdotcom</div>
+      <div class="accounts__item">dongerlistdotcom2</div>
+      <div class="accounts__item">someotheraccount</div>
+      <div class="accounts__item">someotheraccount</div>
+    </div>
+    <div class="towers">
+      <button class="towers__item" data-button="command" data-command="!1">1</button>
+      <button class="towers__item" data-button="command" data-command="!2">2</button>
+      <button class="towers__item" data-button="command" data-command="!3">3</button>
+      <button class="towers__item" data-button="command" data-command="!4">4</button>
+      <button class="towers__item" data-button="command" data-command="!5">5</button>
+      <button class="towers__item" data-button="command" data-command="!6">7</button>
+      <button class="towers__item" data-button="command" data-command="!7">6</button>
+      <button class="towers__item" data-button="command" data-command="!8">8</button>
+      <button class="towers__item" data-button="command" data-command="!9">9</button>
+      <button class="towers__item" data-button="command" data-command="!10">10</button>
+      <button class="towers__item" data-button="command" data-command="!11">11</button>
+      <button class="towers__item" data-button="command" data-command="!12">12</button>
+    </div>
+    <div class="player-actions">
+      <div class="player-actions__item">
+        <button class="player-actions__item__option" data-button="command" data-command="!train">Train</button>
+        <button class="player-actions__item__option" data-button="command" data-command="!altar">Altar</button>
+      </div>
+      <div class="player-actions__item">
+        <button class="player-actions__item__option" data-button="command" data-command="!p">P up</button>
+        <button class="player-actions__item__option" data-button="command" data-command="!pd">P down</button>
+      </div>
+      <div class="player-actions__item">
+        <button class="player-actions__item__option" data-button="command" data-command="!sp">SP</button>
+        <button class="player-actions__item__option" data-button="command" data-command="!sp !sp">SP x2</button>
+        <button class="player-actions__item__option" data-button="command" data-command="!sp !sp !sp">SP x3</button>
+      </div>
+    </div>
+    <div class="additional-options">
+      <button class="additional-options__item" data-button="popup" data-popup-target="classes">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+        </svg>
+      </button>
+      <button class="additional-options__item" data-button="popup" data-popup-target="merc">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="#000000" d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z" />
+        </svg>
+      </button>
+      <button class="additional-options__item" data-button="popup" data-popup-target="gems">
+        <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+          <path fill="#000000" d="M21.5,10.8L13.2,2.5C12.5,1.8 11.5,1.8 10.8,2.5L2.5,10.8C1.8,11.5 1.8,12.5 2.5,13.2L10.8,21.5C11.5,22.2 12.5,22.2 13.2,21.5L21.5,13.2C22.1,12.5 22.1,11.5 21.5,10.8Z" />
+        </svg>
+      </button>
+      <button class="additional-options__item" data-button="popup" data-popup-target="settings">
+        <svg style="width:22px;height:22px" viewBox="0 0 24 24">
+          <path fill="#000000" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+        </svg>
+      </button>
+    </div>
+    <div class="popup" data-popup="classes">
+      <div class="classes">
+        <button class="classes__item" data-button="command" data-command="!archer">Archer</button>
+        <button class="classes__item" data-button="command" data-command="!firemage">Firemage</button>
+        <button class="classes__item" data-button="command" data-command="!frostmage">Frostmage</button>
+        <button class="classes__item" data-button="command" data-command="!alchemist">Alchemist</button>
+        <button class="classes__item" data-button="command" data-command="!rogue">Rogue</button>
+        <button class="classes__item" data-button="command" data-command="!bard">Bard</button>
+        <button class="classes__item" data-button="command" data-command="!trapper">Trapper</button>
+        <button class="classes__item" data-button="command" data-command="!highpriest">Highpriest</button>
+      </div>
+    </div>
+    <div class="popup" data-popup="merc">
+      <div class="classes">
+        <button class="classes__item" data-button="command" data-command="!hireicelo">Icelo</button>
+        <button class="classes__item" data-button="command" data-command="!hireshade">Shade</button>
+        <button class="classes__item" data-button="command" data-command="!hidejubal">Jubal</button>
+        <button class="classes__item" data-button="command" data-command="!hiregunnar">Gunnar</button>
+        <button class="classes__item" data-button="command" data-command="!hireadara">Adara</button>
+        <button class="classes__item" data-button="command" data-command="!hiremoor">Moor</button>
+        <button class="classes__item" data-button="command" data-command="!hirecortez">Cortez</button>
+        <button class="classes__item" data-button="command" data-command="!hiremolan">Molan</button>
+      </div>
+    </div>
+    <div class="popup" data-popup="gems">
+      <div class="gems">
+        <button class="gems__item" data-button="command" data-command="!socketruby">Ruby</button>
+        <button class="gems__item" data-button="command" data-command="!socketemerald">Emerald</button>
+        <button class="gems__item" data-button="command" data-command="!socketcitrine">Citrine</button>
+        <button class="gems__item" data-button="command" data-command="!socketonyx">Onyx</button>
+      </div>
+    </div>
+    <div class="popup" data-popup="settings">
+      <div class="settings">
+        <div class="settings__item">Testing</div>
+      </div>
+    </div>
+    <button class="overlay__resize"></button>
+  </div>
+
+  <script>
+    // ---------
+    // Variables
+    // ---------
+
+    let dragging = false;
+    const overlay = document.querySelector('div');
+    const commandButtons = document.querySelectorAll('[data-button="command"]');
+    const toggleAccountsButton = document.querySelector('[data-button="toggle-accounts"]');
+    const accountsContainer = document.querySelector('.accounts');
+    const popups = {
+      popupDivs: document.querySelectorAll('.popup'),
+      init: function() {
+        const popupButtons = document.querySelectorAll('[data-button="popup"]');
+
+        for (let i = 0; i < popupButtons.length; i++) {
+          popupButtons[i].addEventListener('click', popups.togglePopup);
+        }
+      },
+      togglePopup: function() {
+        if (!dragging) {
+          const popupTarget = this.getAttribute('data-popup-target');
+          const popup = document.querySelector(`[data-popup="${popupTarget}"]`);
+
+          if (!popup.classList.contains('popup--active')) {
+            popups.clearPopupClasses();
+            popup.classList.add('popup--active');
+          } else {
+            popup.classList.remove('popup--active');
+          }
+        }
+        dragging = false;
+      },
+      clearPopupClasses: function() {
+        for (let i = 0; i < popups.popupDivs.length; i++) {
+          popups.popupDivs[i].classList.remove('popup--active');
+        }
+      }
+    }
+
+    // -----------
+    // Application
+    // -----------
+
+    overlay.addEventListener("mousedown", mutable);
+    toggleAccountsButton.addEventListener('click', toggleAccounts);
+    popups.init();
+
+    for (let i = 0; i < commandButtons.length; i++) {
+      commandButtons[i].addEventListener('click', sendCommand);
+    }
+
+    // ---------
+    // Functions
+    // ---------
+
+    function toggleAccounts() {
+      overlay.classList.toggle('accounts-active');
+    }
+
+    function sendCommand() {
+      if (!dragging) {
+        const command = this.getAttribute('data-command');
+        console.log(command);
+      }
+      dragging = false;
+    }
+
+    function mutable(e) {
+      // Elements initial width and height
+      const h = this.offsetHeight;
+      const w = this.offsetWidth;
+      // Elements original position
+      const t = this.offsetTop;
+      const l = this.offsetLeft;
+      // Click position within element
+      const y = t + h - e.pageY;
+      const x = l + w - e.pageX;
+      
+      const hasMoved = () =>
+        !(t === this.offsetTop && l === this.offsetLeft);
+      
+      const hasResized = () =>
+        !(w === this.offsetWidth && h === this.offsetHeight);
+      
+      const follow = (e) => {
+        dragging = true;
+
+        // Set top/left of element according to mouse position
+        this.style.top = `${e.pageY + y - h}px`;
+        this.style.left = `${e.pageX + x - w}px`;
+      }
+      
+      const resize = (e) => {
+        // Set width/height of element according to mouse position
+        const width = (e.pageX - l + x);
+        const height = (e.pageY - t + y);
+
+        if (width > 200) this.style.width = `${width}px`;
+        if (height > 100) this.style.height = `${height}px`;
+      }
+      
+      
+      const unresize = (e) => {
+        // Remove listeners that were bound to document
+        document.removeEventListener('mousemove', resize);
+        document.removeEventListener("mouseup", unresize);
+        // Emit events according to interaction
+        if (hasResized(e)) this.dispatchEvent(new Event('resized'));
+        else this.dispatchEvent(new Event('clicked'));
+        e.preventDefault();
+      }
+      
+      const unfollow = (e) => {
+        // Remove listeners that were bound to document
+        document.removeEventListener('mousemove', follow);
+        document.removeEventListener("mouseup", unfollow);
+        // Emit events according to interaction
+        if (hasMoved(e)) this.dispatchEvent(new Event('moved'));
+        else this.dispatchEvent(new Event('clicked'));
+        e.preventDefault();
+      }
+      
+      // Add follow listener if not resizing
+      if (e.target.classList.contains('overlay__resize')) {
+        document.addEventListener("mousemove", resize);
+        document.addEventListener("mouseup", unresize);
+        e.preventDefault();
+      } else {
+        document.addEventListener("mousemove", follow);
+        document.addEventListener("mouseup", unfollow);
+        e.preventDefault();
+      }
+    }
+  </script>
+</body>
+</html>

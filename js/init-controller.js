@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+'use strict';
 
-  <link rel="stylesheet" href="css/overlay.css">
-</head>
-<body>
-  <div class="overlay accounts-active">
+(function() {
+  let overlayDiv = document.createElement('div');
+  overlayDiv.classList.add('overlay');
+  overlayDiv.classList.add('accounts-active');
+  overlayDiv.innerHTML = `
     <button class="accounts__collapse" data-button="toggle-accounts">
       <svg style="width:18px;height:18px" viewBox="0 0 24 24">
         <path fill="#ffffff" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
@@ -17,10 +12,6 @@
     </button>
     <div class="accounts">
       <div class="accounts__title">Send commands to:</div>
-      <div class="accounts__item accounts__item--active">dongerlistdotcom</div>
-      <div class="accounts__item">dongerlistdotcom2</div>
-      <div class="accounts__item">someotheraccount</div>
-      <div class="accounts__item">someotheraccount</div>
     </div>
     <div class="towers">
       <button class="towers__item" data-button="command" data-command="!1">1</button>
@@ -111,14 +102,37 @@
       </div>
     </div>
     <button class="overlay__resize"></button>
-  </div>
+  `;
 
-  <script src="js/init-controller.js"></script>
-  <script src="js/settings/opacity.js"></script>
-  <script src="js/send-command.js"></script>
-  <script src="js/tabs.js"></script>
-  <script src="js/account-list.js"></script>
-  <script src="js/disable-drag.js"></script>
-  <script src="js/drag-and-scale.js"></script>
-</body>
-</html>
+  document.body.appendChild(overlayDiv);
+  
+  window.controller = {
+    overlay: document.querySelector('.overlay'),
+    users: []
+  };
+
+  chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.action === 'connect') {
+        if (window.controller.connected) {
+          window.controller.connected = false;
+          disconnect();
+          sendResponse({action: 'connect'});
+        } else {
+          window.controller.connected = true;
+          connect();
+          sendResponse({action: 'connect'});
+        }
+      }
+    }
+  );
+
+  function connect() {
+    overlayDiv.classList.add('overlay--active');
+    window.controller.accountList.init();
+  }
+
+  function disconnect() {
+    overlayDiv.classList.remove('overlay--active');
+  }
+})();

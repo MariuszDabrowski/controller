@@ -6,9 +6,17 @@
   "author": "Mariusz Dabrowski",
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
+      "matches": ["https://www.twitch.tv/*", "http://twitch.tv/*"],
       "run_at": "document_end",
-      "js": ["js/overlay.js"],
+      "js": [
+        "js/init-controller.js",
+        "js/settings/opacity.js",
+        "js/send-command.js",
+        "js/tabs.js",
+        "js/account-list.js",
+        "js/disable-drag.js",
+        "js/drag-and-scale.js"
+      ],
       "css": ["css/overlay.css"]
     }
   ],  

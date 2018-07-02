@@ -166,6 +166,25 @@ var userForm = {
 accountList.init();
 userForm.init();
 
+var toggleController = document.querySelector('[data-button="toggle-controller"]');
+var connected = false;
+
+toggleController.addEventListener('click', function() {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {action: 'connect'}, function(request) {
+      if (request.action === 'connect') {
+        if (connected) {
+          connected = false;
+          toggleController.innerHTML = 'Launch Controller';
+        } else {
+          connected = true;
+          toggleController.innerHTML = 'Disconnect';
+        }
+      }
+    });
+  });
+});
+
 // var user1 = new Socket({
 //   user: 'dongerlistdotcom',
 //   channel: 'archonthewizard',

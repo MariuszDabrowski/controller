@@ -1,108 +1,387 @@
-h4 {
-  padding: 16px;
-  margin: 0;
+html {
+  box-sizing: border-box;
 }
 
-section {
-  border-left: 1px solid lightgrey;
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
-button {
+body {
+  font-family: helvetica;
+}
+
+.overlay button {
+  transition: background 0.2s, border 0.2s;
   outline: none;
 }
 
-.overlay {
-  width: 100px;
-  height: 100px;
-  background: red;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10000;
-  border-radius: 2px;
-  border: 1px solid green;
+.overlay button:hover {
+  background: #eeeeee;
 }
 
-.resize-handle {
+/* ------- */
+/* Overlay */
+/* ------- */
+
+.overlay {
+  position: absolute;
+  min-width: 300px;
+  min-height: 140px;
+  left: calc(50% + 100px);
+  top: 50%;
+  font-size: 10px;
+  display: flex;
+  width: 400px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  z-index: 10000;
+  display: none;
+}
+
+.overlay--active {
+  display: flex;
+}
+
+.overlay__resize {
   width: 20px;
   height: 20px;
-  background: green;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  cursor: pointer;
+  bottom: -10px;
+  right: -10px;
+  background: grey;
+  border-radius: 100%;
+  z-index: -1;
+  border: 0;
+  cursor: nwse-resize;
 }
 
-.users {
-
+.overlay .overlay__resize:hover {
+  background:  grey;
 }
 
-.users__item {
+/* -------- */
+/* Accounts */
+/* -------- */
+
+.accounts {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 200px;
+  position: absolute;
+  top: -1px;
+  right: 100%;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
+  height: calc(100% + 2px);
+  background: white;
+  transform: translateX(201px);
+  transition: transform 0.5s 0.2s;
+  z-index: 10;
+  font-size: 12px;
+}
+
+.accounts-active .accounts {
+  transform: translateX(0);
+  transition: transform 0.5s;
+}
+
+.accounts__collapse {
+  position: absolute;
+  top: 50%;
+  left: -220px;
+  z-index: -1;
+  width: 20px;
+  height: 20px;
+  background: grey;
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 100%;
+  transform: translate(200px, -50%);
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.5s;
+  will-change: transform;
+}
+
+.overlay .accounts__collapse:hover {
+  background: grey;
+}
+
+.accounts-active .accounts__collapse {
+  transform: translate(0, -50%);
+  transition: transform 0.5s 0.2s;
+}
+
+.accounts__collapse:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 50px;
+  height: 100%;
+  background: grey;
+}
+
+.accounts__collapse svg {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 2px);
+  transform: translate(-50%, -50%) rotate(180deg);
+  transition: transform 0.4s;
+}
+
+.accounts-active .accounts__collapse svg {
+  transform: translate(-50%, -50%);
+}
+
+.accounts__title {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.accounts__item {
+  border-top: 1px solid lightgrey;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+
+.accounts__item--active {
+  background: lightgreen;
+  border-color: #67aa67;
+}
+
+.accounts__item--active + .accounts__item {
+  border-color: #67aa67;
+}
+
+/* ------ */
+/* Towers */
+/* ------ */
+
+.towers {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 20;
+  background: white;
+  border-left: 1px solid grey;
+}
+
+.towers__item {
+  width: 25%;
+  border-top: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-bottom: 0;
+  border-right: 0;
+  background: transparent;
+  display: flex;
   align-items: center;
-  border-top: 1px dotted lightgrey;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
   padding: 10px;
 }
 
-.users__item div {
-  padding-left: 10px;
-}
-
-.users__item div:first-child {
-  padding-left: 0;
-}
-
-.users__item__button {
-  border: 0;
-  cursor: pointer;
-  padding: 0;
-}
-
-.users__item__button:hover svg {
-  fill: grey;
-}
-
-[data-button="connect"] svg {
-  fill: #ed1010;
-}
-
-[data-button="connect"]:hover svg {
-  fill: #ae0909;
-}
-
-.connected [data-button="connect"] svg {
-  fill: #6db907;
-}
-
-.connected [data-button="connect"]:hover svg {
-  fill: #467605;
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.controls__button {
-  width: 25%;
-  background: #eeeeee;
-  border: 0;
-  border-top: 1px solid lightgrey;
-  border-left: 1px solid lightgrey;
-  font-weight: bold;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-
-.controls__button:nth-child(4n + 1) {
+.towers__item:nth-child(4n + 1) {
   border-left: 0;
 }
 
-.controls__button:nth-child(-n + 4) {
+.towers__item:nth-child(-n + 4) {
   border-top: 0;
 }
 
-.controls__button:hover {
-  background: transparent;
+/* -------------- */
+/* Player actions */
+/* -------------- */
+
+.player-actions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+  border-left: 1px solid grey;
+  width: 100%;
+  background: white;
+  z-index: 20;
+}
+
+.player-actions__item {
+  display: flex;
+  justify-content: stretch;
+  width: 100%;
+  border-top: 1px solid white;
+}
+
+.player-actions__item:first-child {
+  border-top: 0;
+}
+
+.player-actions__item__option {
+  border: 0;
+  font-weight: bold;
+  border-left: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightgrey;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.player-actions__item__option:first-child {
+  border-left: 0;
+}
+
+/* ------------------ */
+/* Additional Options */
+/* ------------------ */
+
+.additional-options {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-left: 1px solid grey;
+}
+
+.additional-options__item {
+  background: white;
+  border: 0;
+  border-top: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 6px;
+  height: 100%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.additional-options__item:first-child {
+  border-top: 0;
+}
+
+.additional-options__item:hover {
+  background: #eeeeee;
+}
+
+.additional-options__item path {
+  transition: fill 0.2s;
+}
+
+.additional-options__item--active,
+.additional-options__item--active:hover {
+  background: lightgreen;
+  border-color: #67aa67;
+}
+
+.additional-options__item--active + .additional-options__item {
+  border-color: #67aa67;
+}
+
+/* -------- */
+/* Popups */
+/* -------- */
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  width: calc(100% - 37px);
+  height: 100%;
+  display: none;
+  z-index: 30;
+  border-left: 1px solid grey;
+}
+
+.popup--active {
+  display: block;
+}
+
+/* -------- */
+/* Classes */
+/* -------- */
+
+.classes {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.classes__item {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-top: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+.classes__item:nth-child(-n + 4) {
+  border-top: 0;
+}
+
+.classes__item:nth-child(4n + 1) {
+  border-left: 0;
+}
+
+/* ---- */
+/* Gems */
+/* ---- */
+
+.gems {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.gems__item {
+  border: 0;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+.gems__item:nth-child(-n + 2) {
+  border-top: 0;
+}
+
+.gems__item:nth-child(2n + 1) {
+  border-left: 0;
+}
+
+/* -------- */
+/* Settings */
+/* -------- */
+
+.settings {
+  font-size: 12px;
+}
+
+.settings__item {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+}
+
+.settings__item__title {
+  border-right: 1px dotted lightgrey;
+  padding: 18px 15px 12px;
+  font-weight: bold;
+}
+
+.settings__item__options {
+  padding: 15px;
 }

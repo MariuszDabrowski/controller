@@ -60,6 +60,19 @@ body {
   background:  grey;
 }
 
+.overlay__close {
+  position: absolute;
+  bottom: calc(100% + 1px);
+  right: -1px;
+  padding: 5px 10px;
+  border: 0;
+  background: white;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  font-weight: bold;
+}
+
 /* -------- */
 /* Accounts */
 /* -------- */
@@ -148,13 +161,19 @@ body {
   transition: background 0.2s, border 0.2s;
 }
 
-.accounts__item--active {
+.accounts__item:last-child {
+  border-bottom: 1px solid lightgrey;
+}
+
+.accounts__item--active,
+.accounts__item--active:last-child {
   background: lightgreen;
   border-color: #67aa67;
 }
 
+.accounts__item--active + .accounts__item,
 .accounts__item--active + .accounts__item {
-  border-color: #67aa67;
+  border-top-color: #67aa67;
 }
 
 /* ------ */
@@ -206,7 +225,7 @@ body {
   justify-content: stretch;
   border-left: 1px solid grey;
   width: 100%;
-  background: white;
+  background: #cccccc;
   z-index: 20;
 }
 
@@ -276,7 +295,7 @@ body {
 }
 
 .additional-options__item--active,
-.additional-options__item--active:hover {
+button.additional-options__item--active:hover {
   background: lightgreen;
   border-color: #67aa67;
 }

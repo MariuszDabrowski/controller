@@ -1,16 +1,14 @@
 'use strict';
 
 (function() {
-  // <div class="accounts__item accounts__item--active">dongerlistdotcom</div>
   let users = window.controller.users;
   let accountList = window.controller.accountList = {
-    accountListDiv: document.querySelector('.accounts'),
     init: function() {
       const toggleAccountsButton = document.querySelector('[data-button="toggle-accounts"]');
 
       toggleAccountsButton.addEventListener('click', toggleAccountsView);
       function toggleAccountsView() {
-        window.controller.overlay.classList.toggle('accounts-active');
+        window.controller.overlayDiv.classList.toggle('accounts-active');
       }
 
       accountList.getUsers();
@@ -30,10 +28,12 @@
       for (let i = 0; i < users.length; i++) {
         let userDiv = document.createElement('div');
         userDiv.classList.add('accounts__item');
+        userDiv.classList.add('accounts__item--active');
         userDiv.innerHTML = users[i].user;
         userDiv.addEventListener('click', toggleAccountItem);
         userDiv.index = i;
-        accountList.accountListDiv.appendChild(userDiv);
+        document.querySelector('.accounts').appendChild(userDiv);
+        users[i].active = true
       }
 
       accountList.openSockets();
@@ -53,9 +53,10 @@
       }
 
       users = [];
+      window.controller.accountList.closeSockets();
     },
     openSockets: function() {
-      const channel = window.controller.channel = 'dongerlistdotcom';
+      const channel = window.controller.channel;
 
       for (let i = 0; i < users.length; i++) {
         const socket = users[i].socket =  new WebSocket('wss://irc-ws.chat.twitch.tv:443/', 'irc');
@@ -65,12 +66,13 @@
           socket.send('PASS ' + users[i].pass);
           socket.send('NICK ' + users[i].user);
           socket.send('JOIN #' + channel);
-          socket.send('PRIVMSG #' + channel + ' : Player connected. DragAndScale controller v0.1');
         });
       }
     },
     closeSockets: function() {
-
+      for (let i = 0; i < users.length; i++) {
+        users[i].socket.close();
+      }
     }
   };
 })();

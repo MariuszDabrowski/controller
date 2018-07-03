@@ -13,6 +13,7 @@ input {
   border-radius: 2px;
   border: 1px solid lightgrey;
   font-size: inherit;
+  outline: none;
 }
 
 form {
@@ -113,18 +114,14 @@ section + section {
   fill: grey;
 }
 
-[data-button="connect"] svg {
-  fill: #ed1010;
+.form-link {
+  margin-top: 5px;
+  margin-bottom: 18px;
+  color: black;
+  display: inline-block;
+  transition: color 0.2;
 }
 
-[data-button="connect"]:hover svg {
-  fill: #ae0909;
-}
-
-.connected [data-button="connect"] svg {
-  fill: #6db907;
-}
-
-.connected [data-button="connect"]:hover svg {
-  fill: #467605;
+.form-link:hover {
+  color: grey;
 }

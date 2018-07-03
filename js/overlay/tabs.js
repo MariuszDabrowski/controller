@@ -2,13 +2,15 @@
 
 (function() {
   let opacity = window.controller.opacity;
-  let popups = window.controller.popups;
 
-  popups = {
-    popupDivs: document.querySelectorAll('.popup'),
-    popupButtons: document.querySelectorAll('[data-button="popup"]'),
+  let popups = window.controller.popups = {
+    popupDivs: null,
+    popupButtons: null,
     settingsOpen: false,
     init: function() {
+      popups.popupButtons = document.querySelectorAll('[data-button="popup"]');
+      popups.popupDivs = document.querySelectorAll('.popup');
+
       for (let i = 0; i < popups.popupButtons.length; i++) {
         popups.popupButtons[i].addEventListener('click', popups.togglePopup);
       }
@@ -41,6 +43,4 @@
       }
     }
   }
-
-  popups.init();
 })();

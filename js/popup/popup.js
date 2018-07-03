@@ -175,8 +175,9 @@ toggleController.addEventListener('click', function() {
       if (request.action === 'connect') {
         if (connected) {
           connected = false;
-          toggleController.innerHTML = 'Launch Controller';
+          toggleController.innerHTML = 'Connect';
         } else {
+          window.close();
           connected = true;
           toggleController.innerHTML = 'Disconnect';
         }

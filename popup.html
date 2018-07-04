@@ -8,10 +8,15 @@
   <link rel="stylesheet" href="css/popup.css">
 </head>
 <body>
+
+  <!-- //////////////// -->
+  <!-- Current Accounts -->
+  <!-- //////////////// -->
+
   <section>
     <h2>Current accounts</h2>
     <div class="users">
-      <button class="users__item users__item--add">
+      <button class="users__item users__item--add" data-button="add-user">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M0 0h24v24H0z" fill="none"/>
@@ -23,6 +28,10 @@
     </div>
   </section>
   
+  <!-- //////////// -->
+  <!-- Add new user -->
+  <!-- //////////// -->
+
   <section data-section="add-user" class="section-hidden">
     <h2>Add a new user</h2>
     <form>
@@ -33,9 +42,17 @@
     </form>
   </section>
 
+  <!-- /////// -->
+  <!-- Connect -->
+  <!-- /////// -->
+
   <section>
     <button class="button-1" data-button="toggle-controller">Connect</button>
   </section>
+
+  <!-- /////// -->
+  <!-- Scripts -->
+  <!-- /////// -->
 
   <script type="text/javascript" src="js/popup/popup.js"></script>
 </body>

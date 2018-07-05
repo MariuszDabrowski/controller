@@ -1,23 +1,26 @@
 'use strict';
 
 window.popup = (function() {
+
+  
   // -------
   // Helpers
   // -------
 
-  // value = string, key to get data for
-  const getData = function(value, callback) {
-    chrome.storage.sync.get(value, function(result) {
-      if (result[value]) callback(result[value]);
+  const getData = function(key, callback) {
+    chrome.storage.sync.get(key, function(result) {
+      if (result[key]) callback(result[key]);
     });
   };
 
-  const setData = function() {
-
+  const setData = function(key, data, callback) {
+    chrome.storage.sync.set({
+      key: data
+    }, function(result) {
+      callback(result[key]);
+    }
   };
 
-  // item1 & 2 = string, slector to query, preferably data-attribute
-  // class1 & class2 = string, class name to toggle
   const toggleItem = function(item1, item2, class1, class2) {
     const element1 = document.querySelector(item1);
     const element2 = document.querySelector(item2);
@@ -25,7 +28,6 @@ window.popup = (function() {
       this.classList.toggle(class1);
       element2.classList.toggle(class2);
     }
-
     element1.addEventListener('click', itemClick);
   }
 
@@ -33,6 +35,7 @@ window.popup = (function() {
   // Application
   // -----------
 
+  let usersContainer = document.querySelector('.users');
   let users = [];
 
   const User = function(user, index) {
@@ -66,48 +69,37 @@ window.popup = (function() {
       return container;
     };
 
+    this.init = function() {
+      this.element = this.template();
+      this.buttonFunctionality(this.element);
+    }
+
     this.removeUser = function() {
       this.element.remove();
     }.bind(this);
 
-    this.init = function() {
-      this.element = this.template();
-      this.functionality(this.element);
-    }
-
-    this.functionality = function(element) {
+    this.buttonFunctionality = function(element) {
       const removeButton = element.querySelector('[data-button="remove-user"]');
-      console.log(removeButton);
 
       removeButton.addEventListener('click', this.removeUser);
     }
 
     this.render = function(container) {
-      container.appendChild(this.element);
+      container.prepend(this.element);
     }
 
     this.init();
   }
 
-  const usersList = (function() {
-    const container = document.querySelector('.users');
-
-    const populateUsers = function(data) {
-      for (let i = 0; i < data.length; i++) {
-        users.push(new User(data[i].user, i));
-        users[i].render(container);
-      }
+  const populateUsers = function(data) {
+    for (let i = 0; i < data.length; i++) {
+      users.push(new User(data[i].user, i));
+      users[i].render(usersContainer);
     }
-
-    return {populateUsers}
-  })();
-
-  const init = function() {
-    toggleItem('[data-button="add-user"]', '[data-section="add-user"]', 'users__item--active', 'section-hidden');
   }
 
-  init();
-  getData('users', usersList.populateUsers);
+  getData('users', populateUsers);
+  toggleItem('[data-button="add-user"]', '[data-section="add-user"]', 'users__item--active', 'section-hidden');
 })();
 
 // // ---------

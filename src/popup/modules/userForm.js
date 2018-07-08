@@ -9,6 +9,7 @@ const container = document.querySelector('[data-section="add-account"]');
 
 const toggleUserForm = function() {
   container.classList.toggle('section-hidden');
+  container.querySelector('[data-field="username"]').focus();
 };
 
 // ---------------

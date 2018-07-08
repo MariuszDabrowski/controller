@@ -5,7 +5,8 @@ import {
   initNoDragItems,
   initOpacitySwtich,
   initUserListToggle,
-  initCloseController
+  initCloseController,
+  overlayShow
 } from './modules/initUI';
 import initDragAndScale from './modules/dragAndScale';
 import {getData} from './../popup/modules/data';
@@ -18,6 +19,7 @@ import {initAccountList} from './modules/accountList';
 
 window.controller = {
   overlay: null,
+  overlayActive: false,
   dragging: false,
   channel: 'dongerlistdotcom',
   users: {}
@@ -34,13 +36,9 @@ initDragAndScale();
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    console.log(request);
     if (request.action === 'connect') {
+      overlayShow();
       getData('users', initAccountList);
-      // initAccountList(users);
-    
-      // window.controller.overlayDiv.classList.add('overlay--active');
-      // sendResponse({action: 'connect'});
     }
   }
 );

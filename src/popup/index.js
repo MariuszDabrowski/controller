@@ -19,9 +19,9 @@ addAccountButton.addEventListener('click', toggleUserForm);
 const addUserButton = document.querySelector('[data-button="add-user"]');
 addUserButton.addEventListener('click', addUser);
 
-const launchControllerButton = document.querySelector('[data-button="launch-controller"]');
+const connectButton = document.querySelector('[data-button="connect"]');
 
-launchControllerButton.addEventListener('click', function() {
-  console.log('click');
+connectButton.addEventListener('click', function() {
+  window.close();
   sendMessage({action: 'connect'});
 });

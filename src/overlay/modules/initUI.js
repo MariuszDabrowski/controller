@@ -8,7 +8,6 @@ const initUI = function() {
   let overlay = window.controller.overlay = document.createElement('div');
   overlay.classList.add('overlay');
   overlay.classList.add('accounts-active');
-  overlay.classList.add('overlay--active');
   overlay.innerHTML = `
     <button class="overlay__close" data-button="close-controller">Close</button>
     <button class="accounts__collapse" data-button="toggle-accounts">
@@ -129,7 +128,7 @@ const initButtons = function() {
       const users = window.controller.users;
 
       Object.keys(users).map(user => {
-        if (users[user].active) {
+        if (users[user].active && users[user].connected) {
           sendCommand(users[user].socket, window.controller.channel, message);
         }
       });
@@ -243,7 +242,27 @@ const initCloseController = function() {
     Object.keys(users).map(user => {
       users[user].closeSocket();
     });
+
+    overlayHide();
   });
+}
+
+// ------------
+// Overlay hide
+// ------------
+
+const overlayHide = function() {
+  window.controller.overlayActive = false;
+  window.controller.overlay.classList.remove('overlay--active');
+}
+
+// ------------
+// Overlay show
+// ------------
+
+const overlayShow = function() {
+  window.controller.overlayActive = true;
+  window.controller.overlay.classList.add('overlay--active');
 }
 
 // ------
@@ -257,5 +276,7 @@ export {
   initNoDragItems,
   initOpacitySwtich,
   initUserListToggle,
-  initCloseController
+  initCloseController,
+  overlayHide,
+  overlayShow
 };

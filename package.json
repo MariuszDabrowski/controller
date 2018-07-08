@@ -1,0 +1,25 @@
+{
+  "name": "controller",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://MariuszDabrowski@github.com/MariuszDabrowski/controller.git"
+  },
+  "keywords": [],
+  "author": "Mariusz Dabrowski <wayrse@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariuszDabrowski/controller/issues"
+  },
+  "homepage": "https://github.com/MariuszDabrowski/controller#readme",
+  "devDependencies": {
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
+  }
+}

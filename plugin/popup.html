@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <div>
+    <!-- //////////////// -->
+    <!-- Current Accounts -->
+    <!-- //////////////// -->
+
+    <section>
+        <h2>Current accounts</h2>
+        <div class="users">
+          <button class="users__item users__item--add" data-button="add-account">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              </svg>
+            </div>
+            <div>Add account</div>
+          </button>
+        </div>
+      </section>
+      
+      <!-- //////////// -->
+      <!-- Add new user -->
+      <!-- //////////// -->
+    
+      <section data-section="add-account" class="section-hidden">
+        <h2>Add a new user</h2>
+        <form>
+          <input type="text" data-field="username" placeholder="Username">
+          <input type="text" data-field="pass" placeholder="OAuth token">
+          <a href="https://twitchapps.com/tmi/" target="_blank" class="form-link">Generate OAuth token</a>
+          <button class="button-1" data-button="add-user">Add user</button>
+        </form>
+      </section>
+    
+      <!-- /////// -->
+      <!-- Connect -->
+      <!-- /////// -->
+    
+      <section>
+        <button class="button-1" data-button="launch-controller">Launch Controller</button>
+      </section>
+  </div>
+
+  <!-- /////// -->
+  <!-- Scripts -->
+  <!-- /////// -->
+
+  <script type="text/javascript" src="js/popup.bundle.js"></script>
+</body>
+</html>

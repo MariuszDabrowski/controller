@@ -6,7 +6,8 @@ import {
   initOpacitySwtich,
   initUserListToggle,
   initCloseController,
-  overlayShow
+  overlayShow,
+  initMapVotes
 } from './modules/initUI';
 import initDragAndScale from './modules/dragAndScale';
 import {getData} from './../popup/modules/data';
@@ -22,6 +23,7 @@ window.controller = {
   overlayActive: false,
   dragging: false,
   channel: 'dongerlistdotcom',
+  mapVotes: '',
   users: {}
 };
 
@@ -33,6 +35,7 @@ initCloseController();
 initNoDragItems();
 initOpacitySwtich();
 initDragAndScale();
+initMapVotes();
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {

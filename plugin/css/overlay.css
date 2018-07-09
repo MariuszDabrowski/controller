@@ -25,7 +25,7 @@ body {
 
 .overlay {
   position: absolute;
-  min-width: 300px;
+  min-width: 350px;
   min-height: 140px;
   left: calc(50% + 100px);
   top: 50%;
@@ -71,6 +71,7 @@ body {
   border-left: 1px solid grey;
   border-right: 1px solid grey;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /* -------- */
@@ -294,8 +295,11 @@ body {
 .additional-options {
   display: flex;
   flex-direction: column;
-  height: 100%;
   border-left: 1px solid grey;
+}
+
+.additional-options + .additional-options {
+  border-left-color: lightgrey;
 }
 
 .additional-options__item {
@@ -331,105 +335,4 @@ button.additional-options__item--active:hover {
 
 .additional-options__item--active + .additional-options__item {
   border-color: #67aa67;
-}
-
-/* -------- */
-/* Popups */
-/* -------- */
-
-.popup {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: white;
-  width: calc(100% - 37px);
-  height: 100%;
-  display: none;
-  z-index: 30;
-  border-left: 1px solid grey;
-}
-
-.popup--active {
-  display: block;
-}
-
-/* -------- */
-/* Classes */
-/* -------- */
-
-.classes {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100%;
-}
-
-.classes__item {
-  width: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-top: 1px solid lightgrey;
-  border-left: 1px solid lightgrey;
-  cursor: pointer;
-}
-
-.classes__item:nth-child(-n + 4) {
-  border-top: 0;
-}
-
-.classes__item:nth-child(4n + 1) {
-  border-left: 0;
-}
-
-/* ---- */
-/* Gems */
-/* ---- */
-
-.gems {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100%;
-}
-
-.gems__item {
-  border: 0;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 1px solid lightgrey;
-  border-left: 1px solid lightgrey;
-  cursor: pointer;
-}
-
-.gems__item:nth-child(-n + 2) {
-  border-top: 0;
-}
-
-.gems__item:nth-child(2n + 1) {
-  border-left: 0;
-}
-
-/* -------- */
-/* Settings */
-/* -------- */
-
-.settings {
-  font-size: 12px;
-}
-
-.settings__item {
-  border-bottom: 1px solid lightgrey;
-  display: flex;
-}
-
-.settings__item__title {
-  border-right: 1px dotted lightgrey;
-  padding: 18px 15px 12px;
-  font-weight: bold;
-}
-
-.settings__item__options {
-  padding: 15px;
 }

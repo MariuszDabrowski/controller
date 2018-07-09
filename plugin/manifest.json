@@ -9,7 +9,7 @@
       "matches": ["https://*/*", "http://*/*"],
       "run_at": "document_end",
       "js": ["js/overlay.bundle.js"],
-      "css": ["css/overlay.css"]
+      "css": ["css/overlay.css", "css/tabs.css"]
     }
   ],  
   "browser_action": {

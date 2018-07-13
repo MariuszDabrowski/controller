@@ -8,7 +8,7 @@ const initUI = function() {
   let overlay = window.controller.overlay = document.createElement('div');
   overlay.classList.add('overlay');
   overlay.classList.add('accounts-active');
-  overlay.classList.add('overlay--active');
+  // overlay.classList.add('overlay--active');
   overlay.innerHTML = `
   <button class="overlay__close" data-button="close-controller">Close</button>
   <button class="accounts__collapse" data-button="toggle-accounts">
@@ -135,7 +135,7 @@ const initUI = function() {
       </div>
     </div>
   </div>
-  <div class="popup popup--active" data-popup="maps">
+  <div class="popup" data-popup="maps">
     <div class="maps">
       <button class="maps__item" data-button="command" data-command="!map1">Map 1</button>
       <button class="maps__item" data-button="command" data-command="!map2">Map 2</button>
@@ -234,19 +234,7 @@ const initButtons = function() {
   const commandClick = function() {
     if (!window.controller.dragging) {
       const message = this.getAttribute('data-command');
-      const users = window.controller.users;
-      let delay = 0;
-
-      Object.keys(users).map(user => {
-        delay++;
-        if (users[user].active && users[user].connected) {
-          // When messages from multiple accounts are sent too quickly sometime... 
-          // it causes a huge delay, spreading the messages apart fixes that issue
-          setTimeout(function() {
-            sendCommand(users[user].socket, window.controller.channel, message);
-          },100 * delay);
-        }
-      });
+      sendCommand(window.controller.channel, message);
     }
 
     // window.controller.dragging = false;

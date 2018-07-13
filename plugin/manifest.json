@@ -6,10 +6,10 @@
   "author": "Mariusz Dabrowski",
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
+      "matches": ["https://*.twitch.tv/*", "http://*.twitch.tv/*"],
       "run_at": "document_end",
       "js": ["js/overlay.bundle.js"],
-      "css": ["css/overlay.css", "css/tabs.css"]
+      "css": ["css/overlay.css", "css/tabs.css", "css/video.css"]
     }
   ],  
   "browser_action": {

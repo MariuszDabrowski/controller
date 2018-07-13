@@ -13,6 +13,7 @@ import initDragAndScale from './modules/dragAndScale';
 import {getData} from './../popup/modules/data';
 import {initUserList} from './../popup/modules/userList';
 import {initAccountList} from './modules/accountList';
+import {initOverlay} from './modules/videoOverlay';
 
 // -----------
 // Application
@@ -22,11 +23,12 @@ window.controller = {
   overlay: null,
   overlayActive: false,
   dragging: false,
-  channel: 'dongerlistdotcom',
+  channel: 'archonthewizard',
   mapVotes: '',
   users: {}
 };
 
+initOverlay();
 initUI();
 initUserListToggle();
 initButtons();

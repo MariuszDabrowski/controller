@@ -1,158 +1,11 @@
 import sendCommand from './sendCommand';
+import positions from './positions';
 
 let channelPageVideoPlayer = null;
 let overlayContainers = null;
 let resizeTimer;
-
-// width: 163,
-// height: 278,
-
-// 1000
-// 562
-
 let towers = [];
 let towerElements = [];
-const positions = {
-  map1: {
-    tower1: {top: '32.9181495%', left: '23%', command: '!1'},
-    tower2: {top: '57.6512456%', left: '23%', command: '!2'},
-    tower3: {top: '25.088968%', left: '34.4%', command: '!3'},
-    tower4: {top: '48.7544484%', left: '34.4%', command: '!4'},
-    tower5: {top: '17.9715302%', left: '45.6%', command: '!5'},
-    tower6: {top: '48.7544484%', left: '45.6%', command: '!6'},
-    tower7: {top: '17.9715302%', left: '56.9%', command: '!7'},
-    tower8: {top: '43.0604982%', left: '56.9%', command: '!8'},
-    tower9: {top: '32.9181495%', left: '68.4%', command: '!9'},
-    tower10: {top: '63.1672598%', left: '68.4%', command: '!10'},
-    tower11: {top: '39.5017794%', left: '79.4%', command: '!11'},
-    tower12: {top: '63.1672598%', left: '79.4%', command: '!12'},
-    train: {top: '13.3451957%', left: '83.3%', width: '16.8%', height: '26.3345196%', command: '!train'}
-  },
-  map2: {
-    tower1: {top: '35.5239787%', left: '80.4%', command: '!1'},
-    tower2: {top: '25.9325044%', left: '69.4%', command: '!2'},
-    tower3: {top: '22.0248668%', left: '58%', command: '!3'},
-    tower4: {top: '27.1758437%', left: '47.1%', command: '!4'},
-    tower5: {top: '23.8010657%', left: '35.4%', command: '!5'},
-    tower6: {top: '27.1758437%', left: '23.8%', command: '!6'},
-    tower7: {top: '53.4635879%', left: '27.5%', command: '!7'},
-    tower8: {top: '64.2984014%', left: '35.4%', command: '!8'},
-    tower9: {top: '64.2984014%', left: '46.5%', command: '!9'},
-    tower10: {top: '60.3907638%', left: '58%', command: '!10'},
-    tower11: {top: '64.2984014%', left: '69.4%', command: '!11'},
-    tower12: {top: '64.2984014%', left: '80.4%', command: '!12'},
-    train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.3345196%', command: '!train'},
-    altar: {width: '10.6%', height: '20.6039076%', top: '13.1438721%', left: '7.5%', command: '!altar'}
-  },
-  map3: {
-    tower1: {top: '43.1616341%', left: '14.8%', command: '!1'},
-    tower2: {top: '14.7424512%', left: '26.8%', command: '!2'},
-    tower3: {top: '43.1616341%', left: '26.8%', command: '!3'},
-    tower4: {top: '67.1403197%', left: '26.8%', command: '!4'},
-    tower5: {top: '71.7584369%', left: '39.2%', command: '!5'},
-    tower6: {top: '43.1616341%', left: '39.2%', command: '!6'},
-    tower7: {top: '19.5381883%', left: '39.2%', command: '!7'},
-    tower8: {top: '67.1403197%', left: '51.6%', command: '!8'},
-    tower9: {top: '43.1616341%', left: '51.6%', command: '!9'},
-    tower10: {top: '14.7424512%', left: '51.6%', command: '!10'},
-    tower11: {top: '19.5381883%', left: '63.9%', command: '!11'},
-    tower12: {top: '52.7531083%', left: '63.9%', command: '!12'},
-    train: {top: '13.4991119%', left: '84.4%', width: '15.6%', height: '24.5115453%', command: '!train'}
-  },
-  map4: {
-    tower1: {top: '0%', left: '0%', command: '!1'},
-    tower2: {top: '0%', left: '0%', command: '!2'},
-    tower3: {top: '0%', left: '0%', command: '!3'},
-    tower4: {top: '0%', left: '0%', command: '!4'},
-    tower5: {top: '0%', left: '0%', command: '!5'},
-    tower6: {top: '0%', left: '0%', command: '!6'},
-    tower7: {top: '0%', left: '0%', command: '!7'},
-    tower8: {top: '0%', left: '0%', command: '!8'},
-    tower9: {top: '0%', left: '0%', command: '!9'},
-    tower10: {top: '0%', left: '0%', command: '!10'},
-    tower11: {top: '0%', left: '0%', command: '!11'},
-    tower12: {top: '0%', left: '0%', command: '!12'},
-    train: {top: '0%', left: '0%', width: '0%', height: '0%', command: '!train'}
-  },
-  map5: {
-    tower1: {top: '0%', left: '0%', command: '!1'},
-    tower2: {top: '0%', left: '0%', command: '!2'},
-    tower3: {top: '0%', left: '0%', command: '!3'},
-    tower4: {top: '0%', left: '0%', command: '!4'},
-    tower5: {top: '0%', left: '0%', command: '!5'},
-    tower6: {top: '0%', left: '0%', command: '!6'},
-    tower7: {top: '0%', left: '0%', command: '!7'},
-    tower8: {top: '0%', left: '0%', command: '!8'},
-    tower9: {top: '0%', left: '0%', command: '!9'},
-    tower10: {top: '0%', left: '0%', command: '!10'},
-    tower11: {top: '0%', left: '0%', command: '!11'},
-    tower12: {top: '0%', left: '0%', command: '!12'},
-    train: {top: '0%', left: '0%', width: '0%', height: '0%', command: '!train'}
-  },
-  map6: {
-    tower1: {top: '63.0550622%', left: '18.5%', command: '!1'},
-    tower2: {top: '33.2149201%', left: '35.4%', command: '!2'},
-    tower3: {top: '33.2149201%', left: '46.8%', command: '!3'},
-    tower4: {top: '33.2149201%', left: '57.9%', command: '!4'},
-    tower5: {top: '33.2149201%', left: '69.1%', command: '!5'},
-    tower6: {top: '38.0106572%', left: '80.5%', command: '!6'},
-    tower7: {top: '63.0550622%', left: '29.7%', command: '!7'},
-    tower8: {top: '63.0550622%', left: '38.7%', command: '!8'},
-    tower9: {top: '68.2060391%', left: '49.4%', command: '!9'},
-    tower10: {top: '68.2060391%', left: '57.9%', command: '!10'},
-    tower11: {top: '63.0550622%', left: '69.1%', command: '!11'},
-    tower12: {top: '63.0550622%', left: '80.5%', command: '!12'},
-    train: {top: '13.4991119%', left: '84.4%', width: '15.6%', height: '24.5115453%', command: '!train'},
-    altar: {width: '7.9%', height: '23.8010657%', top: '25.7548845%', left: '11.6%', command: '!altar'}
-  },
-  map7: {
-    tower1: {top: '21.8472469%', left: '25.6%', command: '!1'},
-    tower2: {top: '72.2912966%', left: '81%', command: '!2'},
-    tower3: {top: '49.5559503%', left: '26.2%', command: '!3'},
-    tower4: {top: '64.2984014%', left: '71.1%', command: '!4'},
-    tower5: {top: '64.2984014%', left: '15%', command: '!5'},
-    tower6: {top: '40.6749556%', left: '71.1%', command: '!6'},
-    tower7: {top: '64.2984014%', left: '37.9%', command: '!7'},
-    tower8: {top: '57.3712256%', left: '54.4%', command: '!8'},
-    tower9: {top: '40.6749556%', left: '37.9%', command: '!9'},
-    tower10: {top: '28.4191829%', left: '54.4%', command: '!10'},
-    tower11: {top: '16.3410302%', left: '37.9%', command: '!11'},
-    tower12: {top: '13.321492%', left: '67.2%', command: '!12'},
-    train: {top: '13.321492%', left: '83.3%', width: '16.8%', height: '26.2877442%', command: '!train'},
-    altar: {width: '14.8%', height: '26.2877442%', top: '16.3410302%', left: '9.3%', command: '!altar'}
-  },
-  map8: {
-    tower1: {top: '0%', left: '0%', command: '!1'},
-    tower2: {top: '0%', left: '0%', command: '!2'},
-    tower3: {top: '0%', left: '0%', command: '!3'},
-    tower4: {top: '0%', left: '0%', command: '!4'},
-    tower5: {top: '0%', left: '0%', command: '!5'},
-    tower6: {top: '0%', left: '0%', command: '!6'},
-    tower7: {top: '0%', left: '0%', command: '!7'},
-    tower8: {top: '0%', left: '0%', command: '!8'},
-    tower9: {top: '0%', left: '0%', command: '!9'},
-    tower10: {top: '0%', left: '0%', command: '!10'},
-    tower11: {top: '0%', left: '0%', command: '!11'},
-    tower12: {top: '0%', left: '0%', command: '!12'},
-    train: {top: '0%', left: '0%', width: '0%', height: '0%', command: '!train'}
-  },
-  map9: {
-    tower1: {top: '31.0834813%', left: '17.6%', command: '!1'},
-    tower2: {top: '25.9325044%', left: '26.7%', command: '!2'},
-    tower3: {top: '20.7815275%', left: '35.6%', command: '!3'},
-    tower4: {top: '20.7815275%', left: '46.6%', command: '!4'},
-    tower5: {top: '23.9786856%', left: '57.9%', command: '!5'},
-    tower6: {top: '40.8525755%', left: '68.8%', command: '!6'},
-    tower7: {top: '33.7477798%', left: '81.2%', command: '!7'},
-    tower8: {top: '64.4760213%', left: '80.3%', command: '!8'},
-    tower9: {top: '64.4760213%', left: '66%', command: '!9'},
-    tower10: {top: '68.5612789%', left: '54.7%', command: '!10'},
-    tower11: {top: '58.7921847%', left: '41.1%', command: '!11'},
-    tower12: {top: '58.7921847%', left: '28%', command: '!12'},
-    train: {top: '13.1438721%', left: '85.2%', width: '14.8%', height: '23.268206%', command: '!train'},
-    altar: {width: '10.8%', height: '19.1829485%', top: '63.2326821%', left: '13.4%', command: '!altar'}
-  }
-}
 
 const Tower = function() {
   this.element = null;
@@ -177,6 +30,12 @@ const generateTowers = function(mapData) {
     towers.push(new Tower());
     towers[index].init(mapData[tower].top, mapData[tower].left, mapData[tower].width, mapData[tower].height, mapData[tower].command);
   });
+
+  for (let i = 0; i < towerElements.length; i++) {
+    document.querySelectorAll('.video-wrapper')[0].appendChild(towerElements[i]);
+  }
+
+  duplicateOverlays();
 };
 
 // --------------
@@ -228,33 +87,103 @@ const initTowerClickEvents = function() {
   }
 };
 
+// ------------------
+// Duplicate overlays
+// ------------------
+
+const duplicateOverlays = function() {
+  const playerVideo = document.querySelector('.player-video');
+  const videoOverlayClone = overlayContainers[0].cloneNode(true);
+
+  if (overlayContainers[1]) {
+    overlayContainers[1].remove();
+  }
+
+  playerVideo.appendChild(videoOverlayClone);
+  overlayContainers = document.querySelectorAll('.video-overlay');
+};
+
 // ----------------
 // Generate overlay
 // ----------------
 
 const generateOverlay = function() {
-  const playerVideo = document.querySelector('.player-video');
   const videoOverlay = document.createElement('div');
   videoOverlay.classList.add('video-overlay');
   videoOverlay.innerHTML = `
     <img src="http://via.placeholder.com/2880x1620/ff0000" alt="" class="video-overlay__img" />
   `;
 
-  generateTowers(positions.map3);
   const videoWrapper = document.createElement('div');
   videoWrapper.classList.add('video-wrapper');
-  for (let i = 0; i < towerElements.length; i++) {
-    videoWrapper.appendChild(towerElements[i]);
-  }
   videoOverlay.appendChild(videoWrapper);
-
-  const videoOverlayClone = videoOverlay.cloneNode(true);
+  
   channelPageVideoPlayer.appendChild(videoOverlay);
-  playerVideo.appendChild(videoOverlayClone);
   overlayContainers = document.querySelectorAll('.video-overlay');
 
+  overlaySelector();
+  duplicateOverlays();
   initTowerClickEvents();
   initResizeTriggers();
+};
+
+// --------------------
+// Clear tower overlays
+// --------------------
+
+const clearTowerOverlays = function() {
+  const buildings = document.querySelectorAll('.tower');
+  towers = [];
+  towerElements = [];
+  for (let i = 0; i < buildings.length; i++) {
+    buildings[i].remove();
+  }
+};
+
+// -----------------------
+// Overlay selector events
+// -----------------------
+
+const overlaySelectorEvents = function() {
+  const buttons = document.querySelectorAll('[data-button="overlay-change"]');
+  const changeOverlay = function() {
+    clearTowerOverlays();
+    generateTowers(positions[this.getAttribute('data-overlay')]);
+  };
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', changeOverlay);
+  }
+};
+
+// ----------------
+// Overlay selector
+// ----------------
+
+const overlaySelector = function() {
+  const selector = document.createElement('div');
+  selector.classList.add('selector');
+  selector.innerHTML = `
+    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+      <path fill="#e9ede1" d="M10,4V8H14V4H10M16,4V8H20V4H16M16,10V14H20V10H16M16,16V20H20V16H16M14,20V16H10V20H14M8,20V16H4V20H8M8,14V10H4V14H8M8,8V4H4V8H8M10,14H14V10H10V14M4,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H4C2.92,22 2,21.1 2,20V4A2,2 0 0,1 4,2Z" />
+    </svg>
+
+    <div class="selector__popout">
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map1">Map 1 - Green Pasture</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Map 2 - Lost Desert</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map3">Map 3 - Snow Trap</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map4">Map 4 - Lava or Leave It</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map5">Map 5 - Wandering Fields</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map6">Map 6 - Dune Gauntlet</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Map 7 - Double Trouble</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Map 8 - Arid Junction</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map9">Map 9 - Frozen Steppes</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="mapSelect">Map select screen</button>
+    </div>
+  `;
+
+  channelPageVideoPlayer.appendChild(selector);
+  overlaySelectorEvents();
 };
 
 // ------------

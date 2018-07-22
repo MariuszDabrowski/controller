@@ -4,7 +4,12 @@ Description to come later.
 
 ----
 
-#### Todo:
+* [Todo]()
+* [UI Details]()
+
+----
+
+### Todo:
 
 * Save out image for Chrome store
 * Write description for the Chrome store
@@ -18,7 +23,64 @@ Description to come later.
 * Look into removing some of the hot reload permissions
 * Add map select screen to the list of overlays
 * Add a way to buy1-5 on the map select screen
+* Write guide on how to update extension
+* Research versioning on chrome app
+* Add a way to leave the game
+* Add a way to reconnect to the game
+* Test extension on a different computer
 
 ----
 
-![](readme-images/test.jpg)
+### UI Details
+
+![](readme-images/overlay-preview.jpg)
+
+* **1** - [Classes and specs]()
+* **2** - [Accounts]()
+* **3** - [Hire merc]()
+* **4** - [Change map overlay]()
+* **5** - [Custom actions]()
+* **6** - [Switch gem]()
+* **7** - [Settings]()
+
+----
+
+#### Classes and specs
+
+Description goes here.
+
+----
+
+#### Accounts
+
+Description goes here.
+
+----
+
+#### Hire merc
+
+Description goes here.
+
+----
+
+#### Change map overlay
+
+Description goes here.
+
+----
+
+#### Custom actions
+
+Description goes here.
+
+----
+
+#### Switch gem
+
+Description goes here.
+
+----
+
+#### Settings
+
+Description goes here.

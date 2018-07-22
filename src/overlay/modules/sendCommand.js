@@ -1,4 +1,4 @@
-const sendCommand = function(channel, message) {
+const sendCommand = function(message) {
   const users = window.controller.users;
   let delay = 0;
 
@@ -8,7 +8,7 @@ const sendCommand = function(channel, message) {
       // When messages from multiple accounts are sent too quickly sometime... 
       // it causes a huge delay, spreading the messages apart fixes that issue
       setTimeout(function() {
-        users[user].socket.send('PRIVMSG #' + channel + ' : ' + message);
+        users[user].socket.send('PRIVMSG #' + window.controller.channel + ' : ' + message);
       },100 * delay);
     }
   });

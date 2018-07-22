@@ -1,6 +1,18 @@
 import User from './User';
 
-const initAccountList = function(data) {
+const initAccountList = function() {
+  const accountList = document.createElement('div');
+  accountList.classList.add('account-list');
+  accountList.innerHTML = `
+    <div class="account-list__container">
+      <div class="account-list__title">Send commands to:</div>
+    </div>
+  `;
+
+  window.controller.videoContainer.appendChild(accountList);
+};
+
+const populateUsers = function(data) {
   const users = window.controller.users;
 
   Object.keys(data).map(user => {
@@ -23,8 +35,4 @@ const initAccountList = function(data) {
   });
 };
 
-const updateAccountList = function() {
-
-};
-
-export {initAccountList, updateAccountList};
+export {initAccountList, populateUsers};

@@ -4,8 +4,15 @@ Description to come later.
 
 ----
 
+* [Getting started]()
 * [Todo]()
 * [UI Details]()
+
+----
+
+### Getting started:
+
+Write the basics here.
 
 ----
 
@@ -28,6 +35,7 @@ Description to come later.
 * Add a way to leave the game
 * Add a way to reconnect to the game
 * Test extension on a different computer
+* Ability to send the same command multiple times
 
 ----
 
@@ -35,52 +43,52 @@ Description to come later.
 
 ![](readme-images/overlay-preview.jpg)
 
-* **1** - [Classes and specs]()
-* **2** - [Accounts]()
-* **3** - [Hire merc]()
-* **4** - [Change map overlay]()
-* **5** - [Custom actions]()
-* **6** - [Switch gem]()
-* **7** - [Settings]()
+1. [Classes and specs]()
+2. [Accounts]()
+3. [Hire merc]()
+4. [Change map overlay]()
+5. [Custom actions]()
+6. [Switch gem]()
+7. [Settings]()
 
 ----
 
-#### Classes and specs
+#### 1. Classes and specs
 
 Description goes here.
 
 ----
 
-#### Accounts
+#### 2. Accounts
 
 Description goes here.
 
 ----
 
-#### Hire merc
+#### 3. Hire merc
 
 Description goes here.
 
 ----
 
-#### Change map overlay
+#### 4. Change map overlay
 
 Description goes here.
 
 ----
 
-#### Custom actions
+#### 5. Custom actions
 
 Description goes here.
 
 ----
 
-#### Switch gem
+#### 6. Switch gem
 
 Description goes here.
 
 ----
 
-#### Settings
+#### 7. Settings
 
 Description goes here.

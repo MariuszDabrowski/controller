@@ -75,7 +75,7 @@ const initOverlay = function() {
   }
 };
 
-// initOverlay();
+initOverlay();
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {

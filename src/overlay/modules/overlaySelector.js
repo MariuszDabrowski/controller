@@ -39,7 +39,6 @@ const overlaySelector = function() {
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Map 7 - Double Trouble</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Map 8 - Arid Junction</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map9">Map 9 - Frozen Steppes</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="mapSelect">Map select screen</button>
     </div>
   `;
 

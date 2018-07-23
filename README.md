@@ -5,8 +5,8 @@ Description to come later.
 ----
 
 * [Getting started]()
-* [Todo]()
 * [UI Details]()
+* [Updating the extension]()
 
 ----
 
@@ -16,21 +16,11 @@ Write the basics here.
 
 ----
 
-### Todo:
-
-* Save out image for Chrome store
-* Write description for the Chrome store
-* Create Github explanation of the app
-* Add version label to the popup
-* Settings tab that allows you to disable the Twitch overlay
-* Look into removing some of the hot reload permissions
-* Write guide on how to update extension
-
-----
-
 ### UI Details
 
-![](readme-images/overlay-preview.jpg)
+
+|![](readme-images/ui.jpg)|![](readme-images/hovers.jpg)|![](readme-images/overlay-preview.jpg)|
+|---|---|---|
 
 1. [Classes and specs]()
 2. [Accounts]()
@@ -43,6 +33,9 @@ Write the basics here.
 ----
 
 #### 1. Classes and specs
+
+|![](readme-images/classes-and-specs-hitarea.jpg)|![](readme-images/classes-and-specs-popout.jpg)|
+|---|---|
 
 Description goes here.
 

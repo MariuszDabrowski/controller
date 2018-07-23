@@ -8,6 +8,7 @@ import initClassButtons from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
 import {customActions} from './modules/customActions';
+import {leaveAndReconnect} from './modules/leaveAndReconnect';
 
 // -----------
 // Application
@@ -15,10 +16,9 @@ import {customActions} from './modules/customActions';
 
 window.controller = {
   video: null,
-  videoAlt: null,
   videoWrapper: null,
   videoContainer: null,
-  channel: 'dongerlistdotcom',
+  channel: 'archonthewizard',
   users: {},
   overlayActive: false
 };
@@ -26,8 +26,8 @@ window.controller = {
 const initOverlay = function() {
   if (!window.controller.overlayActive) {
     const findDiv = setInterval(function() {
-      window.controller.video = document.querySelector('.channel-page__video-player');
-      window.controller.videoAlt = document.querySelector('.video-player');
+      window.controller.video = document.querySelector('.video-player__container');
+      document.body.classList.add('overlay-active');
   
       if (window.controller.video) {
         initOverlayContainers();
@@ -39,6 +39,7 @@ const initOverlay = function() {
         initClassButtons();
         initAccountList();
         customActions();
+        leaveAndReconnect();
         
         const buttons = document.querySelectorAll('[data-button="command"]');
         for (let i = 0; i < buttons.length; i++) {
@@ -48,23 +49,7 @@ const initOverlay = function() {
           });
         }
 
-        // video-player__container player theme--dark
-
         getData('users', populateUsers);
-
-        // ------------------
-        // Duplicate overlays
-        // ------------------
-
-        // const duplicateOverlays = function() {
-        //   const playerVideo = document.querySelector('.player-video');
-        //   const clone = window.controller.videoWrapper.cloneNode(true);
-
-        //   playerVideo.appendChild(clone);
-        // };
-
-        // duplicateOverlays();
-
         clearInterval(findDiv);
       }
     }, 1000);
@@ -75,12 +60,32 @@ const initOverlay = function() {
   }
 };
 
-initOverlay();
+// initOverlay();
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.action === 'connect') {
       initOverlay();
+      console.log('connect');
+    }
+
+    if (request.action === 'disconnect') {
+      console.log('disconnect');
+      document.body.classList.remove('overlay-active');
+      window.controller.videoWrapper.remove();
+
+      window.controller = {
+        video: null,
+        videoWrapper: null,
+        videoContainer: null,
+        channel: 'archonthewizard',
+        users: {},
+        overlayActive: false
+      };
+    }
+
+    if (request.action === 'checkStatus') {
+      sendResponse({status: window.controller.overlayActive});
     }
   }
 );

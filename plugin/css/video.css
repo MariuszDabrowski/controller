@@ -1,5 +1,5 @@
-.extension-container,
-.hover-display {
+.overlay-active .extension-container,
+.overlay-active .hover-display {
   display: none !important;
 }
 
@@ -95,7 +95,7 @@
   transform: translateX(0);
 }
 
-.selector__popout__item {
+.player .selector__popout__item {
   white-space: nowrap;
   border-top: 1px solid #696969;
   outline: none;
@@ -175,11 +175,11 @@
   position: relative;
 }
 
-.custom-actions__list__item:first-child {
-  border-top: 0;
+.custom-actions__list__item:last-child {
+  border-bottom: 0;
 }
 
-.custom-actions__list__item__trigger {
+.player .custom-actions__list__item__trigger {
   transition: background 0.2s;
   padding: 9px 12px;
   width: 100%;
@@ -190,7 +190,7 @@
   background: #505050;
 }
 
-.custom-actions__list__item__remove {
+.player .custom-actions__list__item__remove {
   border-right: 1px solid #000000;
   border-bottom: 1px solid #000000;
   padding: 6px;
@@ -210,6 +210,11 @@
   outline: none;
 }
 
+.player .custom-actions__list__item:last-child .custom-actions__list__item__remove {
+  border-bottom: 0;
+  height: 100%;
+}
+
 .custom-actions:hover .custom-actions__list__item__remove {
   transform: translateX(0);
 }
@@ -226,7 +231,7 @@
 
 }
 
-.custom-actions__form__input {
+.player .custom-actions__form__input {
   width: 100%;
   border: 0;
   background: #e9ede2;
@@ -237,7 +242,7 @@
   outline: none;
 }
 
-.custom-actions__form__button {
+.player .custom-actions__form__button {
   width: 100%;
   display: flex;
   align-items: center;
@@ -263,7 +268,7 @@
   width: 24.2%;
   height: 7.8152753%;
   position: absolute;
-  top: 92.1847247%;
+  bottom: 0;
   left: 53.2%;
   background: rgba(0,0,0, 0.9);
   z-index: 10050;
@@ -272,7 +277,7 @@
   display: flex;
 }
 
-.power-buttons__item {
+.player button.power-buttons__item {
   width: 50%;
   display: flex;
   align-items: center;
@@ -287,7 +292,7 @@
   outline: none;
 }
 
-.power-buttons__item:first-child {
+.player button.power-buttons__item:first-child {
   border-left: 0;
 }
 
@@ -303,7 +308,7 @@
   width: 20%;
   height: 7.8152753%;
   position: absolute;
-  top: 92.1847247%;
+  bottom: 0;
   left: 12.6%;
   pointer-events: all;
 }
@@ -325,7 +330,7 @@
   transform: translateY(0);
 }
 
-.merc-buttons__item {
+.player button.merc-buttons__item {
   width: 25%;
   display: flex;
   align-items: center;
@@ -340,11 +345,11 @@
   transition: background 0.2s;
 }
 
-.merc-buttons__item:nth-child(-n + 4) {
+.player button.merc-buttons__item:nth-child(-n + 4) {
   border-top: 0;
 }
 
-.merc-buttons__item:nth-child(4n + 1) {
+.player button.merc-buttons__item:nth-child(4n + 1) {
   border-left: 0;
 }
 
@@ -360,7 +365,7 @@
   width: 7.7%;
   height: 48.4245115%;
   position: absolute;
-  top: 11.9005329%;
+  top: 12.3%;
   left: 0;
   pointer-events: all;
   z-index: 10050;
@@ -396,6 +401,7 @@
   transition: background 0.2s;
   height: 100%;
   position: relative;
+  outline: none;
 }
 
 .class-buttons__item:first-child {
@@ -422,12 +428,13 @@
   display: flex;
 }
 
-.spec__item {
+.player .spec__item {
   border-top: 1px solid rgba(255,255,255, 0.4);
   padding: 9px 12px;
   display: block;
   transition: background 0.2s;
   white-space: nowrap;
+  outline: none;
 }
 
 .spec__item:first-child {
@@ -473,11 +480,11 @@
   transform: translateX(0);
 }
 
-.account-list__title {
+.player .account-list__title {
   padding: 8px 10px;
 }
 
-.account-list__item {
+.player button.account-list__item {
   display: flex;
   align-items: center;
   border-top: 1px solid black;
@@ -487,11 +494,11 @@
   outline: none;
 }
 
-.account-list__item--active {
+.player button.account-list__item--active {
   background: #256527;
 }
 
-.account-list__item__connection {
+.player .account-list__item__connection {
   margin-right: 6px;
   display: flex;
   align-items: center;
@@ -513,8 +520,51 @@
   fill: greenyellow;
 }
 
-.account-list__item__name {
+.player .account-list__item__name {
   display: flex;
   align-items: center;
   padding: 6px 12px 6px 4px;
+}
+
+/* ------------------- */
+/* Leave and Reconnect */
+/* ------------------- */
+
+.leave-reconnect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10.9%;
+  height: 11.9005329%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  pointer-events: all;
+  border-bottom-right-radius: 2px;
+  overflow: hidden;
+  background: #020203;
+}
+
+.player .leave-reconnect__button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  color: #e9ede2;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 10px;
+  outline: none;
+}
+
+.leave-reconnect__button:hover {
+  background: #323232;
+}
+
+.leave-reconnect__button:first-child {
+  border-bottom: 1px solid #848484;
 }

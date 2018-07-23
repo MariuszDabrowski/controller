@@ -5,7 +5,7 @@ const resizeOverlays = function() {
   resizeTimer = setTimeout(function() {
     const videoWrapperImg = window.controller.videoWrapper.querySelector('.video-wrapper__img');
     window.controller.videoContainer.style.width = `${videoWrapperImg.clientWidth}px`;
-    window.controller.videoContainer.style.height = `${videoWrapperImg.clientHeight}px`;
+    window.controller.videoContainer.style.height = `${videoWrapperImg.clientHeight + 1}px`;
   }, 200);
 };
 

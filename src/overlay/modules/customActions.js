@@ -71,8 +71,7 @@ const initForm = function() {
 
 let actionsData = [];
 let actions = {};
-const actionList = document.createElement('div');
-actionList.classList.add('custom-actions__list');
+let actionList = null;
 
 const updateActionList = function(newAction) {
   const popout = document.querySelector('.custom-actions__popout');
@@ -107,6 +106,11 @@ const updateActionList = function(newAction) {
 // --------------
 
 const customActions = function() {
+  actionsData = [];
+  actions = {};
+  actionList = document.createElement('div');
+  actionList.classList.add('custom-actions__list');
+
   const selector = document.createElement('div');
   selector.classList.add('custom-actions');
   selector.innerHTML = `

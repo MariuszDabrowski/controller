@@ -52,7 +52,7 @@ You are now ready to use the UI, read below for the specifics on each component.
 
 #### 1. Classes and specs
 
-|<img src="readme-images/classes.jpg" width="819" heigh="461">|<img src="readme-images/classes.gif" width="315" heigh="461">|
+|<img src="readme-images/classes.gif" width="315" heigh="461">|<img src="readme-images/classes.jpg" width="819" heigh="461">|
 |---|---|
 
 Hovering over the left hand side of the screen will bring out the classes and specs drawer. Here you can click on a class to select it or on a spec to switch to that spec.
@@ -61,7 +61,7 @@ Hovering over the left hand side of the screen will bring out the classes and sp
 
 #### 2. Accounts
 
-|<img src="readme-images/accounts.jpg" width="423" heigh="238">|<img src="readme-images/accounts.gif" width="278" heigh="238">|
+|<img src="readme-images/accounts.gif" width="222" heigh="248">|<img src="readme-images/accounts.jpg" width="433" heigh="248">|
 |---|---|
 
 Hovering over the bottom left corner will show two things:
@@ -80,7 +80,7 @@ If all of your accounts are highlighted green, any command you send will be sent
 
 #### 3. Hire merc
 
-|<img src="readme-images/merc.jpg" width="597" heigh="336">|<img src="readme-images/merc.gif" width="220" heigh="336">|
+|<img src="readme-images/merc.gif" width="220" heigh="336">|<img src="readme-images/merc.jpg" width="597" heigh="336">|
 |---|---|
 
 Hovering over this area will bring up the mercenary drawer. Clicking on a merc will attempt to hire that merc if they are available.
@@ -89,7 +89,7 @@ Hovering over this area will bring up the mercenary drawer. Clicking on a merc w
 
 #### 4. Change map overlay
 
-|<img src="readme-images/overlays.jpg" width="762" heigh="429">|<img src="readme-images/overlays.gif" width="429" heigh="353">|
+|<img src="readme-images/overlays.gif" width="429" heigh="353">|<img src="readme-images/overlays.jpg" width="762" heigh="429">|
 |---|---|
 
 To enable clicking on the towers to move around you need to select the correct overlay first. Hover on the bottom right hand side of the video to reveal the map selection drawer.
@@ -100,7 +100,7 @@ Select the map you are currently on. If this is done correctly you will see a da
 
 #### 5. Custom commands
 
-|<img src="readme-images/commands.jpg" width="597" heigh="336">|<img src="readme-images/commands.gif" width="220" heigh="336">|
+|<img src="readme-images/commands.gif" width="220" heigh="336">|<img src="readme-images/commands.jpg" width="597" heigh="336">|
 |---|---|
 
 Rolling over the custom commands icon will reveal the custom commands panel. Here you can define your own custom commands that are not available in the user interface.

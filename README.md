@@ -11,11 +11,8 @@ Description to come later.
 
 ### Getting started:
 
-* Click on the tower icon in the top left hand corner and click `add account`.
-* Head over to the `OAuth link` and generate yourself a OAuth token, copy the entire token (including the oauth: part)
-* Now click on the tower icon and head over to the `add account` section again
-* Fill out your username and paste the OAuth token and hit `Add User`
-* Now with your user visible in the list, just click `Connect` (When you hit connect, make sure you're already on the stream defense twitch page)
+| ![](readme-images/popup.jpg) | <ul><li>Click on the tower icon in the top left hand corner and click `add account`.</li><li>Head over to the `OAuth link` and generate yourself a OAuth token, copy the entire token (including the oauth: part)</li><li>Now click on the tower icon and head over to the `add account` section again</li><li>Fill out your username and paste the OAuth token and hit `Add User`</li><li>Now with your user visible in the list, just click `Connect` (When you hit connect, make sure you're already on the stream defense twitch page)</li></ul> |
+|---|---|
 
 At this point if you rollover the bottom left hand corner of the video you should see the accounts that you added. 
 

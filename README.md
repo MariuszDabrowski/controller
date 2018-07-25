@@ -7,9 +7,9 @@
 
 ### Table of Contents:
 
-* [Installing the extension]()
-* [Getting started]()
-* [Using the interface]()
+* [Installing the extension](#installing-the-extension)
+* [Setting up your accounts](#setting-up-your-accounts)
+* [Using the interface](#using-the-interface)
 
 ----
 
@@ -20,7 +20,7 @@
 
 ----
 
-### Setting up your account:
+### Setting up your accounts:
 
 * Click on the tower icon in the top left hand corner and click `add account`.
 * Head over to the `OAuth link` and generate yourself a OAuth token, copy the entire token (including the oauth: part)

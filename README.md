@@ -1,4 +1,4 @@
-## Stream Defense Controller
+![](readme-images/logo.png)
 
 Description to come later.
 
@@ -11,7 +11,7 @@ Description to come later.
 
 ### Getting started:
 
-* Click on the tower icon (![](readme-images/tower-icon.png)) in the top left hand corner and click `add account`.
+* Click on the tower icon in the top left hand corner and click `add account`.
 * Head over to the `OAuth link` and generate yourself a OAuth token, copy the entire token (including the oauth: part)
 * Now click on the tower icon and head over to the `add account` section again
 * Fill out your username and paste the OAuth token and hit `Add User`

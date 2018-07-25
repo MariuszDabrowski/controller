@@ -1,11 +1,11 @@
 <img src="readme-images/logo.png" width="156" heigh="64">
 <br>
 
-[Stream defense](https://www.twitch.tv/archonthewizard) is a game developed by [ArchonTheWizard](https://www.twitch.tv/archonthewizard) on [Twitch](https://www.twitch.tv/). It's a tower defense game that allows you to control your players using chat inputs.
-
-Instead of controlling your player using keyboard inputs, the Stream Defense Controller allows you to interact with the video instead.
+[Stream defense](https://www.twitch.tv/archonthewizard) is a game developed by [ArchonTheWizard](https://www.twitch.tv/archonthewizard) on [Twitch](https://www.twitch.tv/). It's a tower defense game that allows you to control your players using chat inputs. Instead of controlling your player using chat inputs, the Stream Defense Controller allows you to interact with the video instead.
 
 ----
+
+### Table of Contents:
 
 * [Installing the extension]()
 * [Getting started]()
@@ -50,7 +50,7 @@ You are now ready to use the UI, read below for the specifics on each component.
 
 #### 1. Classes and specs
 
-|![](readme-images/classes-and-specs-hitarea.jpg)|![](readme-images/classes.gif)|
+|<img src="readme-images/classes-and-specs-hitarea.jpg" width="819" heigh="461">|<img src="readme-images/classes.gif" width="315" heigh="461">|
 |---|---|
 
 Hovering over the left hand side of the screen will bring out the classes and specs drawer. Here you can click on a class to select it or on a spec to switch to that spec.

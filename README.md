@@ -1,4 +1,4 @@
-![](readme-images/logo.png =156x64)
+<img src="readme-images/logo.png" width="156" heigh="64">
 
 Description to come later.
 

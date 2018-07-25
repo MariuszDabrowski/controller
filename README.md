@@ -1,5 +1,6 @@
 <img src="readme-images/logo.png" width="156" heigh="64">
-<br><br>
+<br>
+
 [Stream defense](https://www.twitch.tv/archonthewizard) is a game developed by [ArchonTheWizard](https://www.twitch.tv/archonthewizard) on [Twitch](https://www.twitch.tv/). It's a tower defense game that allows you to control your players using chat inputs.
 
 Instead of controlling your player using keyboard inputs, the Stream Defense Controller allows you to interact with the video instead.
@@ -14,7 +15,8 @@ Instead of controlling your player using keyboard inputs, the Stream Defense Con
 
 ### Installing the extension:
 
-The extension can be found in the [Chrome Web Store](https://chrome.google.com/webstore/detail/stream-defense-controller/kdnmeicbpnbfjhoeofjpglbfcmhepdga?hl=en). Once installed you will see a tower icon ( <img src="readme-images/tower-icon.png" width="8" heigh="8"> ) appear at the top right hand corner of your browser.
+* The extension can be found in the [Chrome Web Store](https://chrome.google.com/webstore/detail/stream-defense-controller/kdnmeicbpnbfjhoeofjpglbfcmhepdga?hl=en).
+* Once installed you will see a tower icon ( <img src="readme-images/tower-icon.png" width="8" heigh="8"> ) appear at the top right hand corner of your browser.
 
 ----
 

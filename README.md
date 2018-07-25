@@ -1,4 +1,4 @@
-![](readme-images/logo.png)
+![](readme-images/logo.png =156x64)
 
 Description to come later.
 

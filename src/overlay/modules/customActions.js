@@ -87,8 +87,6 @@ const updateActionList = function(newAction) {
         actions[encodedName].init();
         actionList.appendChild(actions[encodedName].element);
       }
-
-      popout.prepend(actionList);
     });
   } else {
     actionsData.push(newAction);
@@ -99,6 +97,8 @@ const updateActionList = function(newAction) {
       actionList.appendChild(actions[encodedName].element);
     });
   }
+
+  popout.prepend(actionList);
 };
 
 // --------------

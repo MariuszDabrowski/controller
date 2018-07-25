@@ -6,20 +6,28 @@ Description to come later.
 
 * [Getting started]()
 * [UI Details]()
-* [Updating the extension]()
 
 ----
 
 ### Getting started:
 
-Write the basics here.
+* Click on the tower icon in the top left hand corner and click `add account`.
+* Head over to the `OAuth link` and generate yourself a OAuth token, copy the entire token (including the oauth: part)
+* Now click on the tower icon and head over to the `add account` section again
+* Fill out your username and paste the OAuth token and hit `Add User`
+* Now with your user visible in the list, just click `Connect` (When you hit connect, make sure you're already on the stream defense twitch page)
+
+At this point if you rollover the bottom left hand corner of the video you should see the accounts that you added. 
+
+If the little link icon beside your name is green that means you are connected and ready to use the UI. If it's red that means something is wrong, either the username was mistyped or there is an issue with the OAuth token.
+
+You are now ready to use the UI, read below for the specifics on each component.
 
 ----
 
 ### UI Details
 
-|![](readme-images/hovers.jpg)|![](readme-images/overlay-preview.jpg)|
-|---|---|
+![](readme-images/hovers.jpg)
 
 1. [Classes and specs](#1-classes-and-specs)
 2. [Accounts](#2-accounts)
@@ -31,7 +39,7 @@ Write the basics here.
 
 #### 1. Classes and specs
 
-|![](readme-images/classes-and-specs-hitarea.jpg)|![](readme-images/classes-and-specs-popout.jpg)|
+|![](readme-images/classes-and-specs-hitarea.jpg)|![](readme-images/classes.gif)|
 |---|---|
 
 Hovering over the left hand side of the screen will bring out the classes and specs drawer. Here you can click on a class to select it or on a spec to switch to that spec.
@@ -72,9 +80,3 @@ Description goes here.
 #### 5. Custom actions
 
 Description goes here.
-
-----
-
-### Updating the extension
-
-Write how to update the description here.

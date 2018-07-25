@@ -89,7 +89,7 @@ Hovering over this area will bring up the mercenary drawer. Clicking on a merc w
 
 #### 4. Change map overlay
 
-|<img src="readme-images/overlays.gif" width="429" heigh="353">|<img src="readme-images/overlays.jpg" width="649" heigh="365">|
+|<img src="readme-images/overlays.gif" width="429" heigh="353">|<img src="readme-images/overlays.jpg" width="513" heigh="429">|
 |---|---|
 
 To enable clicking on the towers to move around you need to select the correct overlay first. Hover on the bottom right hand side of the video to reveal the map selection drawer.

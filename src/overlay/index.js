@@ -8,7 +8,7 @@ import initClassButtons from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
 import {customActions} from './modules/customActions';
-import {leaveAndReconnect} from './modules/leaveAndReconnect';
+import {leave} from './modules/leave';
 
 // -----------
 // Application
@@ -18,7 +18,7 @@ window.controller = {
   video: null,
   videoWrapper: null,
   videoContainer: null,
-  channel: 'archonthewizard',
+  channel: 'dongerlistdotcom',
   users: {},
   overlayActive: false
 };
@@ -39,7 +39,7 @@ const initOverlay = function() {
         initClassButtons();
         initAccountList();
         customActions();
-        leaveAndReconnect();
+        leave();
         
         const buttons = document.querySelectorAll('[data-button="command"]');
         for (let i = 0; i < buttons.length; i++) {

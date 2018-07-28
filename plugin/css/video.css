@@ -530,7 +530,7 @@
 /* Leave and Reconnect */
 /* ------------------- */
 
-.leave-reconnect {
+.leave {
   position: absolute;
   top: 0;
   left: 0;
@@ -545,7 +545,7 @@
   background: #020203;
 }
 
-.player .leave-reconnect__button {
+.player .leave__button {
   border: 0;
   background: transparent;
   padding: 0;
@@ -561,10 +561,10 @@
   outline: none;
 }
 
-.leave-reconnect__button:hover {
+.leave__button:hover {
   background: #323232;
 }
 
-.leave-reconnect__button:first-child {
+.leave__button + .leave__button {
   border-bottom: 1px solid #848484;
 }

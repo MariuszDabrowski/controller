@@ -18,9 +18,9 @@ const initResizeTriggers = function() {
   const rightColumnToggleVisibility = document.querySelector('.right-column__toggle-visibility');
   const playerButtonsRight = document.querySelector('.player-buttons-right');
 
-  sideNavToggleVisibility.addEventListener('click', resizeOverlays);
-  rightColumnToggleVisibility.addEventListener('click', resizeOverlays);
-  playerButtonsRight.addEventListener('click', resizeOverlays);
+  if (sideNavToggleVisibility) sideNavToggleVisibility.addEventListener('click', resizeOverlays);
+  if (rightColumnToggleVisibility) rightColumnToggleVisibility.addEventListener('click', resizeOverlays);
+  if (playerButtonsRight) playerButtonsRight.addEventListener('click', resizeOverlays);
   window.addEventListener('resize', resizeOverlays);
 };
 

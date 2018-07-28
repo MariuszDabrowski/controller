@@ -2,7 +2,7 @@ const initOverlayContainers = function() {
   const videoWrapper = document.createElement('div');
   videoWrapper.classList.add('video-wrapper');
   videoWrapper.innerHTML = `
-    <img src="http://via.placeholder.com/2880x1620/ff0000" alt="" class="video-wrapper__img" />
+    <img src="https://via.placeholder.com/2880x1620/ff0000" alt="" class="video-wrapper__img" />
   `;
   window.controller.video.appendChild(videoWrapper);
 

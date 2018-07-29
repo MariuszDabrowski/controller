@@ -61,6 +61,8 @@ To enable clicking on the towers to move around you need to select the correct o
 
 Select the map you are currently on. If this is done correctly you will see a dashed outline around all of the buildings. You can you click on them to send commands to your account.
 
+To hide the dashed outlines, click the `Hide dashed outlines` button.
+
 ----
 
 #### 2. Custom commands
@@ -137,3 +139,9 @@ Since some of the commands come through using whispers. The whisper will be sent
 * Rearranged the classes slide out to match the order on the game screen
 * Updated README to showcase the overlay feature and custom actions first to draw more attention to the more unique features.
 * Added the proper PING PONG TMI commands to prevent you from being disconnected after being AFK for 10 minutes
+
+#### V 1.1.1:
+* Added the ability to hide the dashes that appear around the towers when a map overlay is selected is now available through the overlay selector slide out.
+* Added active states to the overlay selector. The selected map button now turns green when active.
+* Fixed the z-index issue with the TTDBot commands dropdown (Tower overlays would appear over the dropdown and cause the menu to close)
+* When a message in chat was from a mod (TTDBot) the console was throwing errors. This was due to some regex checks that didn't expect the `mod` prefix

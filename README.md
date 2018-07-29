@@ -136,3 +136,4 @@ Since some of the commands come through using whispers. The whisper will be sent
 * Fixed the bug where only text was clickable on the classes slide out
 * Rearranged the classes slide out to match the order on the game screen
 * Updated README to showcase the overlay feature and custom actions first to draw more attention to the more unique features.
+* Added the proper PING PONG TMI commands to prevent you from being disconnected after being AFK for 10 minutes

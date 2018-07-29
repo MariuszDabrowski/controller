@@ -10,6 +10,7 @@
 * [Installing the extension](#installing-the-extension)
 * [Setting up your accounts](#setting-up-your-accounts)
 * [Using the interface](#using-the-interface)
+* [Updating the extension](#updating-the-extension)
 * [Version history](#version-history)
 
 ----
@@ -125,6 +126,19 @@ Hovering over this area will bring up the mercenary drawer. Clicking on a merc w
 Hovering over the timer area will down down a list of TTDBot commands.
 
 Since some of the commands come through using whispers. The whisper will be sent to the chat window for you to see without having to check your whispers.
+
+----
+
+### Updting the extension:
+
+Chrome extensions are automatically updated. However once a new version is uploaded, it takes 5 hours for the extension to be updated (This is the [delay that Chrome has built into it](https://cs.chromium.org/chromium/src/extensions/common/constants.cc?q=kDefaultUpdateFrequencySeconds&dr=CSs&l=45)).
+
+If you would like the new version sooner:
+* navigate your browser to the following url [chrome://extenstions](chrome://extenstions)
+* Click the `Developer mode` slider in the top right hand corner
+* Click into the extension that you would like to update
+* Hit the `Update` button that is located in the top center of your window
+* Your version should now be in sync with the one that is in the Chrome Store
 
 ----
 

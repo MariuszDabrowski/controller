@@ -136,7 +136,7 @@ Chrome extensions are automatically updated. However once a new version is uploa
 If you would like the new version sooner:
 * navigate your browser to the following url [chrome://extenstions](chrome://extenstions)
 * Click the `Developer mode` slider in the top right hand corner
-* Click into the extension that you would like to update
+* Click on `Details` for the extension that you would like to update
 * Hit the `Update` button that is located in the top center of your window
 * Your version should now be in sync with the one that is in the Chrome Store
 

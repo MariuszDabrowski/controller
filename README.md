@@ -10,6 +10,7 @@
 * [Installing the extension](#installing-the-extension)
 * [Setting up your accounts](#setting-up-your-accounts)
 * [Using the interface](#using-the-interface)
+* [Version history](#version-history)
 
 ----
 

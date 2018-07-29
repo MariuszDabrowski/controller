@@ -72,6 +72,9 @@ const User = function(user, pass) {
       });
 
       if (parsedMessage['user-type']) {
+        if (parsedMessage.mod) {
+          parsedMessage['user-type'] = parsedMessage['user-type'].replace('mod :', ' :');
+        }
         parsedMessage.info = parsedMessage['user-type'].match(/^\s.*?\s/g)[0].trim();
         parsedMessage.type = parsedMessage['user-type'].match(/[A-Z].*?\s/g)[0].trim();
         parsedMessage.message =  parsedMessage['user-type'].match(/(?<!^) :(?!\s).*/g);

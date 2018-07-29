@@ -122,3 +122,16 @@ Hovering over this area will bring up the mercenary drawer. Clicking on a merc w
 Hovering over the timer area will down down a list of TTDBot commands.
 
 Since some of the commands come through using whispers. The whisper will be sent to the chat window for you to see without having to check your whispers.
+
+----
+
+### Version History:
+
+#### V 1.0.0:
+* Main build
+
+#### V 1.1.0:
+* Added TTDBot commands list when hovering over the timer
+* Fixed the bug where only text was clickable on the classes slide out
+* Rearranged the classes slide out to match the order on the game screen
+* Updated README to showcase the overlay feature and custom actions first to draw more attention to the more unique features.

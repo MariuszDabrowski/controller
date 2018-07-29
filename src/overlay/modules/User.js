@@ -1,4 +1,4 @@
-import {sendCommand} from './sendCommand';
+import {sendSingleCommand} from './sendCommand';
 
 const User = function(user, pass) {
   this.userName = user;
@@ -75,13 +75,17 @@ const User = function(user, pass) {
         parsedMessage.info = parsedMessage['user-type'].match(/^\s.*?\s/g)[0].trim();
         parsedMessage.type = parsedMessage['user-type'].match(/[A-Z].*?\s/g)[0].trim();
         parsedMessage.message =  parsedMessage['user-type'].match(/(?<!^) :(?!\s).*/g);
+        parsedMessage.recipient = parsedMessage['user-type'].match(/(?<!^)\s.*\s:/g);
         if (parsedMessage.message) {
           parsedMessage.message = parsedMessage.message[0].replace(' :', '');
         }
+        if (parsedMessage.recipient) {
+          parsedMessage.recipient = parsedMessage.recipient[0].split(' ')[2];
+        }
       }
 
-      if (parsedMessage['display-name'] === 'TTDBot') {
-        sendCommand(parsedMessage.message);
+      if (parsedMessage['display-name'] === 'TTDBot' && parsedMessage['recipient'] === this.userName) {
+        sendSingleCommand(this.socket, parsedMessage.message);
       }
     } else if (message.data.split(' ')[0] === 'PING') {
       this.socket.send(message.data.replace('PING', 'PONG'));

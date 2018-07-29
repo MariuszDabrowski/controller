@@ -21,6 +21,10 @@ const sendCommand = function(message) {
   console.log(message);
 }
 
+const sendSingleCommand = function(socket, message) {
+  socket.send('PRIVMSG #' + window.controller.channel + ' : ' + message);
+};
+
 const sendWhisper = function(message) {
   const users = window.controller.users;
   let delay = 0;
@@ -37,4 +41,4 @@ const sendWhisper = function(message) {
   });
 }
 
-export {sendCommand, sendWhisper};
+export {sendCommand, sendSingleCommand, sendWhisper};

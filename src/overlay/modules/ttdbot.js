@@ -1,24 +1,24 @@
 import {sendWhisper, sendCommand} from './sendCommand';
 
 const clearMessage = function () {
-  // let clearMessageCount = 0;
-  // let messagePopup = null;
-  // const clearMessage = setInterval(function () {
-  //   messagePopup = document.querySelector('[data-a-target="thread-close-button-ttdbot"]');
-  //   if (messagePopup) {
-  //     messagePopup.click();
-  //     console.log('message should be cleared');
-  //     clearInterval(clearMessage);
-  //     clearMessageCount = 0;
-  //   }
+  let clearMessageCount = 0;
+  let messagePopup = null;
+  const clearMessage = setInterval(function () {
+    messagePopup = document.querySelector('[data-a-target="thread-close-button-ttdbot"]');
+    if (messagePopup) {
+      messagePopup.click();
+      console.log('message should be cleared');
+      clearInterval(clearMessage);
+      clearMessageCount = 0;
+    }
 
-  //   if (clearMessageCount > 100) {
-  //     clearInterval(clearMessage);
-  //     clearMessageCount = 0;
-  //   }
+    if (clearMessageCount > 100) {
+      clearInterval(clearMessage);
+      clearMessageCount = 0;
+    }
 
-  //   clearMessageCount++;
-  // }, 250);
+    clearMessageCount++;
+  }, 250);
 };
 
 const initButtons = function(element) {
@@ -27,19 +27,15 @@ const initButtons = function(element) {
 
   for (let i = 0; i < buttonsWhisper.length; i++) {
     buttonsWhisper[i].addEventListener('click', function() {
-      console.log('click');
       const command = this.getAttribute('data-command');
-      console.log(command);
       sendWhisper('PRIVMSG ' + window.controller.channel + ' :/w' + ' ttdbot ' + command);
-      clearMessage();
+      // clearMessage();
     });
   }
 
   for (let i = 0; i < buttonsChat.length; i++) {
     buttonsChat[i].addEventListener('click', function() {
-      console.log('clicked');
       const command = this.getAttribute('data-command');
-      console.log(command);
       sendCommand(command);
     });
   }

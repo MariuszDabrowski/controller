@@ -129,7 +129,7 @@ Since some of the commands come through using whispers. The whisper will be sent
 
 ----
 
-### Updting the extension:
+### Updating the extension:
 
 Chrome extensions are automatically updated. However once a new version is uploaded, it takes 5 hours for the extension to be updated (This is the [delay that Chrome has built into it](https://cs.chromium.org/chromium/src/extensions/common/constants.cc?q=kDefaultUpdateFrequencySeconds&dr=CSs&l=45)).
 

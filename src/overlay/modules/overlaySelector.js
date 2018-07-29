@@ -5,15 +5,24 @@ import positions from './positions';
 // Overlay selector events
 // -----------------------
 
+let activeMap = null;
 const overlaySelectorEvents = function() {
   const clearButton = document.querySelector('[data-button="overlay-clear"]');
   const buttons = document.querySelectorAll('[data-button="overlay-change"]');
   const changeOverlay = function() {
+    if (activeMap) activeMap.classList.remove('selector__popout__item--active');
+    this.classList.add('selector__popout__item--active');
+    activeMap = this;
+
     clearTowerOverlays();
     generateTowers(positions[this.getAttribute('data-overlay')]);
   };
 
-  clearButton.addEventListener('click', clearTowerOverlays);
+  clearButton.addEventListener('click', function() {
+    if (activeMap) activeMap.classList.remove('selector__popout__item--active');
+    activeMap = null;
+    clearTowerOverlays();
+  });
 
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', changeOverlay);

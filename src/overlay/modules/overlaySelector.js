@@ -9,6 +9,7 @@ let activeMap = null;
 const overlaySelectorEvents = function() {
   const clearButton = document.querySelector('[data-button="overlay-clear"]');
   const buttons = document.querySelectorAll('[data-button="overlay-change"]');
+  const hideDashesCheckbox = document.querySelector('[data-input="hide-dashes"]');
   const changeOverlay = function() {
     if (activeMap) activeMap.classList.remove('selector__popout__item--active');
     this.classList.add('selector__popout__item--active');
@@ -22,6 +23,14 @@ const overlaySelectorEvents = function() {
     if (activeMap) activeMap.classList.remove('selector__popout__item--active');
     activeMap = null;
     clearTowerOverlays();
+  });
+
+  hideDashesCheckbox.addEventListener('click', function() {
+    if (this.checked) {
+      window.controller.videoContainer.classList.add('video-container--hide-dashes');
+    } else {
+      window.controller.videoContainer.classList.remove('video-container--hide-dashes');
+    }
   });
 
   for (let i = 0; i < buttons.length; i++) {
@@ -38,6 +47,7 @@ const overlaySelector = function() {
   selector.classList.add('selector');
   selector.innerHTML = `
     <div class="selector__popout">
+      <label for="hide-dashes" class="selector__popout__option"><input type="checkbox" id="hide-dashes" data-input="hide-dashes" />Hide dashed outlines</label>
       <button class="selector__popout__item" data-button="overlay-clear">Clear overlays</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map1">Map 1 - Green Pasture</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Map 2 - Lost Desert</button>

@@ -38,6 +38,11 @@
   pointer-events: all;
   cursor: pointer;
   border-radius: 2px;
+  transition: border-color 0.2s;
+}
+
+.video-container--hide-dashes .tower {
+  border-color: transparent;
 }
 
 .video-wrapper__img {
@@ -121,6 +126,23 @@
 
 .player .selector__popout__item--active + .selector__popout__item {
   border-color: #256527;
+}
+
+.player .selector__popout__option {
+  outline: none;
+  color: #e9ede1;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+
+.player .selector__popout__option:hover {
+  background: #323232;
+}
+
+.player .selector__popout__option input {
+  margin-right: 10px;
 }
 
 /* ---------------- */

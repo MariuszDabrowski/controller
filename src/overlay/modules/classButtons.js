@@ -4,7 +4,7 @@ const initClassButtons = function () {
   container.innerHTML = `
     <div class="class-buttons__container">
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!archer">Archer</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!archer">Archer</button>
         <div class="spec">
           <button class="spec__item" data-button="command" data-command="!specbowman">Bowman</button>
           <button class="spec__item" data-button="command" data-command="!specsniper">Sniper</button>
@@ -12,7 +12,7 @@ const initClassButtons = function () {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!rogue">Rogue</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!rogue">Rogue</button>
         <div class="spec">
           <button class="spec__item" data-button="command" data-command="!specknifethrower">Knife Thrower</button>
           <button class="spec__item" data-button="command" data-command="!specassassin">Assassin</button>
@@ -20,7 +20,7 @@ const initClassButtons = function () {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!firemage">Firemage</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!firemage">Firemage</button>
         <div class="spec">
           <button class="spec__item" data-button="command" data-command="!specpyromancer">Pyromancer</button>
           <button class="spec__item" data-button="command" data-command="!specbombermage">Bomber Mage</button>
@@ -28,7 +28,7 @@ const initClassButtons = function () {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!frostmage">Frostmage</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!frostmage">Frostmage</button>
         <div class="spec">
           <button class="spec__item" data-button="command" data-command="!specicemage">Icemage</button>
           <button class="spec__item" data-button="command" data-command="!spectrickster">Trickster</button>
@@ -37,7 +37,7 @@ const initClassButtons = function () {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!alchemist">Alchemist</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!alchemist">Alchemist</button>
         <div class="spec">
           <button class="spec__item" data-button="command" data-command="!specplaguedoctor">Plague Doctor</button>
           <button class="spec__item" data-button="command" data-command="!specundeadarcher">Undead Archer</button>
@@ -46,7 +46,7 @@ const initClassButtons = function () {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!bard">Bard</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!bard">Bard</button>
         <div class="spec">
           <button class="spec__item" data-button="command" data-command="!specminstrel">Minstrel</button>
           <button class="spec__item" data-button="command" data-command="!speccommander">Commander</button>
@@ -54,10 +54,10 @@ const initClassButtons = function () {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!trapper">Trapper</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!trapper">Trapper</button>
       </div>
       <div class="class-buttons__item">
-        <button className="class-buttons__item__button" data-button="command" data-command="!highpriest">Highpriest</button>
+        <button class="class-buttons__item__button" data-button="command" data-command="!highpriest">Highpriest</button>
       </div>
     </div>
   `;

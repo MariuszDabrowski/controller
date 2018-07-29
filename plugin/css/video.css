@@ -595,6 +595,7 @@
   width: 210%;
   transition: transform 0.4s;
   pointer-events: none;
+  z-index: 10040;
 }
 
 .ttdbot:hover .ttdbot__dropdown {

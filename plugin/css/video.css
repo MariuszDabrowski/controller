@@ -223,14 +223,6 @@
   background: #505050;
 }
 
-.custom-actions__list__item__remove svg {
-  
-}
-
-.custom-actions__form {
-
-}
-
 .player .custom-actions__form__input {
   width: 100%;
   border: 0;
@@ -314,7 +306,7 @@
 }
 
 .merc-buttons__container {
-  transform: translateY(100%);
+  transform: translateY(101%);
   width: 100%;
   height: 100%;
   background: rgba(0,0,0, 0.9);
@@ -372,7 +364,7 @@
 }
 
 .class-buttons__container {
-  transform: translateX(-100%);
+  transform: translateX(-101%);
   width: 100%;
   height: 100%;
   background: rgba(0,0,0, 0.9);
@@ -472,7 +464,7 @@
   color: #e9ede1;
   font-weight: bold;
   font-size: 10px;
-  transform: translateX(-100%);
+  transform: translateX(-101%);
   transition: transform 0.2s;
 }
 
@@ -567,4 +559,59 @@
 
 .leave__button + .leave__button {
   border-bottom: 1px solid #848484;
+}
+
+/* ------ */
+/* TTDBot */
+/* ------ */
+
+.ttdbot {
+  position: absolute;
+  top: 0;
+  left: 44.5%;
+  width: 11%;
+  height: 7.2824156%;
+  pointer-events: all;
+}
+
+.ttdbot__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%);
+  background: rgba(0,0,0, 0.9);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  width: 210%;
+  transition: transform 0.4s;
+}
+
+.ttdbot:hover .ttdbot__dropdown {
+  transform: translateX(-50%) translateY(0);
+}
+
+.player .ttdbot__dropdown__button {
+  white-space: nowrap;
+  border: 0;
+  border-top: 1px solid #696969;
+  outline: none;
+  color: #e9ede1;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 9px 12px;
+  width: 50%;
+  cursor: pointer;
+}
+
+.player .ttdbot__dropdown__button:nth-child(-n+2) {
+  border-top: 0;
+}
+
+.player .ttdbot__dropdown__button:nth-child(2n + 2) {
+  border-left: 1px solid #696969;
+}
+
+.player .ttdbot__dropdown__button:hover {
+  background: #323232;
 }

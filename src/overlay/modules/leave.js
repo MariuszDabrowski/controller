@@ -1,4 +1,4 @@
-import sendCommand from './sendCommand';
+import {sendCommand} from './sendCommand';
 import initMercButtons from './mercButtons';
 
 const initButons = function() {

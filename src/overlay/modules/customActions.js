@@ -1,4 +1,4 @@
-import sendCommand from './sendCommand';
+import {sendCommand} from './sendCommand';
 import {setData, getData} from '../../popup/modules/data';
 
 // -------------

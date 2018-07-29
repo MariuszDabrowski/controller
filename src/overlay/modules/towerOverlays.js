@@ -1,4 +1,4 @@
-import sendCommand from './sendCommand';
+import {sendCommand} from './sendCommand';
 
 let towers = [];
 let towerElements = [];

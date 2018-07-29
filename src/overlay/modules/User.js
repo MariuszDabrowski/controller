@@ -1,3 +1,5 @@
+import {sendCommand} from './sendCommand';
+
 const User = function(user, pass) {
   this.userName = user;
   this.pass = pass;
@@ -38,34 +40,69 @@ const User = function(user, pass) {
     this.container.remove();
   };
 
+  this.socketOpen = function() {
+    const socketReadyState = setInterval(function() {
+      if (this.socket.readyState) {
+        clearInterval(socketReadyState);
+        this.connectToChannel();
+        this.connected = true;
+        this.container.classList.add('connected');
+      }
+    }.bind(this), 1000);
+  };
+  
+  this.socketError = function(error) {
+    console.log(error);
+  };
+
+  this.socketClose = function(message) {
+    this.connected = false;
+    this.container.classList.remove('connected');
+    console.log('disconnected from server', message);
+  };
+
+  this.socketMessage = function(message) {
+    const splitMessage = message.data.split(';');
+    const parsedMessage = {};
+
+    if (message.data[0] === '@') {
+      splitMessage.map(function(item) {
+        const itemProperties = item.split('=');
+        parsedMessage[itemProperties[0]] = itemProperties[1];
+      });
+
+      if (parsedMessage['user-type']) {
+        parsedMessage.info = parsedMessage['user-type'].match(/^\s.*?\s/g)[0].trim();
+        parsedMessage.type = parsedMessage['user-type'].match(/[A-Z].*?\s/g)[0].trim();
+        parsedMessage.message =  parsedMessage['user-type'].match(/(?<!^) :(?!\s).*/g);
+        if (parsedMessage.message) {
+          parsedMessage.message = parsedMessage.message[0].replace(' :', '');
+        }
+      }
+
+      if (parsedMessage['display-name'] === 'TTDBot') {
+        sendCommand(parsedMessage.message);
+      }
+    } else if (message.data.split(' ')[0] === 'PING') {
+      this.socket.send(message.data.replace('PING', 'PONG'));
+      console.log('replied with: ' + message.data.replace('PING', 'PONG'));
+    }
+  };
+
+  this.connectToChannel = function() {
+    this.socket.send('CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership');
+    this.socket.send('PASS ' + this.pass);
+    this.socket.send('NICK ' + this.userName);
+    this.socket.send('JOIN #' + window.controller.channel);
+    console.log('Connected to channel: ' + window.controller.channel);
+  };
+
   this.openSocket = function() {
-    const that = this;
     this.socket = new WebSocket('wss://irc-ws.chat.twitch.tv:443/', 'irc');
-
-    this.socket.addEventListener('open', function() {
-      this.connected = true;
-      this.container.classList.add('connected');
-      console.log('connected to server');
-    }.bind(this));
-
-    this.socket.addEventListener('close', function() {
-      this.connected = false;
-      this.container.classList.remove('connected');
-      console.log('disconnected from server');
-    }.bind(this));
-
-    const connectToChannel = function() {
-      this.socket.send('CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership');
-      this.socket.send('PASS ' + this.pass);
-      this.socket.send('NICK ' + this.userName);
-      this.socket.send('JOIN #' + window.controller.channel);
-    }.bind(this);
-
-    this.socket.addEventListener('open', connectToChannel);
-  }
-
-  this.closeSocket = function() {
-    this.socket.close();
+    this.socket.addEventListener('open', this.socketOpen.bind(this));
+    this.socket.addEventListener('message', this.socketMessage.bind(this));
+    this.socket.addEventListener('close', this.socketClose.bind(this));
+    this.socket.addEventListener('error', this.socketError.bind(this));
   }
 };
 

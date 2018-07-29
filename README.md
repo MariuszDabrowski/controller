@@ -42,15 +42,42 @@ You are now ready to use the UI, read below for the specifics on each component.
 
 #### Legend:
 
-1. [Classes and specs](#1-classes-and-specs)
-2. [Accounts](#2-accounts)
-3. [Hire merc](#3-hire-merc)
-4. [Change map overlay](#4-change-map-overlay)
-5. [Custom commands](#5-custom-commands)
+1. [Change map overlay](#1-change-map-overlay)
+2. [Custom commands](#2-custom-commands)
+3. [Classes and specs](#3-classes-and-specs)
+4. [Accounts](#4-accounts)
+5. [Hire merc](#5-hire-merc)
+6. [TTDBot commands](#6-ttdbot-commands)
 
 ----
 
-#### 1. Classes and specs
+#### 1. Change map overlay
+
+|<img src="readme-images/overlays.gif" width="429" heigh="353">|<img src="readme-images/overlays.jpg" width="513" heigh="429">|
+|---|---|
+
+To enable clicking on the towers to move around you need to select the correct overlay first. Hover on the bottom right hand side of the video to reveal the map selection drawer.
+
+Select the map you are currently on. If this is done correctly you will see a dashed outline around all of the buildings. You can you click on them to send commands to your account.
+
+----
+
+#### 2. Custom commands
+
+|<img src="readme-images/commands.gif" width="220" heigh="336">|<img src="readme-images/commands.jpg" width="597" heigh="336">|
+|---|---|
+
+Rolling over the custom commands icon will reveal the custom commands panel. Here you can define your own custom commands that are not available in the user interface.
+
+For example:
+
+* !t !a
+* !hpora
+* !sp !sp !sp
+
+----
+
+#### 3. Classes and specs
 
 |<img src="readme-images/classes.gif" width="315" heigh="461">|<img src="readme-images/classes.jpg" width="819" heigh="461">|
 |---|---|
@@ -59,7 +86,7 @@ Hovering over the left hand side of the screen will bring out the classes and sp
 
 ----
 
-#### 2. Accounts
+#### 4. Accounts
 
 |<img src="readme-images/accounts.gif" width="222" heigh="248">|<img src="readme-images/accounts.jpg" width="618" heigh="348">|
 |---|---|
@@ -78,7 +105,7 @@ If all of your accounts are highlighted green, any command you send will be sent
 
 ----
 
-#### 3. Hire merc
+#### 5. Hire merc
 
 |<img src="readme-images/merc.gif" width="220" heigh="336">|<img src="readme-images/merc.jpg" width="597" heigh="336">|
 |---|---|
@@ -87,26 +114,11 @@ Hovering over this area will bring up the mercenary drawer. Clicking on a merc w
 
 ----
 
-#### 4. Change map overlay
+#### 6. TTDBot commands
 
-|<img src="readme-images/overlays.gif" width="429" heigh="353">|<img src="readme-images/overlays.jpg" width="513" heigh="429">|
+|<img src="readme-images/ttdbot.gif" width="310" heigh="336">|<img src="readme-images/ttdbot.jpg" width="597" heigh="336">|
 |---|---|
 
-To enable clicking on the towers to move around you need to select the correct overlay first. Hover on the bottom right hand side of the video to reveal the map selection drawer.
+Hovering over the timer area will down down a list of TTDBot commands.
 
-Select the map you are currently on. If this is done correctly you will see a dashed outline around all of the buildings. You can you click on them to send commands to your account.
-
-----
-
-#### 5. Custom commands
-
-|<img src="readme-images/commands.gif" width="220" heigh="336">|<img src="readme-images/commands.jpg" width="597" heigh="336">|
-|---|---|
-
-Rolling over the custom commands icon will reveal the custom commands panel. Here you can define your own custom commands that are not available in the user interface.
-
-For example:
-
-* !t !a
-* !hpora
-* !sp !sp !sp
+Since some of the commands come through using whispers. The whisper will be sent to the chat window for you to see without having to check your whispers.

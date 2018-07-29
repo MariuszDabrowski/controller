@@ -19,7 +19,7 @@ window.controller = {
   video: null,
   videoWrapper: null,
   videoContainer: null,
-  channel: 'dongerlistdotcom',
+  channel: 'archonthewizard',
   users: {},
   overlayActive: false
 };

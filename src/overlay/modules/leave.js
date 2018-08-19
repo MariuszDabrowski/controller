@@ -1,5 +1,4 @@
 import {sendCommandFromAll} from './sendCommand';
-import initMercButtons from './mercButtons';
 import {destroyTowerSpells} from './towerSpells';
 import isHighpriestActive from '../helpers/isHighpriestActive';
 

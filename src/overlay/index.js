@@ -2,7 +2,6 @@ import {getData} from '../popup/modules/data.js';
 import {initAccountList, populateUsers} from './modules/accountList';
 import initOverlayContainers from './modules/initOverlayContainers'; 
 import initPowerButtons from './modules/powerButtons';
-import initMercButtons from './modules/mercButtons';
 import initClassButtons from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
@@ -37,7 +36,6 @@ const initOverlay = function() {
         resizeOverlays();
         overlaySelector();
         initPowerButtons();
-        initMercButtons();
         initClassButtons();
         initAccountList();
         customActions();

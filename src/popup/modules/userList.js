@@ -1,50 +1,26 @@
 import User from './User';
-import {setData} from './data';
-import {clearUserForm} from './userForm';
+import {removeData, setData} from './data';
+import {toggleUserForm, clearUserForm} from './userForm';
 
 // --------------
 // Populate users
 // --------------
 
-const initUserList = function(data, container) {
-  let users = window.controller.users;
-
-  Object.keys(data).map(user => {
-    users[user] = new User(data[user]);
-    users[user].render(container);
-  });
+const initUserList = function(data) {
+  toggleUserList();
+  const userList = document.querySelector('.users');
+  
+  window.controller.user = new User(data);
+  window.controller.user.render(userList);
 };
 
-// ------------
-// Refresh list
-// ------------
+// ----------------
+// Toggle user list
+// ----------------
 
-const refreshUserlist = function() {
-  const users = window.controller.users;
-
-  Object.keys(users).map(user => {
-    if (!users[user].rendered) {
-      users[user].render(window.controller.userList);
-    }
-  });
-};
-
-// -------------
-// Simplify list
-// -------------
-
-const simplifyList = function() {
-  const users = window.controller.users;
-  let simplifiedList = {};
-
-  Object.keys(users).map(user => {
-    simplifiedList[user] = {
-      user: users[user].userName,
-      pass: users[user].pass
-    };
-  });
-
-  return simplifiedList;
+const toggleUserList = function() {
+  const container = document.querySelector('[data-section="users"]');
+  container.classList.toggle('section-hidden');
 };
 
 // -----------
@@ -52,10 +28,21 @@ const simplifyList = function() {
 // -----------
 
 const removeUser = function(user) {
-  const users = window.controller.users;
-  users[user].element.remove();
-  delete users[user];
-  setData('users', simplifyList(users), refreshUserlist);
+  window.controller.user.element.remove();
+  window.controller.user = null;
+  removeData('user', function() {
+    toggleUserList();
+    toggleUserForm();
+  });
 };
 
-export {initUserList, refreshUserlist, removeUser, simplifyList};
+// 
+// 
+// 
+
+const updateUserList = function() {
+  const userList = document.querySelector('.users');
+  window.controller.user.render(userList);
+};
+
+export {updateUserList, toggleUserList, initUserList, removeUser};

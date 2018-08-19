@@ -10,30 +10,35 @@ import {toggleUserForm, addUser} from './modules/userForm';
 
 window.controller = {
   userList: document.querySelector('.users'),
-  users: {},
+  user: null,
   connected: false
 };
-getData('users', initUserList, window.controller.userList);
+// getData('users', initUserList, window.controller.userList);
+getData('user', checkIfUserInStorage, window.controller.userList);
+
+function checkIfUserInStorage(data) {
+  console.log(data);
+
+  if (!data) {
+    toggleUserForm();
+  } else {
+    initUserList(data);
+  }
+}
 
 // Check to see if the overlay is already active
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {action: 'checkStatus'}, function(response) {
-    const connectButton = document.querySelector('[data-button="connect"]');
-    if (response.status) {
-      window.controller.connected = true;
-      connectButton.innerHTML = 'Disconnect';
-    } else {
-      window.controller.connected = false;
-      connectButton.innerHTML = 'Connect';
-    }
-  });
-});
-
-const addAccountButton = document.querySelector('[data-button="add-account"]');
-addAccountButton.addEventListener('click', toggleUserForm);
-
-const addUserButton = document.querySelector('[data-button="add-user"]');
-addUserButton.addEventListener('click', addUser);
+// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//   chrome.tabs.sendMessage(tabs[0].id, {action: 'checkStatus'}, function(response) {
+//     const connectButton = document.querySelector('[data-button="connect"]');
+//     if (response.status) {
+//       window.controller.connected = true;
+//       connectButton.innerHTML = 'Disconnect';
+//     } else {
+//       window.controller.connected = false;
+//       connectButton.innerHTML = 'Connect';
+//     }
+//   });
+// });
 
 const connectButton = document.querySelector('[data-button="connect"]');
 

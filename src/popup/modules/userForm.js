@@ -1,15 +1,22 @@
-import {simplifyList, refreshUserlist} from './userList';
 import User from './User';
+import {toggleUserList, updateUserList} from './userList';
 
-const container = document.querySelector('[data-section="add-account"]');
+let container = null;
+let functionalityAdded = false;
 
 // ----------------
 // Toggle user form
 // ----------------
 
 const toggleUserForm = function() {
+  if (!container) container = document.querySelector('[data-section="add-account"]');
   container.classList.toggle('section-hidden');
-  container.querySelector('[data-field="username"]').focus();
+
+  if (!functionalityAdded) {
+    const addUserButton = document.querySelector('[data-button="add-user"]');
+    addUserButton.addEventListener('click', addUser);
+    functionalityAdded = true;
+  }
 };
 
 // ---------------
@@ -31,29 +38,17 @@ const clearUserForm = function() {
 const addUser = function(e) {
   e.preventDefault();
 
-  const users = window.controller.users;
   const userInput = document.querySelector('[data-field="username"]');
   const passInput = document.querySelector('[data-field="pass"]');
-  let duplicate = false;
   
-  if (Object.keys(users).length) {
-    Object.keys(users).map(user => {
-      if (users[user].userName === userInput.value) {
-        duplicate = true;
-      }
-    });
-  }
-  
-  if (duplicate) {
-    console.log('User already exists!');
-    clearUserForm();
-    return;
-  }
-  
-  users[userInput.value] = new User({user: userInput.value, pass: passInput.value});
+  window.controller.user = new User({user: userInput.value, pass: passInput.value});
 
-  chrome.storage.sync.set({users: simplifyList()}, function() {
-    refreshUserlist();
+  chrome.storage.sync.set({user: {
+    user: userInput.value,
+    pass: passInput.value
+  }}, function() {
+    toggleUserList();
+    updateUserList();
     clearUserForm();
   });
 };

@@ -34,6 +34,7 @@ button {
   background: #eeeeee;
   transition: background 0.2s;
   font-size: inherit;
+  margin-top: 18px;
 }
 
 .button-1:hover {
@@ -49,10 +50,6 @@ section {
   padding: 16px;
   display: flex;
   flex-direction: column;
-}
-
-section + section {
-  border-top: 1px dotted lightgrey;
 }
 
 .section-hidden {
@@ -84,22 +81,6 @@ section + section {
   padding-left: 0;
 }
 
-.users__item--add {
-  width: 100%;
-  border-bottom: 0;
-  border-left: 0;
-  border-right: 0;
-  font-size: inherit;
-  background: #eeeeee;
-  border-top-style: solid;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.users__item--add:hover {
-  background: transparent;
-}
-
 .users__item__remove {
   margin-left: auto;
 }
@@ -116,7 +97,6 @@ section + section {
 
 .form-link {
   margin-top: 5px;
-  margin-bottom: 18px;
   color: black;
   display: inline-block;
   transition: color 0.2;
@@ -124,4 +104,8 @@ section + section {
 
 .form-link:hover {
   color: grey;
+}
+
+[data-section="connect"] {
+  border-top: 1px dotted lightgrey;
 }

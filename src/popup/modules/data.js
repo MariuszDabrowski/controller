@@ -1,6 +1,6 @@
 const getData = function(key, callback, container) {
   chrome.storage.sync.get(key, function(result) {
-    if (result[key]) callback(result[key], container);
+    callback(result[key], container);
   });
 };
 
@@ -9,6 +9,10 @@ const setData = function(key, data, callback) {
   newList[key] = data;
 
   chrome.storage.sync.set(newList, callback);
+};
+
+const removeData = function(item, callback) {
+  chrome.storage.sync.remove(item, callback)
 };
 
 const sendMessage = function(message) {
@@ -28,4 +32,4 @@ const sendMessage = function(message) {
   });
 }
 
-export {getData, setData, sendMessage};
+export {removeData, getData, setData, sendMessage};

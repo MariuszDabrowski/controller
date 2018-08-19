@@ -27,7 +27,7 @@ const toggleUserList = function() {
 // Remove user
 // -----------
 
-const removeUser = function(user) {
+const removeUser = function() {
   window.controller.user.element.remove();
   window.controller.user = null;
   removeData('user', function() {

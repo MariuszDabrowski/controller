@@ -117,7 +117,7 @@ const listenToChat = function(user, message) {
         } else if (parsedMessage.message.includes('Rank') && parsedMessage.message.includes('Highpriest')) {
           updateSpecs(user, parsedMessage);
         } else {
-          sendCommand(user.socket, parsedMessage.message);
+          sendCommand(parsedMessage.message);
         }
       }
       
@@ -127,14 +127,6 @@ const listenToChat = function(user, message) {
         user.specs[user.class] = user.tempMemory.spec;
         user.updatedStats();
       }
-    }
-
-    // --------------------------------------------
-    // Only send the command once, user independent
-    // --------------------------------------------
-
-    if (user.userName === Object.keys(window.controller.users)[0]) {
-      // console.log(parsedMessage);
     }
 
   } else if (message.data.split(' ')[0] === 'PING') {

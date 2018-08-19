@@ -1,4 +1,4 @@
-import {sendCommandFromAll} from './sendCommand';
+import {sendCommand} from './sendCommand';
 import {destroyTowerSpells} from './towerSpells';
 import isHighpriestActive from '../helpers/isHighpriestActive';
 
@@ -6,8 +6,8 @@ const initButons = function() {
   const leave = document.querySelector('[data-button="leave"]');
 
   leave.addEventListener('click', function() {
-    sendCommandFromAll(this.getAttribute('data-command'), function(user) {
-      user.class = null;
+    sendCommand(this.getAttribute('data-command'), function() {
+      window.controller.user.class = null;
     });
 
     if (!isHighpriestActive()) {

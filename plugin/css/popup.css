@@ -105,7 +105,3 @@ section {
 .form-link:hover {
   color: grey;
 }
-
-[data-section="connect"] {
-  border-top: 1px dotted lightgrey;
-}

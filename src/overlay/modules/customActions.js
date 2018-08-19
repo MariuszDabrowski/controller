@@ -1,4 +1,4 @@
-import {sendCommandFromAll} from './sendCommand';
+import {sendCommand} from './sendCommand';
 import {setData, getData} from '../../popup/modules/data';
 
 // -------------
@@ -43,7 +43,7 @@ const CustomAction = function(action) {
 
     removeButton.addEventListener('click', this.removeItem);
     sendCommandButton.addEventListener('click', function() {
-      sendCommandFromAll(this.action);
+      sendCommand(this.action);
     }.bind(this));
   };
 };

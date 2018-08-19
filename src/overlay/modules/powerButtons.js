@@ -1,11 +1,11 @@
-import {sendCommandFromAll} from './sendCommand';
+import {sendCommand} from './sendCommand';
 
 const buttonEvents = function() {
   const buttons = document.querySelectorAll('.power-buttons [data-button="command"]');
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendCommandFromAll(command);
+      sendCommand(command);
     });
   }
 };

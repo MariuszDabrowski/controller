@@ -1,5 +1,5 @@
 import {getData} from '../popup/modules/data.js';
-import {initAccountList, populateUsers} from './modules/accountList';
+import initUser from './modules/initUser';
 import initOverlayContainers from './modules/initOverlayContainers'; 
 import initPowerButtons from './modules/powerButtons';
 import initClassButtons from './modules/classButtons';
@@ -18,7 +18,7 @@ window.controller = {
   videoWrapper: null,
   videoContainer: null,
   channel: 'dongerlistdotcom',
-  users: {},
+  user: null,
   overlayActive: false,
   activeMap: null,
   towerSpellsActive: false
@@ -37,18 +37,17 @@ const initOverlay = function() {
         overlaySelector();
         initPowerButtons();
         initClassButtons();
-        initAccountList();
         customActions();
         leave();
         initTtdbot();
-        getData('users', populateUsers);
+        getData('user', initUser);
         clearInterval(findDiv);
       }
     }, 1000);
 
     window.controller.overlayActive = true;
   } else {
-    getData('users', populateUsers);
+    getData('user', initUser);
   }
 };
 
@@ -71,7 +70,7 @@ chrome.runtime.onMessage.addListener(
         videoWrapper: null,
         videoContainer: null,
         channel: 'archonthewizard',
-        users: {},
+        user: null,
         overlayActive: false
       };
     }

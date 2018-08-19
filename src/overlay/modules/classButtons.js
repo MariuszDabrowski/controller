@@ -1,4 +1,4 @@
-import {sendCommandFromAll} from './sendCommand';
+import {sendCommand} from './sendCommand';
 import {initTowerSpells, updateTowerSpells, destroyTowerSpells} from './towerSpells';
 import isHighpriestActive from '../helpers/isHighpriestActive';
 
@@ -19,9 +19,9 @@ const classEvents = function() {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendCommandFromAll(command, function(user) {
-        user.class = command.replace('!', '');
-        user.updatedStats();
+      sendCommand(command, function() {
+        window.controller.user.class = command.replace('!', '');
+        window.controller.user.updatedStats();
       });
 
       towerSpells(command);
@@ -34,9 +34,9 @@ const specEvents = function() {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendCommandFromAll(command, function(user) {
+      sendCommand(command, function() {
         const spec = command.replace('!spec', '');
-        user.tempMemory = {
+        window.controller.user.tempMemory = {
           class: buttons[i].parentElement.parentElement.querySelector('[data-button="pickClass"]').getAttribute('data-command').replace('!', ''),
           spec: spec
         };

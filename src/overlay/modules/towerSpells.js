@@ -1,5 +1,4 @@
-import loopOverUsers from '../helpers/loopOverUsers';
-import {sendCommandFromAll} from './sendCommand';
+import {sendCommand} from './sendCommand';
 
 const towerSpells = {
   all: [
@@ -29,12 +28,10 @@ const initTowerSpells = function() {
     console.log('init tower spells');
 
     // Figure out what gems are being used
-    const activeGems = [];
-    loopOverUsers(function(user) {
-      if (!activeGems.includes(user.gemStats.using)) {
-        activeGems.push(user.gemStats.using);
-      }
-    });
+    const activeGems = [];    
+    if (!activeGems.includes(window.controller.user.gemStats.using)) {
+      activeGems.push(window.controller.user.gemStats.using);
+    }
 
     // Generate the spell buttons onto the towers
     const towers = document.querySelectorAll('.tower');
@@ -88,7 +85,7 @@ const initTowerSpells = function() {
     for (let i = 0; i < spellButtons.length; i++) {
       spellButtons[i].addEventListener('click', function(e) {
         e.stopPropagation();
-        sendCommandFromAll(this.getAttribute('command'));
+        sendCommand(this.getAttribute('command'));
       });
     }
   }

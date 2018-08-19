@@ -1,4 +1,4 @@
-import {sendWhisperFromAll, sendCommandFromAll} from './sendCommand';
+import {sendWhisper, sendCommand} from './sendCommand';
 
 const clearMessage = function () {
   let clearMessageCount = 0;
@@ -28,7 +28,7 @@ const initButtons = function(element) {
   for (let i = 0; i < buttonsWhisper.length; i++) {
     buttonsWhisper[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendWhisperFromAll(command);
+      sendWhisper(command);
       // clearMessage();
     });
   }
@@ -36,7 +36,7 @@ const initButtons = function(element) {
   for (let i = 0; i < buttonsChat.length; i++) {
     buttonsChat[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendCommandFromAll(command);
+      sendCommand(command);
     });
   }
 };

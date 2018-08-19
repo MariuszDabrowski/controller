@@ -1,5 +1,4 @@
 import {getData} from '../popup/modules/data.js';
-import {sendCommand} from './modules/sendCommand';
 import {initAccountList, populateUsers} from './modules/accountList';
 import initOverlayContainers from './modules/initOverlayContainers'; 
 import initPowerButtons from './modules/powerButtons';
@@ -19,9 +18,11 @@ window.controller = {
   video: null,
   videoWrapper: null,
   videoContainer: null,
-  channel: 'archonthewizard',
+  channel: 'dongerlistdotcom',
   users: {},
-  overlayActive: false
+  overlayActive: false,
+  activeMap: null,
+  towerSpellsActive: false
 };
 
 const initOverlay = function() {
@@ -42,15 +43,6 @@ const initOverlay = function() {
         customActions();
         leave();
         initTtdbot();
-        
-        const buttons = document.querySelectorAll('[data-button="command"]');
-        for (let i = 0; i < buttons.length; i++) {
-          buttons[i].addEventListener('click', function() {
-            const command = this.getAttribute('data-command');
-            sendCommand(command);
-          });
-        }
-
         getData('users', populateUsers);
         clearInterval(findDiv);
       }

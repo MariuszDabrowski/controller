@@ -1,3 +1,15 @@
+import {sendCommandFromAll} from './sendCommand';
+
+const buttonEvents = function() {
+  const buttons = document.querySelectorAll('.merc-buttons [data-button="command"]');
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+      const command = this.getAttribute('data-command');
+      sendCommandFromAll(command);
+    });
+  }
+};
+
 const initMercButtons = function() {
   const container = document.createElement('div');
   container.classList.add('merc-buttons');
@@ -15,6 +27,7 @@ const initMercButtons = function() {
   `;
 
   window.controller.videoContainer.appendChild(container);
+  buttonEvents();
 }
 
 export default initMercButtons;

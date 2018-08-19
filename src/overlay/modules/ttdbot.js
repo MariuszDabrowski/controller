@@ -1,4 +1,4 @@
-import {sendWhisper, sendCommand} from './sendCommand';
+import {sendWhisperFromAll, sendCommandFromAll} from './sendCommand';
 
 const clearMessage = function () {
   let clearMessageCount = 0;
@@ -28,7 +28,7 @@ const initButtons = function(element) {
   for (let i = 0; i < buttonsWhisper.length; i++) {
     buttonsWhisper[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendWhisper('PRIVMSG ' + window.controller.channel + ' :/w' + ' ttdbot ' + command);
+      sendWhisperFromAll(command);
       // clearMessage();
     });
   }
@@ -36,7 +36,7 @@ const initButtons = function(element) {
   for (let i = 0; i < buttonsChat.length; i++) {
     buttonsChat[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-      sendCommand(command);
+      sendCommandFromAll(command);
     });
   }
 };

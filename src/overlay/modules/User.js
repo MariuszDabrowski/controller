@@ -1,4 +1,5 @@
-import {sendSingleCommand} from './sendCommand';
+import listenToChat from './listenToChat';
+import {sendWhisper} from './sendCommand';
 
 const User = function(user, pass) {
   this.userName = user;
@@ -7,6 +8,18 @@ const User = function(user, pass) {
   this.active = true;
   this.socket = null;
   this.connected = false;
+  this.gemStats = null;
+  this.class = null;
+  this.specs = null;
+  this.tempMemory = null;
+
+  // Triggers when the users stats are updated
+  this.updatedStats = function() {
+    // console.log('-------------');
+    // if (this.gemStats.using) console.log(`${this.userName} is using ${this.gemStats.using}`);
+    // if (this.class) console.log(`${this.userName} is using ${this.class}`);
+    // if (this.specs) console.log(this.specs);
+  };
 
   this.template = function() {
     let userDiv = document.createElement('button');
@@ -40,6 +53,10 @@ const User = function(user, pass) {
     this.container.remove();
   };
 
+  // ------
+  // Socket
+  // ------
+
   this.socketOpen = function() {
     const socketReadyState = setInterval(function() {
       if (this.socket.readyState) {
@@ -47,6 +64,8 @@ const User = function(user, pass) {
         this.connectToChannel();
         this.connected = true;
         this.container.classList.add('connected');
+        sendWhisper('!gems', this);
+        sendWhisper('!specs', this);
       }
     }.bind(this), 1000);
   };
@@ -61,41 +80,6 @@ const User = function(user, pass) {
     console.log('disconnected from server', message);
   };
 
-  this.socketMessage = function(message) {
-    const splitMessage = message.data.split(';');
-    const parsedMessage = {};
-
-    if (message.data[0] === '@') {
-      splitMessage.map(function(item) {
-        const itemProperties = item.split('=');
-        parsedMessage[itemProperties[0]] = itemProperties[1];
-      });
-
-      if (parsedMessage['user-type']) {
-        if (parsedMessage.mod) {
-          parsedMessage['user-type'] = parsedMessage['user-type'].replace('mod :', ' :');
-        }
-        parsedMessage.info = parsedMessage['user-type'].match(/^\s.*?\s/g)[0].trim();
-        parsedMessage.type = parsedMessage['user-type'].match(/[A-Z].*?\s/g)[0].trim();
-        parsedMessage.message =  parsedMessage['user-type'].match(/(?<!^) :(?!\s).*/g);
-        parsedMessage.recipient = parsedMessage['user-type'].match(/(?<!^)\s.*\s:/g);
-        if (parsedMessage.message) {
-          parsedMessage.message = parsedMessage.message[0].replace(' :', '');
-        }
-        if (parsedMessage.recipient) {
-          parsedMessage.recipient = parsedMessage.recipient[0].split(' ')[2];
-        }
-      }
-
-      if (parsedMessage['display-name'] === 'TTDBot' && parsedMessage['recipient'] === this.userName) {
-        sendSingleCommand(this.socket, parsedMessage.message);
-      }
-    } else if (message.data.split(' ')[0] === 'PING') {
-      this.socket.send(message.data.replace('PING', 'PONG'));
-      console.log('replied with: ' + message.data.replace('PING', 'PONG'));
-    }
-  };
-
   this.connectToChannel = function() {
     this.socket.send('CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership');
     this.socket.send('PASS ' + this.pass);
@@ -107,7 +91,9 @@ const User = function(user, pass) {
   this.openSocket = function() {
     this.socket = new WebSocket('wss://irc-ws.chat.twitch.tv:443/', 'irc');
     this.socket.addEventListener('open', this.socketOpen.bind(this));
-    this.socket.addEventListener('message', this.socketMessage.bind(this));
+    this.socket.addEventListener('message', function(message) {
+      listenToChat(this, message);
+    }.bind(this));
     this.socket.addEventListener('close', this.socketClose.bind(this));
     this.socket.addEventListener('error', this.socketError.bind(this));
   }

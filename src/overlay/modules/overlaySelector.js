@@ -1,28 +1,48 @@
 import {generateTowers, clearTowerOverlays} from './towerOverlays';
 import positions from './positions';
+import {initTowerSpells, updateTowerSpells, destroyTowerSpells} from './towerSpells';
+import isHighpriestActive from '../helpers/isHighpriestActive';
+
+// ------------
+// Tower spells
+// ------------
+
+const towerSpells = function() {
+  if (isHighpriestActive()) {
+    if (!window.controller.towerSpellsActive) {
+      initTowerSpells();
+    } else {
+      updateTowerSpells();
+    }
+  }
+};
 
 // -----------------------
 // Overlay selector events
 // -----------------------
 
-let activeMap = null;
 const overlaySelectorEvents = function() {
   const clearButton = document.querySelector('[data-button="overlay-clear"]');
   const buttons = document.querySelectorAll('[data-button="overlay-change"]');
   const hideDashesCheckbox = document.querySelector('[data-input="hide-dashes"]');
   const changeOverlay = function() {
-    if (activeMap) activeMap.classList.remove('selector__popout__item--active');
+    if (window.controller.activeMap) window.controller.activeMap.classList.remove('selector__popout__item--active');
     this.classList.add('selector__popout__item--active');
-    activeMap = this;
+    window.controller.activeMap = this;
 
     clearTowerOverlays();
     generateTowers(positions[this.getAttribute('data-overlay')]);
+    towerSpells();
   };
 
   clearButton.addEventListener('click', function() {
-    if (activeMap) activeMap.classList.remove('selector__popout__item--active');
-    activeMap = null;
+    if (window.controller.activeMap) window.controller.activeMap.classList.remove('selector__popout__item--active');
+    window.controller.activeMap = null;
     clearTowerOverlays();
+
+    if (window.controller.towerSpellsActive) {
+      destroyTowerSpells();
+    }
   });
 
   hideDashesCheckbox.addEventListener('click', function() {

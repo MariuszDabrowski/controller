@@ -31,14 +31,18 @@
 }
 
 .tower {
-  opacity: 0.5;
-  border: 1px dashed black;
+  opacity: 1;
+  border: 1px dashed rgba(0,0,0, 0.5);
   z-index: 10000;
   position: absolute;
   pointer-events: all;
   cursor: pointer;
   border-radius: 2px;
   transition: border-color 0.2s;
+}
+
+.tower:hover {
+  z-index: 20000;
 }
 
 .video-container--hide-dashes .tower {

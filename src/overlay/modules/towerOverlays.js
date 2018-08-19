@@ -1,4 +1,4 @@
-import {sendCommand} from './sendCommand';
+import {sendCommandFromAll} from './sendCommand';
 
 let towers = [];
 let towerElements = [];
@@ -11,7 +11,7 @@ const initTowerClickEvents = function() {
   const towers = document.querySelectorAll('.tower');
   const towerClick = function() {
     const command = this.getAttribute('data-command');
-    sendCommand(command);
+    sendCommandFromAll(command);
   };
 
   for (let i = 0; i < towers.length; i++) {

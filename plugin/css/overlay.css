@@ -336,3 +336,64 @@ button.additional-options__item--active:hover {
 .additional-options__item--active + .additional-options__item {
   border-color: #67aa67;
 }
+
+/* --------------- */
+/* Spell container */
+/* --------------- */
+
+.spell-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transition: opacity 0.2s;
+  opacity: 0;
+  z-index: 10100;
+}
+
+.tower:hover .spell-container{
+  opacity: 1;
+}
+
+.player .spell-container__item {
+  display: flex;
+  border-top: 1px solid #696969;
+}
+
+.player .spell-container__item:first-child {
+  border-top: 0;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.player .spell-container__item:last-child {
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.player .spell-container__item__button {
+  border-left: 1px solid #696969;
+  color: #e9ede1;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: background 0.2s;
+  padding: 6px 10px;
+  outline: none;
+  white-space: nowrap;
+  background: rgba(0,0,0, 0.9);
+  cursor: pointer;
+}
+
+.player .spell-container__item__button:first-child {
+  border-left: 0;
+  width: 100%;
+}
+
+.player .spell-container__item__button:hover {
+  background: #505050;
+}

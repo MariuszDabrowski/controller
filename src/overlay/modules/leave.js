@@ -1,11 +1,19 @@
-import {sendCommand} from './sendCommand';
+import {sendCommandFromAll} from './sendCommand';
 import initMercButtons from './mercButtons';
+import {destroyTowerSpells} from './towerSpells';
+import isHighpriestActive from '../helpers/isHighpriestActive';
 
 const initButons = function() {
   const leave = document.querySelector('[data-button="leave"]');
 
   leave.addEventListener('click', function() {
-    sendCommand(this.getAttribute('data-command'));
+    sendCommandFromAll(this.getAttribute('data-command'), function(user) {
+      user.class = null;
+    });
+
+    if (!isHighpriestActive()) {
+      destroyTowerSpells();
+    }
   });
 };
 

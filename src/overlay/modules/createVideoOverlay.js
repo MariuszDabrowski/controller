@@ -1,4 +1,4 @@
-const initOverlayContainers = function() {
+export default function createVideoOverlay() {
   const videoWrapper = document.createElement('div');
   videoWrapper.classList.add('video-wrapper');
   videoWrapper.innerHTML = `
@@ -13,5 +13,3 @@ const initOverlayContainers = function() {
   window.controller.videoWrapper = videoWrapper;
   window.controller.videoContainer = videoContainer;
 };
-
-export default initOverlayContainers;

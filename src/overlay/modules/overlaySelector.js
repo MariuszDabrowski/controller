@@ -1,21 +1,5 @@
-import {generateTowers, clearTowerOverlays} from './towerOverlays';
+import {updateTowerMoveControls, generateTowers, clearTowerOverlays} from './towerOverlays';
 import positions from './positions';
-import {initTowerSpells, updateTowerSpells, destroyTowerSpells} from './towerSpells';
-import isHighpriestActive from '../helpers/isHighpriestActive';
-
-// ------------
-// Tower spells
-// ------------
-
-const towerSpells = function() {
-  if (isHighpriestActive()) {
-    if (!window.controller.towerSpellsActive) {
-      initTowerSpells();
-    } else {
-      updateTowerSpells();
-    }
-  }
-};
 
 // -----------------------
 // Overlay selector events
@@ -32,17 +16,14 @@ const overlaySelectorEvents = function() {
 
     clearTowerOverlays();
     generateTowers(positions[this.getAttribute('data-overlay')]);
-    towerSpells();
+    updateTowerMoveControls();
   };
 
   clearButton.addEventListener('click', function() {
     if (window.controller.activeMap) window.controller.activeMap.classList.remove('selector__popout__item--active');
     window.controller.activeMap = null;
     clearTowerOverlays();
-
-    if (window.controller.towerSpellsActive) {
-      destroyTowerSpells();
-    }
+    updateTowerMoveControls();
   });
 
   hideDashesCheckbox.addEventListener('click', function() {

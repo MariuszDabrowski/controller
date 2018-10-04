@@ -1,5 +1,7 @@
 import listenToChat from './listenToChat';
 import {sendWhisper} from './sendCommand';
+import {initTowerMoveControls, destroyTowerMoveControls, updateTowerMoveControls} from './towerOverlays';
+import {updatePowerButtons} from './powerButtons';
 
 const User = function(user, pass) {
   this.userName = user;
@@ -7,10 +9,17 @@ const User = function(user, pass) {
   this.active = true;
   this.socket = null;
   this.connected = false;
-  this.gemStats = null;
   this.class = null;
-  this.specs = null;
   this.tempMemory = null;
+  this.lastMessage = null;
+  this.activeClasses = {
+    archer: false,
+    rogue: false,
+    firemage: false,
+    timemage: false,
+    poisoner: false,
+    bard: false
+  };
 
   // Triggers when the users stats are updated
   this.updatedStats = function() {
@@ -20,8 +29,25 @@ const User = function(user, pass) {
     // if (this.specs) console.log(this.specs);
   };
 
-  this.render = function() {
-    console.log('render user');
+  this.updateActiveClasses = function() {
+    const classes = Object.keys(this.activeClasses);
+
+    for(let i = 0; i < classes.length; i++) {
+      const currentClass = classes[i];
+      const currentClassValue = this.activeClasses[currentClass];
+      const classDiv = document.querySelector(`[data-class="${currentClass}"]`);
+      const classPrefix = currentClass[0];
+      if (currentClassValue) {
+        classDiv.classList.add('class-buttons__item__button--active');
+        classDiv.setAttribute('data-command', `${classPrefix}!leave`);
+      } else {
+        classDiv.classList.remove('class-buttons__item__button--active');
+        classDiv.setAttribute('data-command', `!${currentClass}`);
+      }
+    }
+
+    updateTowerMoveControls();
+    updatePowerButtons();
   };
 
   // ------
@@ -34,8 +60,6 @@ const User = function(user, pass) {
         clearInterval(socketReadyState);
         this.connectToChannel();
         this.connected = true;
-        sendWhisper('!gems', this);
-        sendWhisper('!specs', this);
       }
     }.bind(this), 1000);
   };

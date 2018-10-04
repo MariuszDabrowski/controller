@@ -1,7 +1,11 @@
 const sendCommand = function(message, callback) {
-  window.controller.user.socket.send('PRIVMSG #' + window.controller.channel + ' : ' + message);
+  const user = window.controller.user;
+  if (message === user.lastMessage) {
+    message += ' .';
+  }
+  user.socket.send(`PRIVMSG #${window.controller.channel} : ${message}`);
   if (callback) callback();
-  console.log(message);
+  user.lastMessage = message;
 }
 
 const sendWhisper = function(message, user) {

@@ -234,6 +234,145 @@
   margin-right: 10px;
 }
 
+/* ---------------- */
+/* Overlay selector */
+/* ---------------- */
+
+.custom-actions {
+  width: 6.1%;
+  height: 10.1243339%;
+  position: absolute;
+  top: 76.3765542%;
+  right: 0%;
+  background: rgba(0,0,0, 0.9);
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10040;
+  pointer-events: all;
+}
+
+.custom-actions svg {
+  width: 80%;
+  height: 80%;
+}
+
+.custom-actions:hover {
+  border-radius: 0;
+}
+
+.custom-actions__popout {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  min-width: 60px;
+  transform: translateX(100%);
+  transition: transform 0.2s;
+}
+
+.custom-actions:hover .custom-actions__popout {
+  transform: translateX(0);
+}
+
+.custom-actions__list {
+  display: flex;
+  flex-direction: column;
+  background: #323232;
+}
+
+.custom-actions__list__item {
+  white-space: nowrap;
+  border-bottom: 1px solid #000000;
+  outline: none;
+  color: #e9ede1;
+  font-weight: bold;
+  font-size: 11px;
+  position: relative;
+}
+
+.custom-actions__list__item:last-child {
+  border-bottom: 0;
+}
+
+.player .custom-actions__list__item__trigger {
+  transition: background 0.2s;
+  padding: 9px 12px;
+  width: 100%;
+  outline: none;
+}
+
+.custom-actions__list__item__trigger:hover {
+  background: #505050;
+}
+
+.player .custom-actions__list__item__remove {
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 6px;
+  height: calc(100% + 1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background: #323232;
+  transform: translateX(100%);
+  transition: transform 0.2s;
+  outline: none;
+}
+
+.player .custom-actions__list__item:last-child .custom-actions__list__item__remove {
+  border-bottom: 0;
+  height: 100%;
+}
+
+.custom-actions:hover .custom-actions__list__item__remove {
+  transform: translateX(0);
+}
+
+.custom-actions__list__item__remove:hover {
+  background: #505050;
+}
+
+.player .custom-actions__form__input {
+  width: 100%;
+  border: 0;
+  background: #e9ede2;
+  color: #000000;
+  display: block;
+  padding: 9px;
+  font-size: 11px;
+  outline: none;
+}
+
+.player .custom-actions__form__button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #e9ede2;
+  background: rgba(0,0,0, 0.9);
+  transition: background 0.2s;
+  font-size: 12px;
+  font-weight: bold;
+  outline: none;
+}
+
+.custom-actions__form__button:hover {
+  background: #323232;
+}
+
 /* ------------- */
 /* Power buttons */
 /* ------------- */

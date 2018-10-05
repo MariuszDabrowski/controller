@@ -5,6 +5,7 @@ import {initPowerButtons} from './modules/powerButtons';
 import initClassButtons from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
+import {customActions} from './modules/customActions';
 
 // -----------
 // Application
@@ -14,7 +15,7 @@ window.controller = {
   video: null,
   videoWrapper: null,
   videoContainer: null,
-  channel: 'dongerlistdotcom',
+  channel: 'archonthewizard',
   user: null,
   overlayActive: false,
   activeMap: null
@@ -37,7 +38,7 @@ chrome.runtime.onMessage.addListener(
         video: null,
         videoWrapper: null,
         videoContainer: null,
-        channel: 'dongerlistdotcom',
+        channel: 'archonthewizard',
         user: null,
         overlayActive: false
       };
@@ -63,6 +64,7 @@ function initOverlay() {
         overlaySelector();
         initPowerButtons();
         initClassButtons();
+        customActions();
         getData('user', initUser);
         clearInterval(findDiv);
       }

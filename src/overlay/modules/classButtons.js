@@ -33,7 +33,7 @@ function initClassButtons() {
         <button class="class-buttons__item__button" data-class="firemage" data-command="!firemage">Firemage</button>
         <div class="spec">
           <button class="spec__item" data-command="!specpyromancer">Pyromancer</button>
-          <button class="spec__item" data-command="!specbombermage">Bomber Mage</button>
+          <button class="spec__item" data-command="!specarcanist">Arcanist</button>
           <button class="spec__item" data-command="!specsaboteur">Saboteur</button>
         </div>
       </div>

@@ -873,6 +873,11 @@
   z-index: 10030;
   pointer-events: all;
   outline: none;
+  transition: background 0.2s;
+}
+
+.player .toggle-visibility:hover {
+  background: #323232;
 }
 
 .overlay-hidden .toggle-visibility__icon-hide {

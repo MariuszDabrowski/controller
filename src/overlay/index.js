@@ -7,41 +7,37 @@ import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
 import {customActions} from './modules/customActions';
 
-// -----------
-// Application
-// -----------
-
-window.controller = {
-  video: null,
-  videoWrapper: null,
-  videoContainer: null,
-  channel: 'dongerlistdotcom',
-  user: null,
-  overlayActive: false,
-  activeMap: null
-};
-
 // Listen to the Chrome extentions for commands (Connect, Disconnect)
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
+
+    // -------
+    // Connect
+    // -------
+
     if (request.action === 'connect') {
-      initOverlay();
-      console.log('connect');
-    }
-
-    if (request.action === 'disconnect') {
-      console.log('disconnect');
-      document.body.classList.remove('overlay-active');
-      window.controller.videoWrapper.remove();
-
       window.controller = {
         video: null,
         videoWrapper: null,
         videoContainer: null,
         channel: 'dongerlistdotcom',
         user: null,
-        overlayActive: false
+        activeClasses: [],
+        overlayActive: false,
+        activeMap: null
       };
+
+      initOverlay();
+    }
+
+    // ----------
+    // Disconnect
+    // ----------
+
+    if (request.action === 'disconnect') {
+      document.body.classList.remove('overlay-active');
+      window.controller.videoWrapper.remove();
+      window.controller = null;
     }
 
     // When you open the chrome extension, see if the video overlay is active or not

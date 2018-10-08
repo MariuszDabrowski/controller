@@ -11,7 +11,7 @@ const buttonEvents = function() {
 };
 
 const updatePowerButtons = function() {
-  const activeClasses = Object.keys(window.controller.user.activeClasses).filter(key => window.controller.user.activeClasses[key] );
+  const activeClasses = window.controller.activeClasses;
   const classCombinations = [];
   if (activeClasses.length > 2) {
     for (let i = 0; i < activeClasses.length - 1; i++) {
@@ -34,9 +34,9 @@ const updatePowerButtons = function() {
         ${(activeClasses.length > 2) ? classCombinations.map(item => `<button class="power-buttons__classes__item" data-button="command" data-command="${item}!p">${item.toUpperCase()}</button>`).join('') : ""}
       </div>
       `;
-    } else {
-      return ``;
-    };
+    }
+    
+    return ``;
   };
 
   powerButtons.innerHTML = `

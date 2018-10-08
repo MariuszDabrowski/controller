@@ -1,7 +1,5 @@
 import listenToChat from './listenToChat';
 import {sendWhisper} from './sendCommand';
-import {initTowerMoveControls, destroyTowerMoveControls, updateTowerMoveControls} from './towerOverlays';
-import {updatePowerButtons} from './powerButtons';
 
 const User = function(user, pass) {
   this.userName = user;
@@ -10,7 +8,6 @@ const User = function(user, pass) {
   this.socket = null;
   this.connected = false;
   this.class = null;
-  this.tempMemory = null;
   this.lastMessage = null;
   this.activeClasses = {
     archer: false,
@@ -19,35 +16,6 @@ const User = function(user, pass) {
     timemage: false,
     poisoner: false,
     bard: false
-  };
-
-  // Triggers when the users stats are updated
-  this.updatedStats = function() {
-    // console.log('-------------');
-    // if (this.gemStats.using) console.log(`${this.userName} is using ${this.gemStats.using}`);
-    // if (this.class) console.log(`${this.userName} is using ${this.class}`);
-    // if (this.specs) console.log(this.specs);
-  };
-
-  this.updateActiveClasses = function() {
-    const classes = Object.keys(this.activeClasses);
-
-    for(let i = 0; i < classes.length; i++) {
-      const currentClass = classes[i];
-      const currentClassValue = this.activeClasses[currentClass];
-      const classDiv = document.querySelector(`[data-class="${currentClass}"]`);
-      const classPrefix = currentClass[0];
-      if (currentClassValue) {
-        classDiv.classList.add('class-buttons__item__button--active');
-        classDiv.setAttribute('data-command', `${classPrefix}!leave`);
-      } else {
-        classDiv.classList.remove('class-buttons__item__button--active');
-        classDiv.setAttribute('data-command', `!${currentClass}`);
-      }
-    }
-
-    updateTowerMoveControls();
-    updatePowerButtons();
   };
 
   // ------

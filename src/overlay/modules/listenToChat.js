@@ -51,7 +51,6 @@ const getGemInUse = function(user, parsedMessage) {
     if (parsedMessage.message.toLowerCase().includes(user.userName.toLowerCase() + ' switched')) {
       const gem = parsedMessage.message.toLowerCase().replace(`${user.userName.toLowerCase()} switched to `, '')
       user.gemStats.using = gem.toLowerCase();
-      user.updatedStats();
     }
   }
 };
@@ -65,7 +64,6 @@ const updateGemStats = function(user, parsedMessage) {
   });
   
   user.gemStats = gemStats;
-  user.updatedStats();
 };
 
 const updateSpecs = function(user, parsedMessage) {
@@ -85,8 +83,6 @@ const updateSpecs = function(user, parsedMessage) {
       };
     }
   });
-  
-  user.updatedStats();
 };
 
 // -----------------------
@@ -107,18 +103,7 @@ const listenToChat = function(user, message) {
       !parsedMessage.message
     ) {
       if (user.lastMessage) {
-        const classes = Object.keys(user.activeClasses);
-        const classesFirstChar = classes.map(item => item[0]);
         const lastMessage = user.lastMessage.replace(' .', '').replace('!', '');
-
-        if (classes.includes(lastMessage)) {
-          user.activeClasses[lastMessage] = !user.activeClasses[lastMessage];
-          user.updateActiveClasses();
-        } else if(lastMessage.includes('leave')) {
-          const leftWidth = classes[classesFirstChar.indexOf(lastMessage[0])];
-          user.activeClasses[leftWidth] = false;
-          user.updateActiveClasses();
-        }
       }
     }
 
@@ -139,9 +124,7 @@ const listenToChat = function(user, message) {
       
       // TTDBot message about spec change
       if (parsedMessage.message.toLowerCase().includes(`${user.userName} has changed their`) && parsedMessage['display-name'] === 'TTDBot') {
-        user.class = user.tempMemory.class;
-        user.specs[user.class] = user.tempMemory.spec;
-        user.updatedStats();
+
       }
     }
 

@@ -69,9 +69,8 @@ const generateTowers = function(mapData) {
 
 const initTowerMoveControls = function() {
   const towers = document.querySelectorAll('.tower');
-  const activeClasses = Object.keys(window.controller.user.activeClasses).filter(key => window.controller.user.activeClasses[key] );
+  const activeClasses = window.controller.activeClasses;
 
-  console.log(activeClasses);
   // Add controls to each tower
   for (let i = 0; i < towers.length; i++){
     const towerCommand = towers[i].getAttribute('data-command');

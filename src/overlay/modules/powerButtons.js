@@ -23,7 +23,7 @@ const updatePowerButtons = function() {
   
   const powerButtons = document.querySelector('.power-buttons');
   const classButtons = function() {
-    if (activeClasses.length > 1) {
+    if (activeClasses.length !== 1) {
       return `
       <div class="
         power-buttons__classes

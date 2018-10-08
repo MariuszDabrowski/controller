@@ -423,20 +423,24 @@
 }
 
 .power-buttons__classes {
+  display: none;
   position: absolute;
   bottom: 100%;
   left: 0;
   background: #020203;
   width: 50%;
   border-bottom: 1px solid rgba(255,255,255, 0.4);
-  display: flex;
   flex-wrap: wrap;
   pointer-events: all;
   background: rgba(0,0,0, 0.9);
   z-index: 5;
   transform: translateY(500%);
   opacity: 0;
-  /* transition: transform 0.01s, opacity 0s; */
+}
+
+.power-buttons__classes--2,
+.power-buttons__classes--3 {
+  display: flex;
 }
 
 .power-buttons__item:first-child .power-buttons__classes {

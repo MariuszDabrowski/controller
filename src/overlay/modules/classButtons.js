@@ -2,7 +2,7 @@ import {sendCommand} from './sendCommand';
 import {updateTowerMoveControls} from './towerOverlays';
 import {updatePowerButtons} from './powerButtons';
 
-const activeClasses = [];
+let activeClasses = [];
 
 // --------
 // Template
@@ -64,10 +64,7 @@ function initClassButtons() {
         </div>
       </div>
       <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-command="!leave">Leave</button>
-      </div>
-      <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-command="!leave">Clear </button>
+        <button class="class-buttons__item__button" data-type="leave" data-command="!leave">Leave</button>
       </div>
     </div>
   `;
@@ -86,7 +83,8 @@ function clickEvents() {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
       const command = this.getAttribute('data-command');
-
+      
+      // Clicked on a class
       if (this.getAttribute('data-class')) {
         const className = this.getAttribute('data-class');
         const classIndex = activeClasses.indexOf(className);
@@ -104,7 +102,20 @@ function clickEvents() {
         classesUpdated();
       }
 
-      sendCommand(command);
+      // Clicked on the clear classes button
+      if (this.getAttribute('data-type') === 'leave') {
+        const activeButtons = document.querySelectorAll('.class-buttons__item__button--active');
+        for (let i = 0; i < activeButtons.length; i++) {
+          activeButtons[i].classList.remove('class-buttons__item__button--active');
+        }
+        activeClasses = [];
+        classesUpdated();
+      }
+
+      // If the button had a command
+      if (command) {
+        sendCommand(command); 
+      }
     });
   }
 };

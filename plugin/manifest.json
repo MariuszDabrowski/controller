@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Stream Defense Controller",
   "description": "A controller for the popular Twitch.tv stream defense game.",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "author": "Mariusz Dabrowski",
   "content_scripts": [
     {

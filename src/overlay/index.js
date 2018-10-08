@@ -15,7 +15,7 @@ window.controller = {
   video: null,
   videoWrapper: null,
   videoContainer: null,
-  channel: 'archonthewizard',
+  channel: 'dongerlistdotcom',
   user: null,
   overlayActive: false,
   activeMap: null
@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener(
         video: null,
         videoWrapper: null,
         videoContainer: null,
-        channel: 'archonthewizard',
+        channel: 'dongerlistdotcom',
         user: null,
         overlayActive: false
       };

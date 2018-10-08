@@ -124,7 +124,6 @@ function clickEvents() {
 // ---------------
 
 function classesUpdated() {
-  console.log(activeClasses);
   window.controller.activeClasses = activeClasses;
   updateTowerMoveControls();
   updatePowerButtons();

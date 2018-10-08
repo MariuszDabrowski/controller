@@ -6,6 +6,7 @@ import initClassButtons from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
 import {customActions} from './modules/customActions';
+import {toggleVisibilityUI} from './modules/toggleControllerVisibility';
 
 // Listen to the Chrome extentions for commands (Connect, Disconnect)
 chrome.runtime.onMessage.addListener(
@@ -61,6 +62,7 @@ function initOverlay() {
         initPowerButtons();
         initClassButtons();
         customActions();
+        toggleVisibilityUI();
         getData('user', initUser);
         clearInterval(findDiv);
       }

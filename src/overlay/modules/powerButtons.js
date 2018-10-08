@@ -22,7 +22,7 @@ const updatePowerButtons = function() {
   }
   
   const powerButtons = document.querySelector('.power-buttons');
-  const classButtons = function() {
+  const classButtons = function(action) {
     if (activeClasses.length !== 1) {
       return `
       <div class="
@@ -30,8 +30,8 @@ const updatePowerButtons = function() {
         ${(activeClasses.length === 2) ? `power-buttons__classes--2` : ``}
         ${(activeClasses.length === 3) ? `power-buttons__classes--3` : ``}
       ">
-        ${activeClasses.map(item => `<button class="power-buttons__classes__item" data-button="command" data-command="${item[0]}!p">${item[0].toUpperCase()}</button>`).join('')}
-        ${(activeClasses.length > 2) ? classCombinations.map(item => `<button class="power-buttons__classes__item" data-button="command" data-command="${item}!p">${item.toUpperCase()}</button>`).join('') : ""}
+        ${activeClasses.map(item => `<button class="power-buttons__classes__item" data-button="command" data-command="${item[0]}${(action === 'powerdown') ? `!pd` : `!p`}">${item[0].toUpperCase()}</button>`).join('')}
+        ${(activeClasses.length > 2) ? classCombinations.map(item => `<button class="power-buttons__classes__item" data-button="command" data-command="${item}${(action === 'powerdown') ? `!pd` : `!p`}">${item.toUpperCase()}</button>`).join('') : ""}
       </div>
       `;
     }
@@ -41,11 +41,11 @@ const updatePowerButtons = function() {
 
   powerButtons.innerHTML = `
     <div class="power-buttons__item">
-      ${classButtons()}
+      ${classButtons('powerup')}
       <button class="power-buttons__item__all" data-button="command" data-command="!p">Power Up</button>
     </div>
     <div class="power-buttons__item">
-      ${classButtons()}
+      ${classButtons('powerdown')}
       <button class="power-buttons__item__all" data-button="command" data-command="!pd">Power Down</button>
     </div>
   `;

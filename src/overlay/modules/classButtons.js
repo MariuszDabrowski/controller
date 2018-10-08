@@ -82,7 +82,7 @@ function clickEvents() {
 
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function() {
-      const command = this.getAttribute('data-command');
+      let command = this.getAttribute('data-command');
       
       // Clicked on a class
       if (this.getAttribute('data-class')) {
@@ -92,11 +92,10 @@ function clickEvents() {
         if (classIndex < 0) {
           activeClasses.push(className);
           this.classList.add('class-buttons__item__button--active');
-          this.setAttribute('data-command', `${className[0]}!leave`);
         } else {
           activeClasses.splice(classIndex, 1);
           this.classList.remove('class-buttons__item__button--active');
-          this.setAttribute('data-command', `!${className}`);
+          command = `${className[0]}!leave`;
         }
 
         classesUpdated();

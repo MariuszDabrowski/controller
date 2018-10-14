@@ -38,10 +38,12 @@
   pointer-events: all;
   border-radius: 2px;
   transition: border-color 0.2s;
+  overflow: hidden;
 }
 
 .tower:hover {
   z-index: 20000;
+  overflow: visible;
 }
 
 .command-wrapper,
@@ -55,11 +57,29 @@
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.2s;
 }
 
 .tower:hover .command-wrapper {
   opacity: 1;
+}
+
+.player .command-wrapper__tower-number {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+  color: #000000eb;
+  font-size: 10px;
+}
+
+[data-command="!altar"] .command-wrapper__tower-number,
+[data-command="!train"] .command-wrapper__tower-number {
+  display: none;
 }
 
 .command-wrapper__move {
@@ -87,7 +107,7 @@
   white-space: nowrap;
   color: #e9ede1;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 9px;
   padding: 7px 10px;
   transition: background 0.2s;
   outline: none;
@@ -96,12 +116,20 @@
   text-align: center;
 }
 
-.command-wrapper--1,
-.command-wrapper--1 .command-wrapper__move,
-.command-wrapper--1 .command-wrapper__move__button {
-  opacity: 0;
-  width: 100%;
-  height: 100%;
+.highpriest-active,
+.highpriest-active .command-wrapper__move,
+.highpriest-active .command-wrapper__move__button {
+  width: auto;
+  height: auto;
+}
+
+.highpriest-active .command-wrapper__move,
+.highpriest-active .command-wrapper__move__button {
+  opacity: 1;
+}
+
+.highpriest-active .command-wrapper__move__button {
+  content: 'Move here';
 }
 
 .command-wrapper--3 .command-wrapper__move__button {
@@ -112,7 +140,19 @@
   border-bottom: 1px solid #696969;
 }
 
-.command-wrapper--3 .command-wrapper__move__button:nth-child(3) {
+.command-wrapper--3 .command-wrapper__move__button:nth-child(3n) {
+  border-right: 0;
+}
+
+.player .command-wrapper--2 .command-wrapper__move__button:nth-child(2) {
+  border-right: 0;
+}
+
+.player .highpriest-active.command-wrapper--2 .command-wrapper__move__button:nth-child(2) {
+  border-right: 1px solid #696969;
+}
+
+.player [data-command="!altar"] .highpriest-active.command-wrapper--2 .command-wrapper__move__button:nth-child(2) {
   border-right: 0;
 }
 
@@ -120,6 +160,18 @@
   border-top: 1px solid #696969;
   border-bottom: 0;
   width: 100%;
+}
+
+.player .highpriest-active .move-all {
+  width: auto;
+}
+
+.player .command-wrapper--2.highpriest-active .move-all {
+  border-top: 0;
+}
+
+.player [data-command="!altar"] .move-all {
+  border-top: 1px solid #696969 !important;
 }
 
 .player .command-wrapper__move__button:last-child {
@@ -139,6 +191,12 @@
   max-width: 100%;
   max-height: 100%;
   opacity: 0;
+}
+
+[data-command="!train"] .highpriest-active {
+  transform: translateY(-50%);
+  left: auto;
+  right: -1px;
 }
 
 /* ---------------- */

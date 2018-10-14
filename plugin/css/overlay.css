@@ -209,59 +209,45 @@ button.additional-options__item--active:hover {
 /* Spell container */
 /* --------------- */
 
-.spell-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.player .spells {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  transition: opacity 0.2s;
-  opacity: 0;
-  z-index: 10100;
 }
 
-.tower:hover .spell-container{
-  opacity: 1;
+.command-wrapper__move + .spells {
+  border-top: 1px solid rgb(105, 105, 105);
 }
 
-.player .spell-container__item {
-  display: flex;
-  border-top: 1px solid #696969;
-}
-
-.player .spell-container__item:first-child {
-  border-top: 0;
-  border-top-right-radius: 2px;
-  border-top-left-radius: 2px;
-}
-
-.player .spell-container__item:last-child {
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.player .spell-container__item__button {
-  border-left: 1px solid #696969;
-  color: #e9ede1;
-  font-weight: bold;
-  font-size: 10px;
+.player .spells__item {
   cursor: pointer;
-  pointer-events: all;
-  transition: background 0.2s;
-  padding: 6px 10px;
-  outline: none;
   white-space: nowrap;
+  color: rgb(233, 237, 225);
+  font-size: 9px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid rgb(105, 105, 105);
+  border-left: 1px solid rgb(105, 105, 105);
+  padding: 7px 10px;
+  transition: background 0.2s ease 0s;
+  outline: none;
+  width: 50%;
+  letter-spacing: 0.004em;
   background: rgba(0,0,0, 0.9);
-  cursor: pointer;
 }
 
-.player .spell-container__item__button:first-child {
+.player .spells__item:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.player .spells__item:nth-child(2n + 1) {
   border-left: 0;
-  width: 100%;
 }
 
-.player .spell-container__item__button:hover {
-  background: #505050;
+.player .spells__item:hover {
+  background: #323232;
+}
+
+.player .spells__filler {
+  background: rgba(0,0,0, 0.9);
+  width: 50%;
+  border-left: 1px solid rgb(105, 105, 105);
 }

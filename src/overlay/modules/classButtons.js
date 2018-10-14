@@ -64,6 +64,9 @@ function initClassButtons() {
         </div>
       </div>
       <div class="class-buttons__item">
+        <button class="class-buttons__item__button" data-type="highpriest" data-command="!highpriest">Highpriest</button>
+      </div>
+      <div class="class-buttons__item">
         <button class="class-buttons__item__button" data-type="leave" data-command="!leave">Leave</button>
       </div>
     </div>
@@ -108,6 +111,20 @@ function clickEvents() {
           activeButtons[i].classList.remove('class-buttons__item__button--active');
         }
         activeClasses = [];
+        classesUpdated();
+      }
+
+      // Clicked on highpriest
+      if (this.getAttribute('data-type') === 'highpriest') {
+        if (window.controller.highpriest) {
+          window.controller.highpriest = false;
+          command = `${command[1]}!leave`;
+          this.classList.remove('class-buttons__item__button--active');
+        } else {
+          window.controller.highpriest = true;
+          this.classList.add('class-buttons__item__button--active');
+        }
+
         classesUpdated();
       }
 

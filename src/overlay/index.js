@@ -24,6 +24,7 @@ chrome.runtime.onMessage.addListener(
         channel: 'dongerlistdotcom',
         user: null,
         activeClasses: [],
+        highpriest: false,
         overlayActive: false,
         activeMap: null
       };

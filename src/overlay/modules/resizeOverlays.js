@@ -5,7 +5,9 @@ const resizeOverlays = function() {
   resizeTimer = setTimeout(function() {
     const videoWrapperImg = window.controller.videoWrapper.querySelector('.video-wrapper__img');
     window.controller.videoContainer.style.width = `${videoWrapperImg.clientWidth}px`;
-    window.controller.videoContainer.style.height = `${videoWrapperImg.clientHeight + 1}px`;
+    window.controller.videoContainer.style.height = `${videoWrapperImg.clientHeight + 2}px`;
+    // Sometimes an odd aspect ratio will cause the overlay to be 1-2px smaller than the video
+    // To prevent a gap on the items that are bottom: 0 we make the overlay a couple of pixels larger
   }, 200);
 };
 

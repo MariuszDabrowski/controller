@@ -304,6 +304,7 @@
   right: 0%;
   background: rgba(0,0,0, 0.9);
   border-bottom-left-radius: 2px;
+  border-top: 1px solid #757477;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -438,7 +439,7 @@
   width: 24.2%;
   height: 7.8152753%;
   position: absolute;
-  bottom: -2px; /* Odd aspect ratios sometimes cause the buttons to sit a big higher, 2px below the screen for good measure */
+  bottom: 0;
   left: 53.2%;
   z-index: 10050;
   border-top-left-radius: 2px;
@@ -951,7 +952,6 @@
 }
 
 .overlay-active .player .toggle-visibility {
-  border-bottom: 1px solid #757477;
   border-bottom-left-radius: 0;
 }
 

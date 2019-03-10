@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/MariuszDabrowski/controller#readme",
   "devDependencies": {
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
     "i": "^0.3.6",
-    "npm": "^6.1.0"
+    "npm": "^6.9.0"
   }
 }

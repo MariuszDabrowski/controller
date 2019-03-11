@@ -129,7 +129,7 @@ const initTowerMoveControls = function() {
         ${(activeClasses.length === 3) ? `command-wrapper--3` : ``}
       ">
         ${moveWrapper(towers[i])}
-        ${spellTemplate()}
+        ${(window.controller.user.faction && window.controller.user.hpstats) ? spellTemplate() : ''}
         ${(window.controller.highpriest || activeClasses.length > 2) ? `<div class="command-wrapper__tower-number">${(i < 12 && window.controller.highpriest || i < 12 && activeClasses.length > 0) ? i + 1 : ``}</div>` : ``}
       </div>
     `;
@@ -169,19 +169,13 @@ function spells(tower) {
     tower: ``
   }
 
-  const hpstats = {
-    level: 43,
-    gem: 'ruby',
-    purchased: ['MassMastery', 'Luck', 'Wisdom', 'Armor Turret']
-  }
-
   const defaultSpells = [
     {name: 'Strength', command: '!str', location: 'tower', level: 0},
     {name: 'Meditate', command: '!mdt', location: 'train', level: 0}
   ];
 
-  const gemSpells = {
-    citrine: [
+  const factionSpells = {
+    'Nomad Army': [
       {name: 'Enlighten', command: '!enl', location: 'train', level: 0},
       {name: 'Rapid Fire', command: '!rpd', location: 'tower', level: 0},
       {name: 'Slow Bubble', command: '!slw', location: 'tower', level: 0},
@@ -190,7 +184,7 @@ function spells(tower) {
       {name: 'Power Ooze', command: '!spw', location: 'train', level: 40},
       {name: 'Haste', command: '!hst', location: 'train', level: 50}
     ],
-    ruby: [
+    'Magi Order Army': [
       {name: 'Oracle', command: '!ora', location: 'train', level: 0},
       {name: 'Shield', command: '!shd', location: 'train', level: 0},
       {name: 'Haste', command: '!hst', location: 'train', level: 0},
@@ -199,13 +193,13 @@ function spells(tower) {
       {name: 'Boulder Turret', command: '!bld', location: 'tower', level: 40},
       {name: 'Transmute', command: '!trn', location: 'train', level: 50}
     ],
-    emerald: [
+    'Elementals Army': [
       {name: 'Knowledge', command: '!knw', location: 'train', level: 0},
       {name: 'Restoration', command: '!rst', location: 'train', level: 0},
       {name: 'Boulder Turret', command: '!bld', location: 'tower', level: 0},
       {name: 'Rapid Fire', command: '!rpd', location: 'tower', level: 20}
     ],
-    onyx: [
+    'Wolfclan Army': [
       {name: 'Experience Ooze', command: '!sxp', location: 'train', level: 0},
       {name: 'Power Ooze', command: '!spw', location: 'train', level: 0},
       {name: 'Freeze', command: '!frz', location: 'train', level: 0},
@@ -215,13 +209,15 @@ function spells(tower) {
     ]
   };
 
+  // The reason why we have name and title here is because sometimes the bot uses a short form...
+  // ...of the spell name. But when displaing the spell on a tower we want to show the entire name.
   const purchasableSpells = [
-    {name: 'Armor Turret', command: '!art', location: 'tower', level: 0},
-    {name: 'Army', command: '!arm', location: 'train', level: 0},
-    {name: 'Luck', command: '!lck', location: 'train', level: 0},
-    {name: 'Unburrower', command: '!unb', location: 'train', level: 0},
-    {name: 'Wisdom', command: '!wis', location: 'train', level: 0},
-    {name: 'MassMastery', command: '!mss', location: 'train', level: 0}
+    {name: 'Armor', title: 'Armor Turret', command: '!art', location: 'tower', level: 0},
+    {name: 'Army', title: 'Army', command: '!arm', location: 'train', level: 0},
+    {name: 'Luck', title: 'Luck', command: '!lck', location: 'train', level: 0},
+    {name: 'Unburrower', title: 'Unburrower', command: '!unb', location: 'train', level: 0},
+    {name: 'Wisdom', title: 'Wisdom', command: '!wis', location: 'train', level: 0},
+    {name: 'MassMastery', title: 'MassMastery', command: '!mss', location: 'train', level: 0}
   ];
 
   // -----------------
@@ -238,28 +234,28 @@ function spells(tower) {
       for (let i = 0; i < defaultSpells.length; i++) {
         if (
           defaultSpells[i].location === 'train' &&
-          hpstats.level >= defaultSpells[i].level
+          window.controller.user.hpstats.level >= defaultSpells[i].level
         ) {
           spells.tower += `<button class="spells__item" data-command="${defaultSpells[i].command}">${defaultSpells[i].name}</button>`;
         }
       }
 
-      for (let i = 0; i < gemSpells[hpstats.gem].length; i++) {
+      for (let i = 0; i < factionSpells[window.controller.user.faction].length; i++) {
         if (
-          gemSpells[hpstats.gem][i].location === 'train' &&
-          hpstats.level >= gemSpells[hpstats.gem][i].level
+          factionSpells[window.controller.user.faction][i].location === 'train' &&
+          window.controller.user.hpstats.level >= factionSpells[window.controller.user.faction][i].level
         ) {
-          spells.tower += `<button class="spells__item" data-command="${gemSpells[hpstats.gem][i].command}">${gemSpells[hpstats.gem][i].name}</button>`;;
+          spells.tower += `<button class="spells__item" data-command="${factionSpells[window.controller.user.faction][i].command}">${factionSpells[window.controller.user.faction][i].name}</button>`;;
         }
       }
 
       for (let i = 0; i < purchasableSpells.length; i++) {
         if (
-          hpstats.purchased.indexOf(purchasableSpells[i].name) >= 0 &&
+          window.controller.user.hpstats.purchased.indexOf(purchasableSpells[i].name) >= 0 &&
           purchasableSpells[i].location === 'train' &&
-          hpstats.level >= purchasableSpells[i].level
+          window.controller.user.hpstats.level >= purchasableSpells[i].level
         ) {
-          spells.tower += `<button class="spells__item" data-command="${purchasableSpells[i].command}">${purchasableSpells[i].name}</button>`;
+          spells.tower += `<button class="spells__item" data-command="${purchasableSpells[i].command}">${purchasableSpells[i].title}</button>`;
         }
       }
     } else {
@@ -271,32 +267,32 @@ function spells(tower) {
       for (let i = 0; i < defaultSpells.length; i++) {
         if (
           defaultSpells[i].location === 'tower' &&
-          hpstats.level >= defaultSpells[i].level
+          window.controller.user.hpstats.level >= defaultSpells[i].level
         ) {
           spells.train += `<button class="spells__item" data-command="${defaultSpells[i].command}${tower.getAttribute('data-command').replace('!', '')}">${defaultSpells[i].name}</button>`;
         }
       }
 
-      for (let i = 0; i < gemSpells[hpstats.gem].length; i++) {
+      for (let i = 0; i < factionSpells[window.controller.user.faction].length; i++) {
         if (
-          gemSpells[hpstats.gem][i].location === 'tower' &&
-          hpstats.level >= gemSpells[hpstats.gem][i].level
+          factionSpells[window.controller.user.faction][i].location === 'tower' &&
+          window.controller.user.hpstats.level >= factionSpells[window.controller.user.faction][i].level
         ) {
-          spells.train += `<button class="spells__item" data-command="${gemSpells[hpstats.gem][i].command}${tower.getAttribute('data-command').replace('!', '')}">${gemSpells[hpstats.gem][i].name}</button>`;
+          spells.train += `<button class="spells__item" data-command="${factionSpells[window.controller.user.faction][i].command}${tower.getAttribute('data-command').replace('!', '')}">${factionSpells[window.controller.user.faction][i].name}</button>`;
         }
       }
 
       for (let i = 0; i < purchasableSpells.length; i++) {
         if (
-          hpstats.purchased.indexOf(purchasableSpells[i].name) >= 0 &&
+          window.controller.user.hpstats.purchased.indexOf(purchasableSpells[i].name) >= 0 &&
           purchasableSpells[i].location === 'tower' &&
-          hpstats.level >= purchasableSpells[i].level
+          window.controller.user.hpstats.level >= purchasableSpells[i].level
         ) {
-          spells.train += `<button class="spells__item" data-command="${purchasableSpells[i].command}${tower.getAttribute('data-command').replace('!', '')}">${purchasableSpells[i].name}</button>`;
+          spells.train += `<button class="spells__item" data-command="${purchasableSpells[i].command}${tower.getAttribute('data-command').replace('!', '')}">${purchasableSpells[i].title}</button>`;
         }
       }
 
-      //
+      
     }
   }
 

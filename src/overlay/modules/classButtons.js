@@ -1,4 +1,4 @@
-import {sendCommand} from './sendCommand';
+import {sendCommand, sendWhisper} from './sendCommand';
 import {updateTowerMoveControls} from './towerOverlays';
 import {updatePowerButtons} from './powerButtons';
 
@@ -76,6 +76,11 @@ function initClassButtons() {
   clickEvents();
 }
 
+function resetClassButtons() {
+  window.controller.videoContainer.querySelector('.class-buttons').remove();
+  initClassButtons();
+}
+
 // ------------
 // Click Events
 // ------------
@@ -123,6 +128,8 @@ function clickEvents() {
         } else {
           window.controller.highpriest = true;
           this.classList.add('class-buttons__item__button--active');
+          sendWhisper('!gems', window.controller.user);
+          sendWhisper('!spells', window.controller.user);
         }
 
         classesUpdated();
@@ -146,4 +153,4 @@ function classesUpdated() {
   updatePowerButtons();
 }
 
-export default initClassButtons;
+export {initClassButtons, resetClassButtons};

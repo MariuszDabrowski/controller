@@ -1,10 +1,8 @@
 import listenToChat from './listenToChat';
-import {sendWhisper} from './sendCommand';
 
 const User = function(user, pass) {
   this.userName = user;
   this.pass = pass;
-  this.active = true;
   this.socket = null;
   this.connected = false;
   this.class = null;

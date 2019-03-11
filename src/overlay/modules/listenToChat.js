@@ -1,4 +1,7 @@
-import {sendCommand} from './sendCommand';
+import {resetClassButtons} from './classButtons';
+import {resetActiveMap} from './overlaySelector';
+import {sendCommand, sendWhisper} from './sendCommand';
+import {updateTowerMoveControls} from './towerOverlays';
 
 const specsDictionary = {
   archer: ['bowman', 'sniper', 'gunner'],
@@ -45,25 +48,42 @@ const parseMessage = function(message) {
 // Find out what gem is in use
 // ---------------------------
 
-const getGemInUse = function(user, parsedMessage) {
-  // console.log(message);
-  if (parsedMessage.message) {
-    if (parsedMessage.message.toLowerCase().includes(user.userName.toLowerCase() + ' switched')) {
-      const gem = parsedMessage.message.toLowerCase().replace(`${user.userName.toLowerCase()} switched to `, '')
-      user.gemStats.using = gem.toLowerCase();
-    }
-  }
+const updateFaction = function(user, parsedMessage) {
+  user.faction = parsedMessage.message.split(' in the ')[1].replace('!', '');
+  // Dongerlistdotcom is now a Captain in the Elementals Army!
+  if (window.controller.highpriest) updateTowerMoveControls();
+  console.log('updated faction: ', user.faction);
 };
 
-const updateGemStats = function(user, parsedMessage) {
-  let gemStats = {};
-  let gemMessage = parsedMessage.message.trim().replace(/\s/g,'');
-  let gemArray = gemMessage.split('][').map(x => {
-    const keyValue = x.split(':');
-    gemStats[keyValue[0].replace('[', '').toLowerCase()] = keyValue[1].replace(']', '').toLowerCase();
-  });
+const requestFaction = function(user, parsedMessage) {
+  let medals = parsedMessage.message
+              .split('] [')[0]
+              .trim()
+              .replace('[', '')
+              .replace(']', '')
+              .replace('Medals: ', '')
+              .split('/');
+
+  let faction = parsedMessage.message
+                .split('] [')[1]
+                .replace(']]', '')
+                .split('of the ')[1]
   
-  user.gemStats = gemStats;
+  const factionCommands = {
+    'Nomad Army': '!joinnomads',
+    'Elementals Army': '!joinelementals',
+    'Magi Order Army': '!joinmagiorder',
+    'Wolfclan Army': '!joinwolfclan'
+  }
+
+  user.faction = faction;
+  user.medals = {
+    current: medals[0],
+    total: medals[1]
+  };
+
+  console.log(user.faction, user.medals);
+  if (window.controller.highpriest) updateTowerMoveControls();
 };
 
 const updateSpecs = function(user, parsedMessage) {
@@ -76,7 +96,6 @@ const updateSpecs = function(user, parsedMessage) {
 
     const keys = Object.keys(specsDictionary);
     for (let i = 0; i < keys.length; i++) {
-      // console.log(specsDictionary[keys[i]], spec, specsDictionary[keys[i]].includes(spec));
       if (specsDictionary[keys[i]].includes(spec)) {
         if (!user.specs) user.specs = {};
         user.specs[keys[i]] = spec;
@@ -94,7 +113,7 @@ const listenToChat = function(user, message) {
 
   if (message.data[0] === '@') { // @ signifies that it's a message command
     parsedMessage = parseMessage(message);
-    getGemInUse(user, parsedMessage); // Listen to see if the users gem changes
+    // getFactionInUse(user, parsedMessage); // Listen to see if the users gem changes
 
     // Trigger functions if the message was sent by
     if (
@@ -112,19 +131,62 @@ const listenToChat = function(user, message) {
     // ---------------------------------------
 
     if (parsedMessage['display-name'] === 'TTDBot') {
+      // Message is from TTDBOT
+      
+      if (parsedMessage.message.includes('Ready to start the next game')) {
+        console.log('asking to start a new game: ', window.controller.activeClasses.length, window.controller.activeMap);
+        // New game is starting
+        if (window.controller.activeClasses.length) {
+          window.controller.activeClasses = [];
+          resetClassButtons();
+        }
+
+        if (window.controller.activeMap) resetActiveMap();
+      }
+
       if (parsedMessage['recipient'] === user.userName) {
-        if (parsedMessage.message.includes('Gem Rank')) {
-          updateGemStats(user, parsedMessage);
+        // Private message from TTDBot
+        if (parsedMessage.message.includes('[Medals:')) {
+          // If user types !gems
+          requestFaction(user, parsedMessage);
         } else if (parsedMessage.message.includes('Rank') && parsedMessage.message.includes('Highpriest')) {
           updateSpecs(user, parsedMessage);
-        } else {
-          sendCommand(parsedMessage.message);
+        } else if (parsedMessage.message.includes('Spells Available:')) {
+          // If user types !spells
+          user.hpstats = {
+            level: parseInt(parsedMessage.message.split('] [')[0].replace('[Priest Rank: ', '')),
+            available: parseInt(parsedMessage.message.split('] [')[1].replace('Spells Available: ', '')),
+            purchased: parsedMessage.message.split('] [')[2].replace('Learned: ', '').replace(']', '').split(', ')
+          }
+
+          if (window.controller.highpriest) updateTowerMoveControls();
+          console.log(window.controller.user.hpstats);
         }
       }
       
-      // TTDBot message about spec change
-      if (parsedMessage.message.toLowerCase().includes(`${user.userName} has changed their`) && parsedMessage['display-name'] === 'TTDBot') {
+      if (parsedMessage.message.toLowerCase().includes(user.userName)) {
+        // Message about you
 
+        if (parsedMessage.message.includes('upgraded highpriest')) {
+          // If the users highpriest level changed
+          if (window.controller.highpriest) {
+            window.controller.hpstats.level = parseInt(parsedMessage.message.split(' to Rank ')[1]);
+            updateTowerMoveControls();
+          }
+        }
+
+        if (parsedMessage.message.includes(' is now a ')) {
+          // If user changes factions
+          updateFaction(user, parsedMessage);
+        }
+  
+        if (parsedMessage.message.includes('Has learned') || parsedMessage.message.includes('Has unlearned')) {
+          // If the user learns or unlearns a spell
+          if (window.controller.highpriest) {
+            sendWhisper('!spells', window.controller.user);
+            updateTowerMoveControls();
+          }
+        }
       }
     }
 

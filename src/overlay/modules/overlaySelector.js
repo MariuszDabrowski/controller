@@ -19,12 +19,7 @@ const overlaySelectorEvents = function() {
     updateTowerMoveControls();
   };
 
-  clearButton.addEventListener('click', function() {
-    if (window.controller.activeMap) window.controller.activeMap.classList.remove('selector__popout__item--active');
-    window.controller.activeMap = null;
-    clearTowerOverlays();
-    updateTowerMoveControls();
-  });
+  clearButton.addEventListener('click', resetActiveMap);
 
   hideDashesCheckbox.addEventListener('click', function() {
     if (this.checked) {
@@ -38,6 +33,13 @@ const overlaySelectorEvents = function() {
     buttons[i].addEventListener('click', changeOverlay);
   }
 };
+
+function resetActiveMap() {
+  if (window.controller.activeMap) window.controller.activeMap.classList.remove('selector__popout__item--active');
+  window.controller.activeMap = null;
+  clearTowerOverlays();
+  updateTowerMoveControls();
+}
 
 // ----------------
 // Overlay selector
@@ -66,4 +68,4 @@ const overlaySelector = function() {
   overlaySelectorEvents();
 };
 
-export {overlaySelector};
+export {overlaySelector, resetActiveMap};

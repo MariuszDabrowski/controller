@@ -2,7 +2,7 @@ import {getData} from '../popup/modules/data.js';
 import initUser from './modules/initUser';
 import createVideoOverlay from './modules/createVideoOverlay'; 
 import {initPowerButtons} from './modules/powerButtons';
-import initClassButtons from './modules/classButtons';
+import {initClassButtons} from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
 import {overlaySelector} from './modules/overlaySelector';
 import {customActions} from './modules/customActions';
@@ -22,6 +22,7 @@ chrome.runtime.onMessage.addListener(
         videoWrapper: null,
         videoContainer: null,
         channel: 'dongerlistdotcom',
+        // channel: 'archonthewizard',
         user: null,
         activeClasses: [],
         highpriest: false,

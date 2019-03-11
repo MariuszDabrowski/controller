@@ -52,15 +52,16 @@ const overlaySelector = function() {
     <div class="selector__popout">
       <label for="hide-dashes" class="selector__popout__option"><input type="checkbox" id="hide-dashes" data-input="hide-dashes" />Hide dashed outlines</label>
       <button class="selector__popout__item" data-button="overlay-clear">Clear overlays</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map1">Map 1 - Green Pasture</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Map 2 - Lost Desert</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map3">Map 3 - Snow Trap</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map4">Map 4 - Lava or Leave It</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map5">Map 5 - Wandering Fields</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map6">Map 6 - Dune Gauntlet</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Map 7 - Double Trouble</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Map 8 - Arid Junction</button>
-      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map9">Map 9 - Frozen Steppes</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Arid Junction</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map10">Cursed Sands</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Double Trouble</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map6">Dune Gauntlet</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map9">Frozen Steppes</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map1">Green Pasture</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map4">Lava or Leave It</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Lost Desert</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map3">Snow Trap</button>
+      <button class="selector__popout__item" data-button="overlay-change" data-overlay="map5">Wandering Fields</button>
     </div>
   `;
 

@@ -92,11 +92,11 @@ const initTowerMoveControls = function() {
       }
     }
 
-    const spellTemplate = function() {
-      if (window.controller.highpriest && towers[i].getAttribute('data-command') !== '!altar') {
+    function spellTemplate() {
+      if (window.controller.highpriest) {
         const template = `
           <div class="spells">
-            ${(towers[i].getAttribute('data-command') !== '!train') ? spells(towers[i]).train : spells(towers[i]).tower}
+            ${spells(towers[i])}
           </div>
         `;
         return template;
@@ -130,9 +130,9 @@ const initTowerMoveControls = function() {
       ">
         ${moveWrapper(towers[i])}
         ${(window.controller.user.faction && window.controller.user.hpstats) ? spellTemplate() : ''}
-        ${(window.controller.highpriest || activeClasses.length > 2) ? `<div class="command-wrapper__tower-number">${(i < 12 && window.controller.highpriest || i < 12 && activeClasses.length > 0) ? i + 1 : ``}</div>` : ``}
-      </div>
-    `;
+        ${renderTowerNumber(i)}
+        </div>
+    `
 
     if (window.controller.highpriest) alignSpells(towers[i]);
   }
@@ -140,7 +140,26 @@ const initTowerMoveControls = function() {
   initMoveClickEvents();
 };
 
+function renderTowerNumber(i) {
+  if (
+    window.controller.highpriest ||
+    window.controller.activeClasses.length > 2
+  ) {
+    if (i < 12) {
+      return `
+        <div class="command-wrapper__tower-number">
+          ${i + 1}
+        </div>
+      `;
+    }
+  }
+
+  return '';
+}
+
 function alignSpells(tower) {
+  // Make sure the spells don't appear off screen (barracks)
+  // If there is an odd number of spells, add a filler tile
   const spellsWrapper = tower.querySelector('.spells');
   const items = tower.querySelectorAll('.spells__item');
   let longestItem = null;
@@ -164,30 +183,25 @@ function alignSpells(tower) {
 }
 
 function spells(tower) {
-  const spells = {
-    train: ``,
-    tower: ``
-  }
-
   const defaultSpells = [
     {name: 'Strength', command: '!str', location: 'tower', level: 0},
-    {name: 'Meditate', command: '!mdt', location: 'train', level: 0}
+    {name: 'Meditate', command: '!mdt', location: 'spire', level: 0}
   ];
 
   const factionSpells = {
-    'Nomad Army': [
+    'Nomads Army': [
       {name: 'Enlighten', command: '!enl', location: 'train', level: 0},
       {name: 'Rapid Fire', command: '!rpd', location: 'tower', level: 0},
       {name: 'Slow Bubble', command: '!slw', location: 'tower', level: 0},
       {name: 'Power', command: '!pwr', location: 'tower', level: 10},
       {name: 'Trial', command: '!chg', location: 'train', level: 30},
       {name: 'Power Ooze', command: '!spw', location: 'train', level: 40},
-      {name: 'Haste', command: '!hst', location: 'train', level: 50}
+      {name: 'Haste', command: '!hst', location: 'spire', level: 50}
     ],
     'Magi Order Army': [
-      {name: 'Oracle', command: '!ora', location: 'train', level: 0},
+      {name: 'Oracle', command: '!ora', location: 'spire', level: 0},
       {name: 'Shield', command: '!shd', location: 'train', level: 0},
-      {name: 'Haste', command: '!hst', location: 'train', level: 0},
+      {name: 'Haste', command: '!hst', location: 'spire', level: 0},
       {name: 'Slow Bubble', command: '!slw', location: 'tower', level: 10},
       {name: 'Focus', command: '!fcs#', location: 'tower', level: 20},
       {name: 'Boulder Turret', command: '!bld', location: 'tower', level: 40},
@@ -202,7 +216,7 @@ function spells(tower) {
     'Wolfclan Army': [
       {name: 'Experience Ooze', command: '!sxp', location: 'train', level: 0},
       {name: 'Power Ooze', command: '!spw', location: 'train', level: 0},
-      {name: 'Freeze', command: '!frz', location: 'train', level: 0},
+      {name: 'Freeze', command: '!frz', location: 'spire', level: 0},
       {name: 'Fortify', command: '!frt', location: 'train', level: 10},
       {name: 'Mastery', command: '!mst', location: 'tower', level: 20},
       {name: 'Trial', command: '!chg', location: 'train', level: 50}
@@ -214,89 +228,64 @@ function spells(tower) {
   const purchasableSpells = [
     {name: 'Armor', title: 'Armor Turret', command: '!art', location: 'tower', level: 0},
     {name: 'Army', title: 'Army', command: '!arm', location: 'train', level: 0},
-    {name: 'Luck', title: 'Luck', command: '!lck', location: 'train', level: 0},
+    {name: 'Luck', title: 'Luck', command: '!lck', location: 'spire', level: 0},
     {name: 'Unburrower', title: 'Unburrower', command: '!unb', location: 'train', level: 0},
     {name: 'Wisdom', title: 'Wisdom', command: '!wis', location: 'train', level: 0},
-    {name: 'MassMastery', title: 'MassMastery', command: '!mss', location: 'train', level: 0}
+    {name: 'MassMastery', title: 'MassMastery', command: '!mss', location: 'spire', level: 0}
   ];
 
-  // -----------------
-  // Highpriest spells
-  // -----------------
+  let spells = ``;
+  const towerCommand = tower.getAttribute('data-command');
 
-  if (tower.getAttribute('data-command') !== '!altar') {
-    if (tower.getAttribute('data-command') === '!train') {
+  // Tower is the Altar
+  if (towerCommand === '!altar') return ``;
 
-      // ----------------------
-      // Only training commands
-      // ----------------------
+  // Tower is the barracks
+  if (towerCommand === '!train') {
+    spells += generateSpellsTemplate(tower, defaultSpells, 'train');
+    spells += generateSpellsTemplate(tower, factionSpells[window.controller.user.faction], 'train');
+    spells += generateSpellsTemplate(tower, purchasableSpells, 'train', true);
 
-      for (let i = 0; i < defaultSpells.length; i++) {
-        if (
-          defaultSpells[i].location === 'train' &&
-          window.controller.user.hpstats.level >= defaultSpells[i].level
-        ) {
-          spells.tower += `<button class="spells__item" data-command="${defaultSpells[i].command}">${defaultSpells[i].name}</button>`;
-        }
-      }
-
-      for (let i = 0; i < factionSpells[window.controller.user.faction].length; i++) {
-        if (
-          factionSpells[window.controller.user.faction][i].location === 'train' &&
-          window.controller.user.hpstats.level >= factionSpells[window.controller.user.faction][i].level
-        ) {
-          spells.tower += `<button class="spells__item" data-command="${factionSpells[window.controller.user.faction][i].command}">${factionSpells[window.controller.user.faction][i].name}</button>`;;
-        }
-      }
-
-      for (let i = 0; i < purchasableSpells.length; i++) {
-        if (
-          window.controller.user.hpstats.purchased.indexOf(purchasableSpells[i].name) >= 0 &&
-          purchasableSpells[i].location === 'train' &&
-          window.controller.user.hpstats.level >= purchasableSpells[i].level
-        ) {
-          spells.tower += `<button class="spells__item" data-command="${purchasableSpells[i].command}">${purchasableSpells[i].title}</button>`;
-        }
-      }
-    } else {
-
-      // -------------------
-      // Only tower commands
-      // -------------------
-
-      for (let i = 0; i < defaultSpells.length; i++) {
-        if (
-          defaultSpells[i].location === 'tower' &&
-          window.controller.user.hpstats.level >= defaultSpells[i].level
-        ) {
-          spells.train += `<button class="spells__item" data-command="${defaultSpells[i].command}${tower.getAttribute('data-command').replace('!', '')}">${defaultSpells[i].name}</button>`;
-        }
-      }
-
-      for (let i = 0; i < factionSpells[window.controller.user.faction].length; i++) {
-        if (
-          factionSpells[window.controller.user.faction][i].location === 'tower' &&
-          window.controller.user.hpstats.level >= factionSpells[window.controller.user.faction][i].level
-        ) {
-          spells.train += `<button class="spells__item" data-command="${factionSpells[window.controller.user.faction][i].command}${tower.getAttribute('data-command').replace('!', '')}">${factionSpells[window.controller.user.faction][i].name}</button>`;
-        }
-      }
-
-      for (let i = 0; i < purchasableSpells.length; i++) {
-        if (
-          window.controller.user.hpstats.purchased.indexOf(purchasableSpells[i].name) >= 0 &&
-          purchasableSpells[i].location === 'tower' &&
-          window.controller.user.hpstats.level >= purchasableSpells[i].level
-        ) {
-          spells.train += `<button class="spells__item" data-command="${purchasableSpells[i].command}${tower.getAttribute('data-command').replace('!', '')}">${purchasableSpells[i].title}</button>`;
-        }
-      }
-
-      
-    }
+    return spells;
   }
 
+  // Tower is the spire
+  console.log(typeof towerCommand, towerCommand, tower);
+  if (towerCommand === 'undefined') {
+    spells += generateSpellsTemplate(tower, defaultSpells, 'spire');
+    spells += generateSpellsTemplate(tower, factionSpells[window.controller.user.faction], 'spire');
+    spells += generateSpellsTemplate(tower, purchasableSpells, 'spire', true);
+
+    return spells;
+  }
+
+  spells += generateSpellsTemplate(tower, defaultSpells, 'tower');
+  spells += generateSpellsTemplate(tower, factionSpells[window.controller.user.faction], 'tower');
+  spells += generateSpellsTemplate(tower, purchasableSpells, 'tower', true);
+
   return spells;
+}
+
+function generateSpellsTemplate(tower, spells, location, purchased) {
+  let spellsTemplate = ``;
+
+  spells.forEach(spell => {
+    const checkIfPurchased = (purchased) ? window.controller.user.hpstats.purchased.indexOf(spell.name) >= 0 : true;
+    if (checkIfPurchased) {
+      if (
+        spell.location === location &&
+        window.controller.user.hpstats.level >= spell.level
+      ) {
+        if (location !== 'tower') {
+          spellsTemplate += `<button class="spells__item" data-command="${spell.command}">${(spell.title) ? spell.title : spell.name}</button>`;
+        } else {
+          spellsTemplate += `<button class="spells__item" data-command="${spell.command}${tower.getAttribute('data-command').replace('!', '')}">${(spell.title) ? spell.title : spell.name}</button>`;
+        }
+      }
+    }
+  });
+  
+  return spellsTemplate;
 }
 
 const destroyTowerMoveControls = function() {

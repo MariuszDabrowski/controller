@@ -12,7 +12,8 @@ const positions = {
     tower10: {top: '63.1672598%', left: '68.4%', command: '!10'},
     tower11: {top: '39.5017794%', left: '79.4%', command: '!11'},
     tower12: {top: '63.1672598%', left: '79.4%', command: '!12'},
-    train: {top: '13.3451957%', left: '83.3%', width: '16.8%', height: '26.3345196%', command: '!train'}
+    train: {top: '13.3451957%', left: '83.3%', width: '16.8%', height: '26.3345196%', command: '!train'},
+    spire: {top: '25.044405%', left: '11%', width: '7.8%', height: '32.5044405%'}
   },
   map2: {
     tower1: {top: '35.5239787%', left: '80.4%', command: '!1'},
@@ -28,7 +29,8 @@ const positions = {
     tower11: {top: '64.2984014%', left: '69.4%', command: '!11'},
     tower12: {top: '64.2984014%', left: '80.4%', command: '!12'},
     train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.3345196%', command: '!train'},
-    altar: {width: '10.6%', height: '20.6039076%', top: '13.1438721%', left: '7.5%', command: '!altar'}
+    altar: {width: '10.6%', height: '20.6039076%', top: '13.1438721%', left: '7.5%', command: '!altar'},
+    spire: {top: '60.3907638%', left: '16.8%', width: '7.8%', height: '32.5044405%'}
   },
   map3: {
     tower1: {top: '43.1616341%', left: '14.8%', command: '!1'},
@@ -43,7 +45,8 @@ const positions = {
     tower10: {top: '14.7424512%', left: '51.6%', command: '!10'},
     tower11: {top: '19.5381883%', left: '63.9%', command: '!11'},
     tower12: {top: '52.7531083%', left: '63.9%', command: '!12'},
-    train: {top: '13.4991119%', left: '84.4%', width: '15.6%', height: '24.5115453%', command: '!train'}
+    train: {top: '13.4991119%', left: '84.4%', width: '15.6%', height: '24.5115453%', command: '!train'},
+    spire: {top: '30.9058615%', left: '73.9%', width: '7.8%', height: '32.5044405%'}
   },
   map4: {
     tower1: {top: '27.7087034%', left: '16.7%', command: '!1'},
@@ -59,7 +62,8 @@ const positions = {
     tower11: {top: '62.5222025%', left: '64.5%', command: '!11'},
     tower12: {top: '62.5222025%', left: '78.3%', command: '!12'},
     train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.2877442%', command: '!train'},
-    altar: {width: '11.1%', height: '27.3534636%', top: '58.7921847%', left: '14%', command: '!altar'}
+    altar: {width: '11.1%', height: '27.3534636%', top: '58.7921847%', left: '14%', command: '!altar'},
+    spire: {top: '17.7619893%', left: '77.2%', width: '7.8%', height: '32.5044405%'}
   },
   map5: {
     tower1: {top: '41.3854352%', left: '13.9%', command: '!1'},
@@ -74,7 +78,8 @@ const positions = {
     tower10: {top: '70.6927176%', left: '66.9%', command: '!10'},
     tower11: {top: '35.5239787%', left: '78.3%', command: '!11'},
     tower12: {top: '64.1207815%', left: '78.3%', command: '!12'},
-    train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.2877442%', command: '!train'}
+    train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.2877442%', command: '!train'},
+    spire: {top: '5.5062167%', left: '13.9%', width: '7.8%', height: '32.5044405%'}
   },
   map6: {
     tower1: {top: '63.0550622%', left: '18.5%', command: '!1'},
@@ -90,7 +95,8 @@ const positions = {
     tower11: {top: '63.0550622%', left: '69.1%', command: '!11'},
     tower12: {top: '63.0550622%', left: '80.5%', command: '!12'},
     train: {top: '13.4991119%', left: '84.4%', width: '15.6%', height: '24.5115453%', command: '!train'},
-    altar: {width: '7.9%', height: '23.8010657%', top: '25.7548845%', left: '11.6%', command: '!altar'}
+    altar: {width: '7.9%', height: '23.8010657%', top: '25.7548845%', left: '11.6%', command: '!altar'},
+    spire: {top: '3.0195382%', left: '69.1%', width: '7.8%', height: '32.5044405%'}
   },
   map7: {
     tower1: {top: '21.8472469%', left: '25.6%', command: '!1'},
@@ -106,7 +112,8 @@ const positions = {
     tower11: {top: '16.3410302%', left: '37.9%', command: '!11'},
     tower12: {top: '13.321492%', left: '67.2%', command: '!12'},
     train: {top: '13.321492%', left: '83.3%', width: '16.8%', height: '26.2877442%', command: '!train'},
-    altar: {width: '14.8%', height: '26.2877442%', top: '16.3410302%', left: '9.3%', command: '!altar'}
+    altar: {width: '14.8%', height: '26.2877442%', top: '16.3410302%', left: '9.3%', command: '!altar'},
+    spire: {top: '36.9449378%', left: '81%', width: '7.8%', height: '32.5044405%'}
   },
   map8: {
     tower1: {top: '30.017762%', left: '15.2%', command: '!1'},
@@ -121,7 +128,8 @@ const positions = {
     tower10: {top: '20.2486679%', left: '55.3%', command: '!10'},
     tower11: {top: '20.2486679%', left: '65.9%', command: '!11'},
     tower12: {top: '36.7673179%', left: '72.8%', command: '!12'},
-    train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.4653641%', command: '!train'}
+    train: {top: '13.1438721%', left: '83.3%', width: '16.8%', height: '26.4653641%', command: '!train'},
+    spire: {top: '13.1438721%', left: '46.3%', width: '7.8%', height: '32.5044405%'}
   },
   map9: {
     tower1: {top: '31.0834813%', left: '17.6%', command: '!1'},
@@ -137,7 +145,24 @@ const positions = {
     tower11: {top: '58.7921847%', left: '41.1%', command: '!11'},
     tower12: {top: '58.7921847%', left: '28%', command: '!12'},
     train: {top: '13.1438721%', left: '85.2%', width: '14.8%', height: '23.268206%', command: '!train'},
-    altar: {width: '10.8%', height: '19.1829485%', top: '63.2326821%', left: '13.4%', command: '!altar'}
+    altar: {width: '10.8%', height: '19.1829485%', top: '63.2326821%', left: '13.4%', command: '!altar'},
+    spire: {top: '2.1314387%', left: '73.7%', width: '7.8%', height: '32.5044405%'}
+  },
+  map10: {
+    tower1: {top: '33.7477798%', left: '22.4%', command: '!1'},
+    tower2: {top: '64.2984014%', left: '23.7%', command: '!2'},
+    tower3: {top: '27.7087034%', left: '34.2%', command: '!3'},
+    tower4: {top: '60.2131439%', left: '34.2%', command: '!4'},
+    tower5: {top: '20.7815275%', left: '45.6%', command: '!5'},
+    tower6: {top: '54.5293073%', left: '45.6%', command: '!6'},
+    tower7: {top: '35.7015986%', left: '56.7%', command: '!7'},
+    tower8: {top: '64.2984014%', left: '56.7%', command: '!8'},
+    tower9: {top: '19.1829485%', left: '68.1%', command: '!9'},
+    tower10: {top: '49.0230906%', left: '68.1%', command: '!10'},
+    tower11: {top: '35.7015986%', left: '79.2%', command: '!11'},
+    tower12: {top: '64.2984014%', left: '79.2%', command: '!12'},
+    train: {top: '13.1672598%', left: '85.2%', width: '14.8%', height: '23.268206%', command: '!train'},
+    spire: {top: '27.7087034%', left: '11%', width: '7.8%', height: '32.5044405%'}
   }
 };
 

@@ -76,11 +76,6 @@ function initClassButtons() {
   clickEvents();
 }
 
-function resetClassButtons() {
-  window.controller.videoContainer.querySelector('.class-buttons').remove();
-  initClassButtons();
-}
-
 // ------------
 // Click Events
 // ------------
@@ -111,12 +106,7 @@ function clickEvents() {
 
       // Clicked on the clear classes button
       if (this.getAttribute('data-type') === 'leave') {
-        const activeButtons = document.querySelectorAll('.class-buttons__item__button--active');
-        for (let i = 0; i < activeButtons.length; i++) {
-          activeButtons[i].classList.remove('class-buttons__item__button--active');
-        }
-        activeClasses = [];
-        classesUpdated();
+        clearClasses();
       }
 
       // Clicked on highpriest
@@ -143,6 +133,14 @@ function clickEvents() {
   }
 };
 
+function clearClasses() {
+  const activeButtons = document.querySelectorAll('.class-buttons__item__button--active');
+  activeButtons.forEach(button => button.classList.remove('class-buttons__item__button--active'));
+  activeClasses = [];
+  window.controller.highpriest = false;
+  classesUpdated();
+}
+
 // ---------------
 // Classes updated
 // ---------------
@@ -153,4 +151,4 @@ function classesUpdated() {
   updatePowerButtons();
 }
 
-export {initClassButtons, resetClassButtons};
+export {initClassButtons, clearClasses};

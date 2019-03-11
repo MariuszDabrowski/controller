@@ -1,4 +1,4 @@
-import {resetClassButtons} from './classButtons';
+import {clearClasses} from './classButtons';
 import {resetActiveMap} from './overlaySelector';
 import {sendCommand, sendWhisper} from './sendCommand';
 import {updateTowerMoveControls} from './towerOverlays';
@@ -130,18 +130,20 @@ const listenToChat = function(user, message) {
     // Private message from TTDBot to the user
     // ---------------------------------------
 
+    // if (parsedMessage['display-name'] === 'dongerlistdotcom' && parsedMessage.message) {
+    //   if (parsedMessage.message) {}
+    // }
+
     if (parsedMessage['display-name'] === 'TTDBot') {
       // Message is from TTDBOT
       
-      if (parsedMessage.message.includes('Ready to start the next game')) {
-        console.log('asking to start a new game: ', window.controller.activeClasses.length, window.controller.activeMap);
-        // New game is starting
-        if (window.controller.activeClasses.length) {
-          window.controller.activeClasses = [];
-          resetClassButtons();
+      // If a new game is starting reset the classes and map
+      if (parsedMessage.message) {
+        if (parsedMessage.message.includes('Ready to start the next game')) {
+          if (window.controller.activeClasses.length) window.controller.activeClasses = [];
+          if (window.controller.activeMap) resetActiveMap();
+          clearClasses();
         }
-
-        if (window.controller.activeMap) resetActiveMap();
       }
 
       if (parsedMessage['recipient'] === user.userName) {

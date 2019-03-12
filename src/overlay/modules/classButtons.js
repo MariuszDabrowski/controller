@@ -118,8 +118,9 @@ function clickEvents() {
         } else {
           window.controller.highpriest = true;
           this.classList.add('class-buttons__item__button--active');
-          sendWhisper('!gems', window.controller.user);
-          sendWhisper('!spells', window.controller.user);
+          if (!window.controller.user.hpstats) {
+            sendWhisper('!spells', window.controller.user);
+          }
         }
 
         classesUpdated();

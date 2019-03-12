@@ -10,6 +10,11 @@ body {
   font-family: helvetica;
 }
 
+button {
+  border: 0;
+  background: transparent;
+}
+
 .overlay button {
   transition: background 0.2s, border 0.2s;
   outline: none;

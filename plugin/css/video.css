@@ -14,7 +14,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.video-wrapper * {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .video-container {
@@ -252,10 +256,12 @@
   border-top: 1px solid #696969;
   outline: none;
   color: #e9ede1;
+  text-align: left;
   font-weight: bold;
   font-size: 11px;
   padding: 9px 12px;
   transition: background 0.2s, border-color 0.2s;
+  cursor: pointer;
 }
 
 .selector__popout__item:first-child {
@@ -363,6 +369,8 @@
   padding: 9px 12px;
   width: 100%;
   outline: none;
+  color: #fff;
+  cursor: pointer;
 }
 
 .custom-actions__list__item__trigger:hover {
@@ -387,6 +395,7 @@
   transform: translateX(100%);
   transition: transform 0.2s;
   outline: none;
+  cursor: pointer;
 }
 
 .player .custom-actions__list__item:last-child .custom-actions__list__item__remove {
@@ -425,6 +434,7 @@
   font-size: 12px;
   font-weight: bold;
   outline: none;
+  cursor: pointer;
 }
 
 .custom-actions__form__button:hover {
@@ -440,7 +450,7 @@
   height: 7.8152753%;
   position: absolute;
   bottom: 0;
-  left: 53.2%;
+  left: 39.1%;
   z-index: 10050;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
@@ -668,6 +678,9 @@
   border-top: 1px solid rgba(255,255,255, 0.4);
   transition: border-color 0.2s, background 0.2s;
   position: relative;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .player .class-buttons__item__button--active {
@@ -719,6 +732,9 @@
   transition: background 0.2s;
   white-space: nowrap;
   outline: none;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .spec__item:first-child {
@@ -962,4 +978,31 @@
 
 .player .toggle-visibility:hover {
   border-radius: 0;
+}
+
+/* ----------- */
+/* Info button */
+/* ----------- */
+
+.player .info-button-wrapper,
+.player .factions-button-wrapper {
+  
+}
+
+.player .info-button-wrapper {
+  
+}
+
+.player .info-button,
+.player .factions-button {
+  
+}
+
+.player .info-button:hover,
+.player .factions-button:hover {
+  
+}
+
+.player .info-button {
+
 }

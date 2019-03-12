@@ -1,4 +1,5 @@
 import listenToChat from './listenToChat';
+import {sendWhisper} from './sendCommand';
 
 const User = function(user, pass) {
   this.userName = user;
@@ -7,6 +8,7 @@ const User = function(user, pass) {
   this.connected = false;
   this.class = null;
   this.lastMessage = null;
+  this.faction = null;
   this.activeClasses = {
     archer: false,
     rogue: false,
@@ -26,6 +28,8 @@ const User = function(user, pass) {
         clearInterval(socketReadyState);
         this.connectToChannel();
         this.connected = true;
+
+        sendWhisper('!gems', window.controller.user);
       }
     }.bind(this), 1000);
   };

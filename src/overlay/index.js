@@ -1,6 +1,7 @@
 import {getData} from '../popup/modules/data.js';
 import initUser from './modules/initUser';
 import createVideoOverlay from './modules/createVideoOverlay'; 
+import {initFactionSelect} from './modules/factionSelect';
 import {initPowerButtons} from './modules/powerButtons';
 import {initClassButtons} from './modules/classButtons';
 import {initResizeTriggers, resizeOverlays} from './modules/resizeOverlays';
@@ -61,6 +62,7 @@ function initOverlay() {
         initResizeTriggers();
         resizeOverlays();
         overlaySelector();
+        initFactionSelect();
         initPowerButtons();
         initClassButtons();
         customActions();

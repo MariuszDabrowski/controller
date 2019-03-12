@@ -9,7 +9,12 @@
       "matches": ["https://*.twitch.tv/*", "http://*.twitch.tv/*"],
       "run_at": "document_end",
       "js": ["js/overlay.bundle.js"],
-      "css": ["css/overlay.css", "css/tabs.css", "css/video.css"]
+      "css": [
+        "css/overlay.css",
+        "css/tabs.css",
+        "css/video.css",
+        "css/factionsSelect.css"
+      ]
     }
   ],  
   "browser_action": {

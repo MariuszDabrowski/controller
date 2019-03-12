@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../plugin/css/overlay.css">
+  <link rel="stylesheet" href="../plugin/css/factionsSelect.css">
+  <link rel="stylesheet" href="../plugin/css/tabs.css">
+  <link rel="stylesheet" href="../plugin/css/video.css">
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      font-family: "Helvetica";
+    }
+
+    body {
+      background: rgba(0,0,0, 0.9);
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wrapper * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      width: 1000px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .background {
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper player">
+    <div class="container">
+      <img src="index-bg.jpg" alt="" class="background">
+
+      <!-- ///////////// -->
+      <!-- Power Buttons -->
+      <!-- ///////////// -->
+
+      <div class="power-buttons">
+        <div class="power-buttons__item">
+          <button class="power-buttons__item__all" data-button="command" data-command="!p">Power Up</button>
+        </div>
+        <div class="power-buttons__item">
+          <button class="power-buttons__item__all" data-button="command" data-command="!pd">Power Down</button>
+        </div>
+      </div>
+
+      <!-- //////// -->
+      <!-- Factions -->
+      <!-- //////// -->
+
+      <div class="factions-button-wrapper">    
+        <button class="factions-button">
+          <svg class="factions-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+          </svg>
+        </button>
+
+        <div class="factions-list">
+          
+            <button class="factions-list__button" data-command="!joinnomads">
+              <span class="factions-list__button__copy">
+                <span class="factions-list__button__color factions-list__button__color--nomad"></span>
+                Nomad Army
+              </span>
+              <span class="cost">
+                <div class="cost__price">2,500</div>
+                <div class="cost__coin"></div>
+              </span>      
+            </button>
+          
+            <button class="factions-list__button" data-command="!joinelementals">
+              <span class="factions-list__button__copy">
+                <span class="factions-list__button__color factions-list__button__color--elementals"></span>
+                Elementals Army
+              </span>
+              <span class="cost">
+                <div class="cost__price">2,500</div>
+                <div class="cost__coin"></div>
+              </span>
+            </button>
+          
+            <button class="factions-list__button factions-list__button--active" data-command="!joinmagiorder">
+              <span class="factions-list__button__copy">
+                <span class="factions-list__button__color factions-list__button__color--magi"></span>
+                Magi Order Army
+              </span>
+              <!-- <span class="cost">
+                <div class="cost__price">2,500</div>
+                <div class="cost__coin"></div>
+              </span> -->
+            </button>
+          
+            <button class="factions-list__button" data-command="!joinwolfclan">
+              <span class="factions-list__button__copy">
+                <span class="factions-list__button__color factions-list__button__color--wolfclan"></span>
+                Wolfclan Army
+              </span>
+              <span class="cost">
+                <div class="cost__price">2,500</div>
+                <div class="cost__coin"></div>
+              </span>
+            </button>
+          
+        </div>
+      </div>
+
+      <!-- ////////////// -->
+      <!-- Custom Actions -->
+      <!-- ////////////// -->
+
+      <div class="custom-actions">
+        <svg viewBox="0 0 24 24">
+          <path fill="#e9ede1" d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z"></path>
+        </svg>
+    
+        <div class="custom-actions__popout"><div class="custom-actions__list"><div class="custom-actions__list__item">
+          <button class="custom-actions__list__item__trigger" data-command="!2 !3 !2 !p">!2 !3 !2 !p</button>
+          <button class="custom-actions__list__item__remove">
+            <svg style="width:12px;height:12px" viewBox="0 0 24 24">
+              <path fill="#e9ede2" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"></path>
+            </svg>
+          </button>
+        </div></div>
+          <form class="custom-actions__form">
+            <input type="text" class="custom-actions__form__input" placeholder="!t !a !p">
+            <button class="custom-actions__form__button">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ///////////////// -->
+      <!-- Toggle Visibility -->
+      <!-- ///////////////// -->
+
+      <button class="toggle-visibility">
+        <svg class="toggle-visibility__icon-hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"></path>
+          <path fill="white" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"></path>
+        </svg>
+        <svg class="toggle-visibility__icon-show" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path fill="white" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
+        </svg>
+      </button>
+      
+      <!-- ///////////// -->
+      <!-- Class Buttons -->
+      <!-- ///////////// -->
+
+      <div class="class-buttons">
+        <div class="class-buttons__container">
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-class="archer" data-command="!archer">Archer</button>
+            <div class="spec">
+              <button class="spec__item" data-command="!specbowman">Bowman</button>
+              <button class="spec__item" data-command="!specsniper">Sniper</button>
+              <button class="spec__item" data-command="!specgunner">Gunner</button>
+            </div>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-class="rogue" data-command="!rogue">Rogue</button>
+            <div class="spec">
+              <button class="spec__item" data-command="!specknifethrower">Knife Thrower</button>
+              <button class="spec__item" data-command="!specassassin">Assassin</button>
+              <button class="spec__item" data-command="!specninja">Ninja</button>
+            </div>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-class="firemage" data-command="!firemage">Firemage</button>
+            <div class="spec">
+              <button class="spec__item" data-command="!specpyromancer">Pyromancer</button>
+              <button class="spec__item" data-command="!specarcanist">Arcanist</button>
+              <button class="spec__item" data-command="!specsaboteur">Saboteur</button>
+            </div>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-class="timemage" data-command="!timemage">Timemage</button>
+            <div class="spec">
+              <button class="spec__item" data-command="!specicemage">Icemage</button>
+              <button class="spec__item" data-command="!spectrickster">Trickster</button>
+              <button class="spec__item" data-command="!speclightningmage">Lightning Mage</button>
+              <button class="spec__item" data-command="!specshockmage">Shock Mage</button>
+            </div>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-class="poisoner" data-command="!poisoner">Poisoner</button>
+            <div class="spec">
+              <button class="spec__item" data-command="!specplaguedoctor">Plague Doctor</button>
+              <button class="spec__item" data-command="!specundeadarcher">Undead Archer</button>
+              <button class="spec__item" data-command="!specdeathdealer">Deathdealer</button>
+              <button class="spec__item" data-command="!specpotionmaster">Potion Master</button>
+            </div>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-class="bard" data-command="!bard">Bard</button>
+            <div class="spec">
+              <button class="spec__item" data-command="!specminstrel">Minstrel</button>
+              <button class="spec__item" data-command="!speccommander">Commander</button>
+              <button class="spec__item" data-command="!specscout">Scout</button>
+            </div>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-type="highpriest" data-command="!highpriest">Highpriest</button>
+          </div>
+          <div class="class-buttons__item">
+            <button class="class-buttons__item__button" data-type="leave" data-command="!leave">Leave</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- //////////// -->
+      <!-- Map Selector -->
+      <!-- //////////// -->
+
+      <div class="selector">
+        <div class="selector__popout">
+          <label for="hide-dashes" class="selector__popout__option"><input type="checkbox" id="hide-dashes" data-input="hide-dashes">Hide dashed outlines</label>
+          <button class="selector__popout__item" data-button="overlay-clear">Clear overlays</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Arid Junction</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map10">Cursed Sands</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Double Trouble</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map6">Dune Gauntlet</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map9">Frozen Steppes</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map1">Green Pasture</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map4">Lava or Leave It</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Lost Desert</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map3">Snow Trap</button>
+          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map5">Wandering Fields</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

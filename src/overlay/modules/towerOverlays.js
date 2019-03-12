@@ -250,7 +250,6 @@ function spells(tower) {
   }
 
   // Tower is the spire
-  console.log(typeof towerCommand, towerCommand, tower);
   if (towerCommand === 'undefined') {
     spells += generateSpellsTemplate(tower, defaultSpells, 'spire');
     spells += generateSpellsTemplate(tower, factionSpells[window.controller.user.faction], 'spire');

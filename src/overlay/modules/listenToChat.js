@@ -2,6 +2,7 @@ import {clearClasses} from './classButtons';
 import {resetActiveMap} from './overlaySelector';
 import {sendCommand, sendWhisper} from './sendCommand';
 import {updateTowerMoveControls} from './towerOverlays';
+import {updateFactionSelect} from './factionSelect';
 
 const specsDictionary = {
   archer: ['bowman', 'sniper', 'gunner'],
@@ -52,6 +53,7 @@ const updateFaction = function(user, parsedMessage) {
   user.faction = parsedMessage.message.split(' in the ')[1].replace('!', '');
   // Dongerlistdotcom is now a Captain in the Elementals Army!
   if (window.controller.highpriest) updateTowerMoveControls();
+  updateFactionSelect();
   console.log('updated faction: ', user.faction);
 };
 
@@ -67,14 +69,7 @@ const requestFaction = function(user, parsedMessage) {
   let faction = parsedMessage.message
                 .split('] [')[1]
                 .replace(']]', '')
-                .split('of the ')[1]
-  
-  const factionCommands = {
-    'Nomad Army': '!joinnomads',
-    'Elementals Army': '!joinelementals',
-    'Magi Order Army': '!joinmagiorder',
-    'Wolfclan Army': '!joinwolfclan'
-  }
+                .split('of the ')[1];
 
   user.faction = faction;
   user.medals = {
@@ -82,8 +77,8 @@ const requestFaction = function(user, parsedMessage) {
     total: medals[1]
   };
 
-  console.log(user.faction, user.medals);
   if (window.controller.highpriest) updateTowerMoveControls();
+  updateFactionSelect();
 };
 
 const updateSpecs = function(user, parsedMessage) {
@@ -137,8 +132,8 @@ const listenToChat = function(user, message) {
     if (parsedMessage['display-name'] === 'TTDBot') {
       // Message is from TTDBOT
       
-      // If a new game is starting reset the classes and map
       if (parsedMessage.message) {
+        // If a new game is starting reset the classes and map
         if (parsedMessage.message.includes('Ready to start the next game')) {
           if (window.controller.activeClasses.length) window.controller.activeClasses = [];
           if (window.controller.activeMap) resetActiveMap();

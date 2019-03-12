@@ -40,7 +40,6 @@ function initFactionSelect() {
 function activeFactionClass(faction) {
   if (window.controller.user) {
     if (faction.name === window.controller.user.faction) {
-      console.log(faction.name);
       return 'factions-list__button--active';
     }
   }

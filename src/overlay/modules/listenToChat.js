@@ -54,7 +54,6 @@ const updateFaction = function(user, parsedMessage) {
   // Dongerlistdotcom is now a Captain in the Elementals Army!
   if (window.controller.highpriest) updateTowerMoveControls();
   updateFactionSelect();
-  console.log('updated faction: ', user.faction);
 };
 
 const requestFaction = function(user, parsedMessage) {

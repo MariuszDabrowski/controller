@@ -47,7 +47,7 @@ const clearTowerOverlays = function() {
 const Tower = function() {
   this.element = null;
 
-  this.init = function(top, left, width = '7.9%', height = '23.8434164%', command) {
+  this.init = function(top, left, width = '7.9%', height = '23.8434164%', command, enterable) {
     this.element = document.createElement('div');
     this.element.classList.add('tower');
     this.element.style.width = width;
@@ -55,6 +55,7 @@ const Tower = function() {
     this.element.style.top = top;
     this.element.style.left = left;
     this.element.setAttribute('data-command', command);
+    this.element.setAttribute('data-enterable', enterable);
     towerElements.push(this.element);
   };
 };
@@ -67,7 +68,7 @@ const generateTowers = function(mapData) {
   let index = 0;
   Object.keys(mapData).map(tower => {
     towers.push(new Tower());
-    towers[index].init(mapData[tower].top, mapData[tower].left, mapData[tower].width, mapData[tower].height, mapData[tower].command);
+    towers[index].init(mapData[tower].top, mapData[tower].left, mapData[tower].width, mapData[tower].height, mapData[tower].command, mapData[tower].enterable);
   });
 
   for (let i = 0; i < towerElements.length; i++) {
@@ -106,7 +107,8 @@ const initTowerMoveControls = function() {
     };
 
     function moveWrapper(tower) {
-      if (activeClasses.length > 0) {
+      const enterable = tower.getAttribute('data-enterable');
+      if (activeClasses.length > 0 && enterable === 'true') {
         return `
         <div class="command-wrapper__move">
           ${(activeClasses.length > 1 && activeClasses.length < 3 && window.controller.highpriest && tower.getAttribute('data-command') !== '!altar') ? `<button class="command-wrapper__move__button move-all" data-command="${towerCommand}">All</button>` : ""}

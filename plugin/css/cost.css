@@ -1,0 +1,30 @@
+.player .cost {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player .cost--right {
+  padding: 0 10px;
+  border-left: 1px solid rgba(0,0,0, 0.5);
+}
+
+.player .cost--bottom {
+  margin-top: 3px;
+}
+
+.player .cost__coin {
+  margin-left: 2px;
+  display: block;
+  background: #fec165;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  display: block;
+}
+
+.player .cost__price {
+  font-size: 8px;
+  font-weight: 400;
+}

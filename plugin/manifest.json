@@ -13,7 +13,9 @@
         "css/overlay.css",
         "css/tabs.css",
         "css/video.css",
-        "css/factionsSelect.css"
+        "css/factionsSelect.css",
+        "css/classSelector.css",
+        "css/cost.css"
       ]
     }
   ],  

@@ -7,8 +7,10 @@
   <title>Document</title>
   <link rel="stylesheet" href="../plugin/css/overlay.css">
   <link rel="stylesheet" href="../plugin/css/factionsSelect.css">
+  <link rel="stylesheet" href="../plugin/css/classSelector.css">
   <link rel="stylesheet" href="../plugin/css/tabs.css">
   <link rel="stylesheet" href="../plugin/css/video.css">
+  <link rel="stylesheet" href="../plugin/css/cost.css">
 
   <style>
     html,
@@ -107,10 +109,10 @@
                 <span class="factions-list__button__color factions-list__button__color--magi"></span>
                 Magi Order Army
               </span>
-              <!-- <span class="cost">
+              <span class="cost">
                 <div class="cost__price">2,500</div>
                 <div class="cost__coin"></div>
-              </span> -->
+              </span>
             </button>
           
             <button class="factions-list__button" data-command="!joinwolfclan">
@@ -171,62 +173,222 @@
       <!-- ///////////// -->
 
       <div class="class-buttons">
-        <div class="class-buttons__container">
+        <div class="class-buttons__container" style="transform: translateX(0);">
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="archer" data-command="!archer">Archer</button>
-            <div class="spec">
-              <button class="spec__item" data-command="!specbowman">Bowman</button>
-              <button class="spec__item" data-command="!specsniper">Sniper</button>
-              <button class="spec__item" data-command="!specgunner">Gunner</button>
+            <div class="specs" style="display: flex;">
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specbowman">Bowman</button>
+                <div class="talents" style="display: flex;">
+                  <button class="talents__item" data-command="!talpiercing">Piercing</button> <button class="talents__item" data-command="!talfalcon">Falcon</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specsniper">Sniper</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talvulture">Vulture</button> <button class="talents__item" data-command="!talweaken">Weaken</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specgunner">Gunner</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talgunslinger">Gunslinger</button> <button class="talents__item" data-command="!talrockets">Rockets!</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cost-wrapper">
+                <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+              </div>
             </div>
           </div>
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="rogue" data-command="!rogue">Rogue</button>
-            <div class="spec">
-              <button class="spec__item" data-command="!specknifethrower">Knife Thrower</button>
-              <button class="spec__item" data-command="!specassassin">Assassin</button>
-              <button class="spec__item" data-command="!specninja">Ninja</button>
+            <div class="specs">
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specknifethrower">Knife-Thrower</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talbounce">Bounce</button> <button class="talents__item" data-command="!talaxe">Axe</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specassassin">Assassin</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talcharge">Charge</button> <button class="talents__item" data-command="!talpoisonstrike">Poison Strike</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specninja">Ninja</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!taldeadly">Deadly</button> <button class="talents__item" data-command="!talspread">Spread</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cost-wrapper">
+                <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+              </div>
             </div>
           </div>
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="firemage" data-command="!firemage">Firemage</button>
-            <div class="spec">
-              <button class="spec__item" data-command="!specpyromancer">Pyromancer</button>
-              <button class="spec__item" data-command="!specarcanist">Arcanist</button>
-              <button class="spec__item" data-command="!specsaboteur">Saboteur</button>
+            <div class="specs">
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specpyromancer">Pyromancer</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talmaniac">Maniac</button> <button class="talents__item" data-command="!talignite">Ignite</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specarcanist">Arcanist</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talhaste">Haste</button> <button class="talents__item" data-command="!taloverdrive">Overdrive</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specsaboteur">Saboteur</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talsticky">Sticky</button> <button class="talents__item" data-command="!talstacking">Stacking</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cost-wrapper">
+                <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+              </div>
             </div>
           </div>
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="timemage" data-command="!timemage">Timemage</button>
-            <div class="spec">
-              <button class="spec__item" data-command="!specicemage">Icemage</button>
-              <button class="spec__item" data-command="!spectrickster">Trickster</button>
-              <button class="spec__item" data-command="!speclightningmage">Lightning Mage</button>
-              <button class="spec__item" data-command="!specshockmage">Shock Mage</button>
+            <div class="specs">
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specicemage">IceMage</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talchilling">Chilling</button> <button class="talents__item" data-command="!talfreezing">Freezing</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!spectrickster">Trickster</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talcharming">Charming</button> <button class="talents__item" data-command="!talcharisma">Charisma</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!speclightningmage">LightningMage</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talstunning">Stunning</button> <button class="talents__item" data-command="!talchain">Chain</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cost-wrapper">
+                <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+              </div>
             </div>
           </div>
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="poisoner" data-command="!poisoner">Poisoner</button>
-            <div class="spec">
-              <button class="spec__item" data-command="!specplaguedoctor">Plague Doctor</button>
-              <button class="spec__item" data-command="!specundeadarcher">Undead Archer</button>
-              <button class="spec__item" data-command="!specdeathdealer">Deathdealer</button>
-              <button class="spec__item" data-command="!specpotionmaster">Potion Master</button>
+            <div class="specs">
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specplaguedoctor">PlagueDoctor</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talelixir">Elixr</button> <button class="talents__item" data-command="!talnecromancer">Necromancer</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specundeadarcher">UndeadArcher</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!taldoublebow">DoubleBow</button> <button class="talents__item" data-command="!talraise">Raise</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specdeathdealer">Deathdealer</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talempowered">Empowered</button> <button class="talents__item" data-command="!talseed">Seed</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cost-wrapper">
+                <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+              </div>
             </div>
           </div>
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="bard" data-command="!bard">Bard</button>
-            <div class="spec">
-              <button class="spec__item" data-command="!specminstrel">Minstrel</button>
-              <button class="spec__item" data-command="!speccommander">Commander</button>
-              <button class="spec__item" data-command="!specscout">Scout</button>
+            <div class="specs">
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specminstrel">Minstrel</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talamplify">Amplify</button> <button class="talents__item" data-command="!talmimic">Mimic</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!speccommander">Commander</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talbooming">Booming</button> <button class="talents__item" data-command="!talquickdraw">Quickdraw</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="specs__item">
+                <button class="specs__item__button" data-command="!specscout">Scout</button>
+                <div class="talents">
+                  <button class="talents__item" data-command="!talintel">Intel</button> <button class="talents__item" data-command="!talrupture">Rupture</button>
+                  <div class="cost-wrapper">
+                    <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cost-wrapper">
+                <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+              </div>
             </div>
           </div>
           <div class="class-buttons__item">
-            <button class="class-buttons__item__button" data-type="highpriest" data-command="!highpriest">Highpriest</button>
+            <button class="class-buttons__item__button" data-command="!highpriest" data-type="highpriest">Highpriest</button>
           </div>
           <div class="class-buttons__item">
-            <button class="class-buttons__item__button" data-type="leave" data-command="!leave">Leave</button>
+            <button class="class-buttons__item__button" data-command="!leave" data-type="leave">Leave</button>
           </div>
         </div>
       </div>

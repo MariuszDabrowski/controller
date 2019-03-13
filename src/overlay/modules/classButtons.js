@@ -3,66 +3,222 @@ import {updateTowerMoveControls} from './towerOverlays';
 import {updatePowerButtons} from './powerButtons';
 
 let activeClasses = [];
+const characters = [
+  {
+    name: 'Archer',
+    command: '!archer',
+    specs: [
+      {
+        name: 'Bowman',
+        command: '!specbowman',
+        talents: [
+          {name: 'Piercing', command: '!talpiercing'},
+          {name: 'Falcon', command: '!talfalcon'}
+        ]
+      },{
+        name: 'Sniper',
+        command: '!specsniper',
+        talents: [
+          {name: 'Vulture', command: '!talvulture'},
+          {name: 'Weaken', command: '!talweaken'}
+        ]
+      },{
+        name: 'Gunner',
+        command: '!specgunner',
+        talents: [
+          {name: 'Gunslinger', command: '!talgunslinger'},
+          {name: 'Rockets!', command: '!talrockets'}
+        ]
+      }
+    ]
+  },{
+    name: 'Rogue',
+    command: '!rogue',
+    specs: [
+      {
+        name: 'Knife-Thrower',
+        command: '!specknifethrower',
+        talents: [
+          {name: 'Bounce', command: '!talbounce'},
+          {name: 'Axe', command: '!talaxe'}
+        ]
+      },{
+        name: 'Assassin',
+        command: '!specassassin',
+        talents: [
+          {name: 'Charge', command: '!talcharge'},
+          {name: 'Poison Strike', command: '!talpoisonstrike'}
+        ]
+      },{
+        name: 'Ninja',
+        command: '!specninja',
+        talents: [
+          {name: 'Deadly', command: '!taldeadly'},
+          {name: 'Spread', command: '!talspread'}
+        ]
+      }
+    ]
+  },{
+    name: 'Firemage',
+    command: '!firemage',
+    specs: [
+      {
+        name: 'Pyromancer',
+        command: '!specpyromancer',
+        talents: [
+          {name: 'Maniac', command: '!talmaniac'},
+          {name: 'Ignite', command: '!talignite'}
+        ]
+      },{
+        name: 'Arcanist',
+        command: '!specarcanist',
+        talents: [
+          {name: 'Haste', command: '!talhaste'},
+          {name: 'Overdrive', command: '!taloverdrive'}
+        ]
+      },{
+        name: 'Saboteur',
+        command: '!specsaboteur',
+        talents: [
+          {name: 'Sticky', command: '!talsticky'},
+          {name: 'Stacking', command: '!talstacking'}
+        ]
+      }
+    ]
+  },{
+    name: 'Timemage',
+    command: '!timemage',
+    specs: [
+      {
+        name: 'IceMage',
+        command: '!specicemage',
+        talents: [
+          {name: 'Chilling', command: '!talchilling'},
+          {name: 'Freezing', command: '!talfreezing'}
+        ]
+      },{
+        name: 'Trickster',
+        command: '!spectrickster',
+        talents: [
+          {name: 'Charming', command: '!talcharming'},
+          {name: 'Charisma', command: '!talcharisma'}
+        ]
+      },{
+        name: 'LightningMage',
+        command: '!speclightningmage',
+        talents: [
+          {name: 'Stunning', command: '!talstunning'},
+          {name: 'Chain', command: '!talchain'}
+        ]
+      }
+    ]
+  },{
+    name: 'Poisoner',
+    command: '!poisoner',
+    specs: [
+      {
+        name: 'PlagueDoctor',
+        command: '!specplaguedoctor',
+        talents: [
+          {name: 'Elixr', command: '!talelixir'},
+          {name: 'Necromancer', command: '!talnecromancer'}
+        ]
+      },{
+        name: 'UndeadArcher',
+        command: '!specundeadarcher',
+        talents: [
+          {name: 'DoubleBow', command: '!taldoublebow'},
+          {name: 'Raise', command: '!talraise'}
+        ]
+      },{
+        name: 'Deathdealer',
+        command: '!specdeathdealer',
+        talents: [
+          {name: 'Empowered', command: '!talempowered'},
+          {name: 'Seed', command: '!talseed'}
+        ]
+      }
+    ]
+  },{
+    name: 'Bard',
+    command: '!bard',
+    specs: [
+      {
+        name: 'Minstrel',
+        command: '!specminstrel',
+        talents: [
+          {name: 'Amplify', command: '!talamplify'},
+          {name: 'Mimic', command: '!talmimic'}
+        ]
+      },{
+        name: 'Commander',
+        command: '!speccommander',
+        talents: [
+          {name: 'Booming', command: '!talbooming'},
+          {name: 'Quickdraw', command: '!talquickdraw'}
+        ]
+      },{
+        name: 'Scout',
+        command: '!specscout',
+        talents: [
+          {name: 'Intel', command: '!talintel'},
+          {name: 'Rupture', command: '!talrupture'}
+        ]
+      }
+    ]
+  }
+]
 
 // --------
 // Template
 // --------
 
+function specTemplate(spec) {
+  return `
+  <div class="specs__item">
+    <button class="specs__item__button" data-command="${spec.command}">
+      ${spec.name}
+    </button>
+    <div class="talents">
+      ${spec.talents.map(talent => talentTemplate(talent)).join('')}
+      <div class="cost-wrapper">
+        <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+      </div>
+    </div>
+  </div>
+  `;
+};
+
+function talentTemplate(talent) {
+  return `
+    <button class="talents__item" data-command="${talent.command}">
+      ${talent.name}
+    </button>
+  `;
+};
+
 function initClassButtons() {
   const container = document.createElement('div');
   container.classList.add('class-buttons');
-  container.innerHTML = `
-    <div class="class-buttons__container">
+  
+  let template = ``;
+  template += '<div class="class-buttons__container">';
+
+  characters.forEach(character => {
+    template += `
       <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-class="archer" data-command="!archer">Archer</button>
-        <div class="spec">
-          <button class="spec__item" data-command="!specbowman">Bowman</button>
-          <button class="spec__item" data-command="!specsniper">Sniper</button>
-          <button class="spec__item" data-command="!specgunner">Gunner</button>
+        <button class="class-buttons__item__button" data-class="${character.name.toLocaleLowerCase()}" data-command="${character.command}">${character.name}</button>
+        <div class="specs">
+          ${character.specs.map(spec => specTemplate(spec)).join('')}
+          <div class="cost-wrapper">
+            <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
+          </div>
         </div>
       </div>
-      <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-class="rogue" data-command="!rogue">Rogue</button>
-        <div class="spec">
-          <button class="spec__item" data-command="!specknifethrower">Knife Thrower</button>
-          <button class="spec__item" data-command="!specassassin">Assassin</button>
-          <button class="spec__item" data-command="!specninja">Ninja</button>
-        </div>
-      </div>
-      <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-class="firemage" data-command="!firemage">Firemage</button>
-        <div class="spec">
-          <button class="spec__item" data-command="!specpyromancer">Pyromancer</button>
-          <button class="spec__item" data-command="!specarcanist">Arcanist</button>
-          <button class="spec__item" data-command="!specsaboteur">Saboteur</button>
-        </div>
-      </div>
-      <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-class="timemage" data-command="!timemage">Timemage</button>
-        <div class="spec">
-          <button class="spec__item" data-command="!specicemage">Icemage</button>
-          <button class="spec__item" data-command="!spectrickster">Trickster</button>
-          <button class="spec__item" data-command="!speclightningmage">Lightning Mage</button>
-          <button class="spec__item" data-command="!specshockmage">Shock Mage</button>
-        </div>
-      </div>
-      <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-class="poisoner" data-command="!poisoner">Poisoner</button>
-        <div class="spec">
-          <button class="spec__item" data-command="!specplaguedoctor">Plague Doctor</button>
-          <button class="spec__item" data-command="!specundeadarcher">Undead Archer</button>
-          <button class="spec__item" data-command="!specdeathdealer">Deathdealer</button>
-          <button class="spec__item" data-command="!specpotionmaster">Potion Master</button>
-        </div>
-      </div>
-      <div class="class-buttons__item">
-        <button class="class-buttons__item__button" data-class="bard" data-command="!bard">Bard</button>
-        <div class="spec">
-          <button class="spec__item" data-command="!specminstrel">Minstrel</button>
-          <button class="spec__item" data-command="!speccommander">Commander</button>
-          <button class="spec__item" data-command="!specscout">Scout</button>
-        </div>
-      </div>
+    `;
+  });
+
+  template += `
       <div class="class-buttons__item">
         <button class="class-buttons__item__button" data-type="highpriest" data-command="!highpriest">Highpriest</button>
       </div>
@@ -72,6 +228,7 @@ function initClassButtons() {
     </div>
   `;
 
+  container.innerHTML = template;
   window.controller.videoContainer.appendChild(container);
   clickEvents();
 }
@@ -120,6 +277,7 @@ function clickEvents() {
           this.classList.add('class-buttons__item__button--active');
           if (!window.controller.user.hpstats) {
             sendWhisper('!spells', window.controller.user);
+            if (!window.controller.user.faction) sendWhisper('!gems', window.controller.user);
           }
         }
 

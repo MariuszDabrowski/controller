@@ -24,7 +24,7 @@ function initFactionSelect() {
             <span class="factions-list__button__color factions-list__button__color--${faction.class}"></span>
             ${faction.name}
           </span>
-          <span class="cost">
+          <span class="cost cost--right">
             <div class="cost__price">2,500</div>
             <div class="cost__coin"></div>
           </span>      

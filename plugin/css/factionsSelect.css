@@ -72,6 +72,10 @@
   cursor: default !important;
 }
 
+.player .factions-list__button--active .cost {
+  display: none;
+}
+
 .player .factions-list__button--active:after {
   display: block;
 }
@@ -100,34 +104,3 @@
 .factions-list__button__color--elementals { background: #44cc29; }
 .factions-list__button__color--magi { background: #fd3b40; }
 .factions-list__button__color--wolfclan { background: #9e9e9e; }
-
-/* ---- */
-/* Cost */
-/* ---- */
-
-.player .cost {
-  margin-left: auto;
-  padding: 0 10px;
-  border-left: 1px solid rgba(0,0,0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.player .factions-list__button--active .cost {
-  display: none;
-}
-
-.player .cost__coin {
-  margin-left: 2px;
-  display: block;
-  background: #fec165;
-  width: 6px;
-  height: 6px;
-  border-radius: 100%;
-  display: block;
-}
-
-.player .cost__price {
-  font-size: 8px;
-}

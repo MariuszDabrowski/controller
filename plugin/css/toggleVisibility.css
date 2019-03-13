@@ -1,0 +1,51 @@
+/* ----------------- */
+/* Toggle visibility */
+/* ----------------- */
+
+.player .toggle-visibility {
+  width: 6%;
+  height: 10%;
+  position: absolute;
+  top: 41.0301954%;
+  right: 0%;
+  background: rgba(0,0,0, 0.9);
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 10030;
+  pointer-events: all;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.player .toggle-visibility:hover {
+  background: #323232;
+}
+
+.overlay-hidden .toggle-visibility__icon-hide {
+  display: none;
+}
+
+.toggle-visibility__icon-show {
+  display: none;
+}
+
+.overlay-hidden .toggle-visibility__icon-show {
+  display: block;
+}
+
+.overlay-active .player .toggle-visibility {
+  border-bottom-left-radius: 0;
+}
+
+.player .toggle-visibility svg {
+  width: 40%;
+  max-width: 24px;
+}
+
+.player .toggle-visibility:hover {
+  border-radius: 0;
+}

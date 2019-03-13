@@ -15,7 +15,10 @@
         "css/video.css",
         "css/factionsSelect.css",
         "css/classSelector.css",
-        "css/cost.css"
+        "css/cost.css",
+        "css/mapSelector.css",
+        "css/toggleVisibility.css",
+        "css/customActions.css"
       ]
     }
   ],  

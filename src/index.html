@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="../plugin/css/tabs.css">
   <link rel="stylesheet" href="../plugin/css/video.css">
   <link rel="stylesheet" href="../plugin/css/cost.css">
+  <link rel="stylesheet" href="../plugin/css/mapSelector.css">
+  <link rel="stylesheet" href="../plugin/css/toggleVisibility.css">
+  <link rel="stylesheet" href="../plugin/css/customActions.css">
 
   <style>
     html,
@@ -72,58 +75,57 @@
       <!-- Factions -->
       <!-- //////// -->
 
-      <div class="factions-button-wrapper">    
+      <div class="factions-button-wrapper">
         <button class="factions-button">
           <svg class="factions-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M0 0h24v24H0z" fill="none"></path>
             <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
           </svg>
         </button>
-
         <div class="factions-list">
           
-            <button class="factions-list__button" data-command="!joinnomads">
+            <button class="factions-list__button " data-command="!joinnomads">
               <span class="factions-list__button__copy">
                 <span class="factions-list__button__color factions-list__button__color--nomad"></span>
-                Nomad Army
+                Nomads Army
               </span>
-              <span class="cost">
+              <span class="cost cost--right">
                 <div class="cost__price">2,500</div>
                 <div class="cost__coin"></div>
               </span>      
             </button>
           
-            <button class="factions-list__button" data-command="!joinelementals">
+            <button class="factions-list__button factions-list__button--active" data-command="!joinelementals">
               <span class="factions-list__button__copy">
                 <span class="factions-list__button__color factions-list__button__color--elementals"></span>
                 Elementals Army
               </span>
-              <span class="cost">
+              <span class="cost cost--right">
                 <div class="cost__price">2,500</div>
                 <div class="cost__coin"></div>
-              </span>
+              </span>      
             </button>
           
-            <button class="factions-list__button factions-list__button--active" data-command="!joinmagiorder">
+            <button class="factions-list__button " data-command="!joinmagiorder">
               <span class="factions-list__button__copy">
                 <span class="factions-list__button__color factions-list__button__color--magi"></span>
                 Magi Order Army
               </span>
-              <span class="cost">
+              <span class="cost cost--right">
                 <div class="cost__price">2,500</div>
                 <div class="cost__coin"></div>
-              </span>
+              </span>      
             </button>
           
-            <button class="factions-list__button" data-command="!joinwolfclan">
+            <button class="factions-list__button " data-command="!joinwolfclan">
               <span class="factions-list__button__copy">
                 <span class="factions-list__button__color factions-list__button__color--wolfclan"></span>
                 Wolfclan Army
               </span>
-              <span class="cost">
+              <span class="cost cost--right">
                 <div class="cost__price">2,500</div>
                 <div class="cost__coin"></div>
-              </span>
+              </span>      
             </button>
           
         </div>
@@ -173,13 +175,13 @@
       <!-- ///////////// -->
 
       <div class="class-buttons">
-        <div class="class-buttons__container" style="transform: translateX(0);">
+        <div class="class-buttons__container">
           <div class="class-buttons__item">
             <button class="class-buttons__item__button" data-class="archer" data-command="!archer">Archer</button>
-            <div class="specs" style="display: flex;">
+            <div class="specs">
               <div class="specs__item">
                 <button class="specs__item__button" data-command="!specbowman">Bowman</button>
-                <div class="talents" style="display: flex;">
+                <div class="talents">
                   <button class="talents__item" data-command="!talpiercing">Piercing</button> <button class="talents__item" data-command="!talfalcon">Falcon</button>
                   <div class="cost-wrapper">
                     <span class="cost cost--bottom"><span class="cost__price">5,000</span> <span class="cost__coin"></span></span>
@@ -398,10 +400,15 @@
       <!-- //////////// -->
 
       <div class="selector">
+        <div class="selector__button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </div>
         <div class="selector__popout">
           <label for="hide-dashes" class="selector__popout__option"><input type="checkbox" id="hide-dashes" data-input="hide-dashes">Hide dashed outlines</label>
-          <button class="selector__popout__item" data-button="overlay-clear">Clear overlays</button>
-          <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Arid Junction</button>
+          <button class="selector__popout__item selector__popout__item--active" data-button="overlay-change" data-overlay="map8">Arid Junction</button>
           <button class="selector__popout__item" data-button="overlay-change" data-overlay="map10">Cursed Sands</button>
           <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Double Trouble</button>
           <button class="selector__popout__item" data-button="overlay-change" data-overlay="map6">Dune Gauntlet</button>
@@ -411,6 +418,7 @@
           <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Lost Desert</button>
           <button class="selector__popout__item" data-button="overlay-change" data-overlay="map3">Snow Trap</button>
           <button class="selector__popout__item" data-button="overlay-change" data-overlay="map5">Wandering Fields</button>
+          <button class="selector__popout__item" data-button="overlay-clear">Clear overlays</button>
         </div>
       </div>
 

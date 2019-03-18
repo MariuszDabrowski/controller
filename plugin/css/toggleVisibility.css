@@ -3,12 +3,12 @@
 /* ----------------- */
 
 .player .toggle-visibility {
-  width: 6%;
-  height: 10%;
+  width: 4.7%;
+  height: 7.8152753%;
   position: absolute;
   top: 41.0301954%;
   right: 0%;
-  background: rgba(0,0,0, 0.9);
+  background: #000;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
   cursor: pointer;
@@ -19,6 +19,7 @@
   pointer-events: all;
   outline: none;
   transition: background 0.2s;
+  padding: 0;
 }
 
 .player .toggle-visibility:hover {

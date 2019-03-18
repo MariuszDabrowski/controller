@@ -57,7 +57,7 @@
   border-bottom: 1px solid rgba(255,255,255, 0.4);
   flex-wrap: wrap;
   pointer-events: all;
-  background: rgba(0,0,0, 0.9);
+  background: #000;
   z-index: 5;
   transform: translateY(500%);
   opacity: 0;

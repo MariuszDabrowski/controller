@@ -11,13 +11,12 @@
 .player .target-priority__button {
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0, 0.9);;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
   border-left: 1px solid #757477;
-  cursor: pointer;
 }
 
 .player .target-priority:hover .target-priority__button {

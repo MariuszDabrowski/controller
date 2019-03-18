@@ -56,7 +56,7 @@ const overlaySelector = function() {
       </svg>
     </div>
     <div class="selector__popout">
-      <label for="hide-dashes" class="selector__popout__option"><input type="checkbox" id="hide-dashes" data-input="hide-dashes" />Hide dashed outlines</label>
+      <label for="hide-dashes" class="selector__popout__item selector__popout__item--hide-dashes"><input type="checkbox" id="hide-dashes" data-input="hide-dashes" />Hide dashed outlines</label>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map8">Arid Junction</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map10">Cursed Sands</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map7">Double Trouble</button>
@@ -67,7 +67,7 @@ const overlaySelector = function() {
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map2">Lost Desert</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map3">Snow Trap</button>
       <button class="selector__popout__item" data-button="overlay-change" data-overlay="map5">Wandering Fields</button>
-      <button class="selector__popout__item" data-button="overlay-clear">Clear overlays</button>
+      <button class="selector__popout__item selector__popout__item--clear" data-button="overlay-clear">Clear overlays</button>
     </div>
   `;
 

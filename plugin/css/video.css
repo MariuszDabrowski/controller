@@ -105,7 +105,7 @@
 }
 
 .player .command-wrapper__move__button {
-  background: rgba(0,0,0, 0.9);
+  background: #000;
   border-right: 1px solid #696969;
   cursor: pointer;
   white-space: nowrap;

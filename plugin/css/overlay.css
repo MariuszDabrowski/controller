@@ -236,7 +236,7 @@ button.additional-options__item--active:hover {
   outline: none;
   width: 50%;
   letter-spacing: 0.004em;
-  background: rgba(0,0,0, 0.9);
+  background: #000;
 }
 
 .player .spells__item:nth-last-child(-n + 2) {
@@ -252,7 +252,7 @@ button.additional-options__item--active:hover {
 }
 
 .player .spells__filler {
-  background: rgba(0,0,0, 0.9);
+  background: #000;
   width: 50%;
   border-left: 1px solid rgb(105, 105, 105);
 }

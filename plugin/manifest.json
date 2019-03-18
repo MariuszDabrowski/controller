@@ -18,7 +18,9 @@
         "css/cost.css",
         "css/mapSelector.css",
         "css/toggleVisibility.css",
-        "css/customActions.css"
+        "css/customActions.css",
+        "css/powerButtons.css",
+        "css/targetPriority.css"
       ]
     }
   ],  

@@ -1,6 +1,7 @@
 import {sendCommand, sendWhisper} from './sendCommand';
 import {updateTowerMoveControls} from './towerOverlays';
 import {updatePowerButtons} from './powerButtons';
+import {updateTargetingUI} from './targeting.js'
 
 let activeClasses = [];
 const characters = [
@@ -264,6 +265,7 @@ function clickEvents() {
       // Clicked on the clear classes button
       if (this.getAttribute('data-type') === 'leave') {
         clearClasses();
+        classesUpdated();
       }
 
       // Clicked on highpriest
@@ -284,7 +286,6 @@ function clickEvents() {
         classesUpdated();
       }
 
-      // If the button had a command
       if (command) {
         sendCommand(command); 
       }
@@ -308,6 +309,7 @@ function classesUpdated() {
   window.controller.activeClasses = activeClasses;
   updateTowerMoveControls();
   updatePowerButtons();
+  updateTargetingUI();
 }
 
 export {initClassButtons, clearClasses};

@@ -70,11 +70,13 @@ function initTargetingUI() {
       </svg>
     </div>
     <div class="target-priority__popout">
-      <div class="target-class-selector"></div>
       <div class="target-disclaimer">This does not show your characters current targeting options. It is merely a helper for setting new targeting options.</div>
       <div class="targeting-options-wrapper"></div>
       <div class="target-category"></div>
-      <div class="target-apply">Apply target settings</div>
+      <div class="target-controls">
+        <div class="target-controls__item" data-control="clear-settings">Clear settings</div>
+        <div class="target-controls__item" data-control="apply-settings">Apply target settings</div>
+      </div>
     </div>
   `;
 
@@ -164,28 +166,39 @@ function generateOptions() {
 
 function generateClassSelectors() {
   selectedClasses = [];
-  const classSelector = document.querySelector('.target-class-selector');
+  let classSelector = document.querySelector('.target-class-selector');
 
-  classSelector.classList.add(`target-class-selector--${window.controller.activeClasses.length}`);
-
-  window.controller.activeClasses.forEach((className, index) => {
-    const template = document.createElement('button');
-    template.classList.add('target-class-selector__item');
-    template.innerHTML = className;
-    template.setAttribute('data-class', className);
-    if (index === 0) {
-      template.classList.add('target-class-selector__item--active');
-      selectedClasses.push(className);
+  if (window.controller.activeClasses.length > 1) {
+    const parent = document.querySelector('.target-priority__popout');
+    if (!classSelector) {
+      classSelector = document.createElement('div');
+      classSelector.classList.add('target-class-selector');
+      classSelector.classList.add(`target-class-selector--${window.controller.activeClasses.length}`);
     }
-    classSelector.appendChild(template);
-  });
 
-  classClickEvents();
+    window.controller.activeClasses.forEach((className, index) => {
+      const template = document.createElement('button');
+      template.classList.add('target-class-selector__item');
+      template.innerHTML = className;
+      template.setAttribute('data-class', className);
+      if (index === 0) {
+        template.classList.add('target-class-selector__item--active');
+        selectedClasses.push(className);
+      }
+      classSelector.appendChild(template);
+    });
+
+    parent.prepend(classSelector);
+
+    classClickEvents();
+  } else {
+    if (classSelector) classSelector.remove();
+  }
 }
 
 function updateClassSelectors() {
   const classSelector = document.querySelector('.target-class-selector');
-  classSelector.innerHTML = '';
+  if (classSelector) classSelector.innerHTML = '';
   generateClassSelectors();
 }
 
@@ -245,25 +258,46 @@ function targetingOptionsClickEvents() {
 
   targetingOptions.forEach(option => {
     const parentCategory = option.parentElement.getAttribute('data-category');
-    option.addEventListener('click', function() {
-      const command = this.getAttribute('data-command');
-
-      if (parentCategory === 'sorting') {
-        const activeItem = document.querySelector('.targeting-options__item--active');
-        selectedSorting = command;
-        if (activeItem) activeItem.classList.remove('targeting-options__item--active');
-        this.classList.add('targeting-options__item--active');
-      } else {
-        if (this.classList.contains('targeting-options__item--active')) {
-          selectedPriorities.splice(selectedPriorities.indexOf(command), 1);
+    const command = option.getAttribute('data-command');
+    if (command) {
+      option.addEventListener('click', function() {
+        if (parentCategory === 'sorting') {
+          const activeItem = document.querySelector('.targeting-options__item--active');
+          selectedSorting = command;
+          if (activeItem) activeItem.classList.remove('targeting-options__item--active');
+          this.classList.add('targeting-options__item--active');
         } else {
-          selectedPriorities.push(command);
+          if (this.classList.contains('targeting-options__item--active')) {
+            selectedPriorities.splice(selectedPriorities.indexOf(command), 1);
+          } else {
+            selectedPriorities.push(command);
+          }
+          
+          this.classList.toggle('targeting-options__item--active');
         }
-        
-        this.classList.toggle('targeting-options__item--active');
-      }
-    });
+      });
+    }
   });
+}
+
+// -----------------------
+// Reset selected elements
+// -----------------------
+
+function updateOptions() {
+  const activeSorting = document.querySelectorAll('[data-category="sorting"] .targeting-options__item--active');
+  const activePriorities = document.querySelectorAll('[data-category="priorities"] .targeting-options__item--active');
+  const defaultSorting = document.querySelector(`[data-command="${selectedSorting}"]`);
+
+  activeSorting.forEach(option => option.classList.remove('targeting-options__item--active'));
+  activePriorities.forEach(option => option.classList.remove('targeting-options__item--active'));
+  defaultSorting.classList.add('targeting-options__item--active');
+}
+
+function resetSelectedElements() {
+  selectedSorting = 'f';
+  selectedPriorities = [];
+  updateOptions();
 }
 
 // ---------------------
@@ -271,12 +305,15 @@ function targetingOptionsClickEvents() {
 // ---------------------
 
 function applySettingsClickEvents() {
-  const applyButton = document.querySelector('.target-apply');
+  const applyButton = document.querySelector('[data-control="apply-settings"]');
+  const clearButton = document.querySelector('[data-control="clear-settings"]');
 
   applyButton.addEventListener('click', function() {
     const classes = selectedClasses.map(className => className[0]).join('');
     sendCommand(`${classes}!tar=${selectedSorting}${selectedPriorities.join('')}`);
   });
+
+  clearButton.addEventListener('click', resetSelectedElements);
 }
 
 export {initTargetingUI, updateTargetingUI};

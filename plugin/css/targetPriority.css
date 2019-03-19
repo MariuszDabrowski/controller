@@ -38,7 +38,7 @@
   width: 380px;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  display: none;
+  /* display: none; */
 }
 
 .player .target-priority:hover .target-priority__popout {
@@ -108,7 +108,18 @@
   border-bottom: 1px solid #000;
 }
 
-.player .target-apply {
+.player .target-disclaimer:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.player .target-controls {
+  border-top: 5px solid #000;
+  background: linear-gradient(to bottom, #323232 0%,#252525 100%);
+  display: flex;
+}
+
+.player .target-controls__item {
   text-align: center;
   padding: 20px;
   transition: background 0.2s;
@@ -117,12 +128,17 @@
   font-size: 10px;
   line-height: 1;
   color: #e9ede1;
-  border-top: 5px solid #000;
-  background: linear-gradient(to bottom, #323232 0%,#252525 100%);
+  text-align: center;
+  width: 50%;
+  border-left: 1px solid #000;
 }
 
-.player .target-apply:hover {
+.player .target-controls__item:hover {
   background: #505050;
+}
+
+.player .target-controls__item:first-child {
+  border-left: 0;
 }
 
 /* --------------- */

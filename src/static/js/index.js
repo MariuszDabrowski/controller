@@ -239,10 +239,17 @@ function targetingOptionsClickEvents() {
 // ---------------------
 
 function applySettingsClickEvents() {
-  const applyButton = document.querySelector('.target-apply');
+  const applyButton = document.querySelector('[data-control="apply-settings"]');
+  const clearButton = document.querySelector('[data-control="clear-settings"]');
 
   applyButton.addEventListener('click', function() {
     const classes = selectedClasses.map(className => className[0]).join('');
     console.log(`${classes}!tar=${selectedSorting}${selectedPriorities.join('')}`);
+  });
+
+  clearButton.addEventListener('click', function() {
+    console.log(selectedPriorities)
+    selectedPriorities = [];
+    console.log(selectedPriorities)
   });
 }

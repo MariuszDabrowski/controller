@@ -74,7 +74,7 @@ function initTargetingUI() {
       <div class="targeting-options-wrapper"></div>
       <div class="target-category"></div>
       <div class="target-controls">
-        <div class="target-controls__item" data-control="clear-settings">Clear settings</div>
+        <div class="target-controls__item" data-control="reset-settings">Reset settings</div>
         <div class="target-controls__item" data-control="apply-settings">Apply target settings</div>
       </div>
     </div>
@@ -306,14 +306,14 @@ function resetSelectedElements() {
 
 function applySettingsClickEvents() {
   const applyButton = document.querySelector('[data-control="apply-settings"]');
-  const clearButton = document.querySelector('[data-control="clear-settings"]');
+  const resetButton = document.querySelector('[data-control="reset-settings"]');
 
   applyButton.addEventListener('click', function() {
     const classes = selectedClasses.map(className => className[0]).join('');
     sendCommand(`${classes}!tar=${selectedSorting}${selectedPriorities.join('')}`);
   });
 
-  clearButton.addEventListener('click', resetSelectedElements);
+  resetButton.addEventListener('click', resetSelectedElements);
 }
 
 export {initTargetingUI, updateTargetingUI};

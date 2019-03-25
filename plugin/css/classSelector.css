@@ -3,7 +3,7 @@
 /* ------------ */
 
 .player .class-buttons {
-  min-width: 7.5%;
+  min-width: 8.3%;
   position: absolute;
   top: 10.4795737%;
   left: 0;
@@ -51,7 +51,7 @@
   justify-content: center;
   text-align: center;
   outline: none;
-  padding: 12px 20px;
+  padding: 12px 0;
   border-top: 1px solid #000;
   transition: border-color 0.2s, background 0.2s;
   position: relative;

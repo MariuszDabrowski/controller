@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../../plugin/css/customActions.css">
   <link rel="stylesheet" href="../../plugin/css/powerButtons.css">
   <link rel="stylesheet" href="../../plugin/css/targetPriority.css">
+  <link rel="stylesheet" href="../../plugin/css/votingOptions.css">
 
   <style>
     html,
@@ -424,13 +425,86 @@
         </div>
       </div>
 
+      <!-- ////////////// -->
+      <!-- Voting options -->
+      <!-- ////////////// -->
+
+      <div class="voting-options">
+        <div class="voting-options__item">
+          <div class="voting-button" data-command="!vote1">Vote 1</div>
+          <div class="additional-votes">
+            <div class="additional-votes__item" data-command="!vote1 buy4">
+              +4 extra votes
+              <span class="cost cost--bottom">
+                <div class="cost__price">1,000</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+            <div class="additional-votes__item" data-command="!vote1 buy3">
+              +3 extra votes
+              <span class="cost cost--bottom">
+                <div class="cost__price">750</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+            <div class="additional-votes__item" data-command="!vote1 buy2">
+              +2 extra votes
+              <span class="cost cost--bottom">
+                <div class="cost__price">500</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+            <div class="additional-votes__item" data-command="!vote1 buy1">
+              +1 extra vote
+              <span class="cost cost--bottom">
+                <div class="cost__price">250</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="voting-options__item">
+          <div class="voting-button" data-command="!vote2">Vote 2</div>
+          <div class="additional-votes">
+            <div class="additional-votes__item" data-command="!vote2 buy4">
+              +4 extra votes
+              <span class="cost cost--bottom">
+                <div class="cost__price">1,000</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+            <div class="additional-votes__item" data-command="!vote2 buy3">
+              +3 extra votes
+              <span class="cost cost--bottom">
+                <div class="cost__price">750</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+            <div class="additional-votes__item" data-command="!vote2 buy2">
+              +2 extra votes
+              <span class="cost cost--bottom">
+                <div class="cost__price">500</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+            <div class="additional-votes__item" data-command="!vote2 buy1">
+              +1 extra vote
+              <span class="cost cost--bottom">
+                <div class="cost__price">250</div>
+                <div class="cost__coin"></div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- /////////////// -->
       <!-- Target Priority -->
       <!-- /////////////// -->
 
       <div class="target-priority">
         <div class="target-priority__button">
-          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24">
             <path d="M20.95,11H22.5V13H20.95C20.5,17.17 17.17,20.5 13,20.95V22.5H11V20.95C6.83,20.5 3.5,17.17 3.05,13H1.5V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1.5H13V3.05C17.17,3.5 20.5,6.83 20.95,11M5.07,11H6.5V13H5.07C5.5,16.07 7.93,18.5 11,18.93V17.5H13V18.93C16.07,18.5 18.5,16.07 18.93,13H17.5V11H18.93C18.5,7.93 16.07,5.5 13,5.07V6.5H11V5.07C7.93,5.5 5.5,7.93 5.07,11M16,16H8V15C8,13.67 10.67,13 12,13C13.33,13 16,13.67 16,15V16M12,8A2,2 0 0,1 14,10A2,2 0 0,1 12,12A2,2 0 0,1 10,10A2,2 0 0,1 12,8Z" />
           </svg>
         </div>

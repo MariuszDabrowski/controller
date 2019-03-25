@@ -9,6 +9,7 @@ import {overlaySelector} from './modules/overlaySelector';
 import {customActions} from './modules/customActions';
 import {toggleVisibilityUI} from './modules/toggleControllerVisibility';
 import {initTargetingUI} from './modules/targeting.js'
+import initVoting from './modules/voting.js'
 
 // Listen to the Chrome extentions for commands (Connect, Disconnect)
 chrome.runtime.onMessage.addListener(
@@ -23,8 +24,8 @@ chrome.runtime.onMessage.addListener(
         video: null,
         videoWrapper: null,
         videoContainer: null,
-        channel: 'dongerlistdotcom',
-        // channel: 'archonthewizard',
+        // channel: 'dongerlistdotcom',
+        channel: 'archonthewizard',
         user: null,
         activeClasses: [],
         highpriest: false,
@@ -69,6 +70,7 @@ function initOverlay() {
         customActions();
         toggleVisibilityUI();
         initTargetingUI();
+        initVoting();
         getData('user', initUser);
         clearInterval(findDiv);
       }

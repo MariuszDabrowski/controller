@@ -20,7 +20,8 @@
         "css/toggleVisibility.css",
         "css/customActions.css",
         "css/powerButtons.css",
-        "css/targetPriority.css"
+        "css/targetPriority.css",
+        "css/votingOptions.css"
       ]
     }
   ],  

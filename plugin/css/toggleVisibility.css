@@ -3,27 +3,30 @@
 /* ----------------- */
 
 .player .toggle-visibility {
-  width: 4.7%;
-  height: 7.8152753%;
+  width: 4%;
+  height: 6.5%;
   position: absolute;
-  top: 41.0301954%;
-  right: 0%;
+  bottom: 0;
+  left: 74.9%;
   background: #000;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
   cursor: pointer;
   display: flex !important;
   align-items: center;
   justify-content: center;
-  z-index: 10030;
+  z-index: 10200;
   pointer-events: all;
   outline: none;
   transition: background 0.2s;
   padding: 0;
+  border-left: 1px solid #757477;
 }
 
 .player .toggle-visibility:hover {
   background: #323232;
+}
+
+.overlay-hidden .player .toggle-visibility {
+  border-left: 0;
 }
 
 .overlay-hidden .toggle-visibility__icon-hide {
@@ -43,7 +46,7 @@
 }
 
 .player .toggle-visibility svg {
-  width: 40%;
+  width: 46%;
   max-width: 24px;
 }
 

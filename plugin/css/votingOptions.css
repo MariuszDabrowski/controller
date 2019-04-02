@@ -36,39 +36,3 @@
 .player .voting-options__item:hover .voting-button {
   background: #323232;
 }
-
-.player .additional-votes {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  background: #323232;
-  min-width: 100%;
-  display: none;
-  border-bottom: 5px solid #696a6a;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
-  overflow: hidden;
-}
-
-.player .additional-votes__item {
-  padding: 10px 14px;
-  border-bottom: 1px solid #000;
-  cursor: pointer;
-  text-align: center;
-  transition: background 0.2s;
-  white-space: nowrap;
-  font-size: 11px;
-  background: #252525;
-}
-
-.player .voting-options__item:hover .additional-votes {
-  display: block;
-}
-
-.player .additional-votes__item:hover {
-  background: #505050;
-}
-
-.player .additional-votes__item .cost {
-  margin-top: 3px;
-}
